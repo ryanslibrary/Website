@@ -33,40 +33,43 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 100px;
         }
 
         .header-content {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: center;
+            gap: 220px;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 0px;
             text-decoration: none;
             cursor: pointer;
         }
 
         .logo-img {
-            width: 160px;
-            height: 160px;
+            width: 200px;
+            height: 200px;
             object-fit: contain;
         }
 
         nav ul {
             list-style: none;
             display: flex;
-            gap: 40px;
+            gap: 80px;
+            justify-content: center;
+            flex: 1;
         }
 
         nav a {
             color: #e0e0e0;
             text-decoration: none;
             font-weight: 500;
-            font-size: 14px;
+            font-size: 16px;
             transition: all 0.3s ease;
             position: relative;
         }
@@ -139,6 +142,7 @@
             z-index: 1;
             text-align: center;
             animation: slideInDown 0.8s ease-out;
+            padding: 40px 0;
         }
 
         @keyframes slideInDown {
@@ -195,7 +199,7 @@
         }
 
         .form-container {
-            max-width: 550px;
+            max-width: 800px;
             margin: 0 auto;
             background: rgba(25, 30, 40, 0.6);
             backdrop-filter: blur(10px);
@@ -562,7 +566,7 @@
                         <li><a href="#" class="nav-link active" onclick="showPage('home'); return false;">Home</a></li>
                         <li><a href="#" class="nav-link" onclick="showPage('contact'); return false;">Contact</a></li>
                         <li><a href="#" class="nav-link" onclick="showPage('reviews'); return false;">Reviews</a></li>
-                        <li><a href="#" class="nav-link" onclick="showPage('gallery'); return false;">Gallery</a></li>
+                        <!-- <li><a href="#" class="nav-link" onclick="showPage('gallery'); return false;">Gallery</a></li> -->
                     </ul>
                 </nav>
             </div>
@@ -590,12 +594,12 @@
                 <div class="feature-card">
                     <div class="feature-icon">⚡</div>
                     <h3>Reliable Service</h3>
-                    <p>On-time service with meticulous attention to detail and quality workmanship.</p>
+                    <p>On time service with meticulous attention to detail and quality workmanship.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🛡️</div>
                     <h3>24/7 Available</h3>
-                    <p>Emergency call-outs available around the clock for urgent electrical issues.</p>
+                    <p>Emergency call outs available for urgent electrical issues.</p>
                 </div>
             </div>
             <div class="services-section">
@@ -656,7 +660,7 @@
                         </div>
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea id="message" name="message" placeholder="Tell us about your project..." required></textarea>
+                            <textarea id="message" name="message" placeholder="How can we help..." required></textarea>
                         </div>
                         <div class="form-group">
                             <button type="submit">Send Enquiry</button>
@@ -671,8 +675,7 @@
     <div id="reviews" class="page">
         <div class="reviews-container">
             <div class="container">
-                <h2>What Our Clients Say</h2>
-                <div style="margin-top: 40px;">
+                <div style="margin-top: 10px;">
                     <script src="https://widget.trustmary.com/DiY3cgW-f"></script>
                 </div>
             </div>
@@ -680,16 +683,16 @@
     </div>
 
     <!-- Gallery Page -->
-    <div id="gallery" class="page">
+    <!-- <div id="gallery" class="page">
         <div class="gallery-container">
             <div class="container">
                 <h2>Our Work</h2>
                 <div id="galleryGrid" class="gallery-grid">
                     <!-- Gallery will be populated by JavaScript -->
-                </div>
+                <!-- </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <footer>
         <div class="container">
@@ -700,7 +703,7 @@
             <div class="social-links">
                 <a href="https://www.instagram.com/burleighelectricalservices/" target="_blank" rel="noopener noreferrer">📷 Instagram</a>
             </div>
-            <p style="color: #666; margin-top: 16px; font-size: 13px;">&copy; 2026 Burleigh Electrical. All rights reserved.</p>
+            <p style="color: #666; margin-top: 16px; font-size: 13px;">&copy; 2024 Burleigh Electrical. All rights reserved.</p>
         </div>
     </footer>
 
@@ -708,72 +711,20 @@
         function showPage(pageId) {
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => page.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
+
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
 
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => link.classList.remove('active'));
-            document.querySelector(`a[onclick*="'${pageId}'"]`).classList.add('active');
+            const activeLink = document.querySelector(`a[onclick*="'${pageId}'"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
 
             window.scrollTo(0, 0);
-
-            // Load gallery images when gallery page is opened
-            if (pageId === 'gallery') {
-                loadGalleryImages();
-            }
-        }
-
-        async function loadGalleryImages() {
-            const galleryGrid = document.getElementById('galleryGrid');
-            const GITHUB_TOKEN = 'YOUR_PERSONAL_ACCESS_TOKEN_HERE'; // Replace with your token
-            const GITHUB_USERNAME = 'yourusername'; // Replace with your GitHub username
-            
-            try {
-                // Fetch the directory listing from GitHub
-                const response = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_USERNAME}.github.io/contents/our_work`, {
-                    headers: {
-                        'Authorization': `token ${GITHUB_TOKEN}`
-                    }
-                });
-                const files = await response.json();
-
-                if (!response.ok || !Array.isArray(files)) {
-                    throw new Error('Could not load images');
-                }
-
-                // Filter image files and shuffle them randomly
-                const imageFiles = files
-                    .filter(file => /\.(jpg|jpeg|png|gif|webp)$/i.test(file.name))
-                    .sort(() => Math.random() - 0.5);
-
-                if (imageFiles.length === 0) {
-                    galleryGrid.innerHTML = '<div class="gallery-error">No images found in our_work folder<div class="gallery-error-detail">Make sure you have added images to the /our_work directory in your GitHub repo</div></div>';
-                    return;
-                }
-
-                // Create gallery items
-                galleryGrid.innerHTML = imageFiles.map((file, index) => `
-                    <div class="gallery-item">
-                        <img src="${file.download_url}" alt="Project ${index + 1}" loading="lazy">
-                        <div class="gallery-overlay">
-                            <span class="gallery-text">Project ${index + 1}</span>
-                        </div>
-                    </div>
-                `).join('');
-
-            } catch (error) {
-                galleryGrid.innerHTML = `
-                    <div class="gallery-error">
-                        Unable to load gallery
-                        <div class="gallery-error-detail">Please check that:<br>1. Your GitHub token is valid<br>2. Your /our_work folder exists in the repo<br>3. The token has repo access</div>
-                    </div>
-                `;
-                console.error('Gallery loading error:', error);
-            }
-        }
-
-        // Load gallery on page load if already on gallery page
-        if (document.getElementById('gallery').classList.contains('active')) {
-            loadGalleryImages();
         }
     </script>
 </body>
