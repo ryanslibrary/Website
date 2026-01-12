@@ -1,731 +1,615 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Burleigh Electrical - Professional Electrical Services</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            background: #000000;
-            color: #ffffff;
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-
-        header {
-            background: #000000;
-            backdrop-filter: blur(10px);
-            padding: 16px 0;
-            border-bottom: 1px solid rgba(126, 224, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 100px;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            gap: 220px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0px;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .logo-img {
-            width: 200px;
-            height: 200px;
-            object-fit: contain;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 80px;
-            justify-content: center;
-            flex: 1;
-        }
-
-        nav a {
-            color: #e0e0e0;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #7ee000;
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover::after,
-        nav a.active::after {
-            width: 100%;
-        }
-
-        nav a:hover,
-        nav a.active {
-            color: #7ee000;
-        }
-
-        .page {
-            display: none;
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        .page.active {
-            display: block;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero {
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #000000;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(126, 224, 0, 0.05) 0%, transparent 70%);
-            border-radius: 50%;
-            z-index: 0;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            animation: slideInDown 0.8s ease-out;
-            padding: 40px 0;
-        }
-
-        @keyframes slideInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero h1 {
-            font-size: 64px;
-            font-weight: 800;
-            margin-bottom: 20px;
-            color: #ffffff;
-            letter-spacing: -1px;
-        }
-
-        .hero p {
-            font-size: 18px;
-            color: #b0b0b0;
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, #7ee000, #5ec200);
-            color: #000;
-            padding: 14px 44px;
-            border: none;
-            border-radius: 8px;
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(126, 224, 0, 0.3);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 50px rgba(126, 224, 0, 0.4);
-        }
-
-        .form-section {
-            padding: 80px 0;
-            margin-bottom: 60px;
-        }
-
-        .form-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: rgba(25, 30, 40, 0.6);
-            backdrop-filter: blur(10px);
-            padding: 50px;
-            border-radius: 16px;
-            border: 1px solid rgba(126, 224, 0, 0.2);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .form-container h2 {
-            color: #ffffff;
-            margin-bottom: 30px;
-            font-size: 36px;
-            font-weight: 800;
-        }
-
-        .form-group {
-            margin-bottom: 22px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 10px;
-            color: #ffffff;
-            font-weight: 600;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        label::after {
-            content: ' *';
-            color: #7ee000;
-        }
-
-        input,
-        textarea,
-        select {
-            width: 100%;
-            padding: 14px 16px;
-            background: rgba(15, 20, 25, 0.5);
-            border: 1.5px solid rgba(126, 224, 0, 0.2);
-            border-radius: 8px;
-            color: #ffffff;
-            font-family: inherit;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-
-        input::placeholder,
-        textarea::placeholder {
-            color: #666;
-        }
-
-        input:focus,
-        textarea:focus,
-        select:focus {
-            outline: none;
-            border-color: #7ee000;
-            background: rgba(15, 20, 25, 0.8);
-            box-shadow: 0 0 20px rgba(126, 224, 0, 0.2);
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 140px;
-        }
-
-        .form-group button {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #7ee000, #5ec200);
-            color: #000;
-            border: none;
-            border-radius: 8px;
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            box-shadow: 0 10px 30px rgba(126, 224, 0, 0.3);
-        }
-
-        .form-group button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(126, 224, 0, 0.4);
-        }
-
-        .reviews-container {
-            padding: 80px 0;
-        }
-
-        section h2 {
-            text-align: center;
-            font-size: 42px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #7ee000, #5ec200);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 60px;
-            letter-spacing: -1px;
-        }
-
-        .gallery-container {
-            padding: 80px 0;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            margin-top: 40px;
-        }
-
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-            aspect-ratio: 1;
-            cursor: pointer;
-            border: 1.5px solid rgba(126, 224, 0, 0.2);
-            background: rgba(25, 30, 40, 0.4);
-            transition: all 0.3s ease;
-        }
-
-        .gallery-item:hover {
-            border-color: #7ee000;
-            box-shadow: 0 20px 50px rgba(126, 224, 0, 0.2);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.08);
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(126, 224, 0, 0.3), rgba(93, 194, 0, 0.2));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            backdrop-filter: blur(2px);
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-
-        .gallery-text {
-            color: #7ee000;
-            font-weight: 700;
-            text-align: center;
-            font-size: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .gallery-error {
-            text-align: center;
-            padding: 40px;
-            color: #999;
-            font-size: 16px;
-        }
-
-        .gallery-error-detail {
-            color: #666;
-            font-size: 14px;
-            margin-top: 10px;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            padding: 60px 0;
-        }
-
-        .feature-card {
-            background: rgba(25, 30, 40, 0.6);
-            backdrop-filter: blur(10px);
-            padding: 32px;
-            border-radius: 12px;
-            border: 1px solid rgba(126, 224, 0, 0.15);
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-6px);
-            border-color: #7ee000;
-            box-shadow: 0 15px 40px rgba(126, 224, 0, 0.15);
-        }
-
-        .feature-icon {
-            font-size: 40px;
-            margin-bottom: 16px;
-        }
-
-        .feature-card h3 {
-            color: #7ee000;
-            margin-bottom: 12px;
-            font-weight: 700;
-            font-size: 16px;
-        }
-
-        .feature-card p {
-            color: #a0a0a0;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        .services-section {
-            background: rgba(25, 30, 40, 0.6);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 12px;
-            border: 1px solid rgba(126, 224, 0, 0.15);
-            margin-top: 40px;
-            margin-bottom: 80px;
-        }
-
-        .services-section h3 {
-            color: #7ee000;
-            font-size: 14px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-
-        .service-item {
-            color: #c0c0c0;
-            font-size: 14px;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(126, 224, 0, 0.1);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .service-item::before {
-            content: '✓';
-            color: #7ee000;
-            font-weight: bold;
-        }
-
-        .services-footer {
-            color: #999;
-            font-size: 13px;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(126, 224, 0, 0.1);
-        }
-
-        footer {
-            background: rgba(15, 20, 25, 0.9);
-            padding: 40px 0;
-            text-align: center;
-            border-top: 2px solid #7ee000;
-            box-shadow: 0 -8px 32px rgba(126, 224, 0, 0.1);
-        }
-
-        .contact-info {
-            color: #7ee000;
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
-
-        .contact-info a {
-            color: #7ee000;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .contact-info a:hover {
-            text-decoration: underline;
-            opacity: 0.8;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            color: #7ee000;
-            text-decoration: none;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            opacity: 0.8;
-        }
-
-        .trustmary-branding {
-            display: none !important;
-        }
-
-        @media (max-width: 768px) {
-            nav ul {
-                gap: 20px;
-            }
-
-            nav a {
-                font-size: 13px;
-            }
-
-            .hero h1 {
-                font-size: 42px;
-            }
-
-            .hero p {
-                font-size: 16px;
-            }
-
-            .form-container {
-                padding: 40px;
-            }
-
-            section h2 {
-                font-size: 32px;
-            }
-
-            .logo-img {
-                width: 120px;
-                height: 120px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Burleigh Electrical - Professional Electrical Services</title>
+<style>
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    background: #000000;
+    color: #ffffff;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* ===== HEADER ===== */
+header {
+    background: #000000;
+    backdrop-filter: blur(10px);
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(126, 224, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px; /* Responsive padding */
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between; /* Auto spacing */
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.logo-img {
+    width: 150px;
+    height: auto;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+nav a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #7ee000;
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after,
+nav a.active::after {
+    width: 100%;
+}
+
+nav a:hover,
+nav a.active {
+    color: #7ee000;
+}
+
+/* ===== PAGES ===== */
+.page {
+    display: none;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== HERO ===== */
+.hero {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000000;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(126, 224, 0, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: #ffffff;
+    letter-spacing: -1px;
+}
+
+.hero p {
+    font-size: 18px;
+    color: #b0b0b0;
+    margin-bottom: 30px;
+    max-width: 100%;
+}
+
+.cta-button {
+    background: linear-gradient(135deg, #7ee000, #5ec200);
+    color: #000;
+    padding: 14px 32px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(126, 224, 0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 50px rgba(126, 224, 0, 0.4);
+}
+
+/* ===== FEATURES ===== */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 60px 0;
+}
+
+.feature-card {
+    background: rgba(25, 30, 40, 0.6);
+    backdrop-filter: blur(10px);
+    padding: 32px;
+    border-radius: 12px;
+    border: 1px solid rgba(126, 224, 0, 0.15);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-6px);
+    border-color: #7ee000;
+    box-shadow: 0 15px 40px rgba(126, 224, 0, 0.15);
+}
+
+.feature-icon {
+    font-size: 40px;
+    margin-bottom: 16px;
+}
+
+.feature-card h3 {
+    color: #7ee000;
+    margin-bottom: 12px;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.feature-card p {
+    color: #a0a0a0;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* ===== SERVICES ===== */
+.services-section {
+    background: rgba(25, 30, 40, 0.6);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid rgba(126, 224, 0, 0.15);
+    margin-top: 40px;
+    margin-bottom: 80px;
+}
+
+.services-section h3 {
+    color: #7ee000;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.service-item {
+    color: #c0c0c0;
+    font-size: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(126, 224, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.service-item::before {
+    content: '✓';
+    color: #7ee000;
+    font-weight: bold;
+}
+
+.services-footer {
+    color: #999;
+    font-size: 13px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(126, 224, 0, 0.1);
+}
+
+/* ===== CONTACT FORM ===== */
+.form-section {
+    padding: 60px 0;
+}
+
+.form-container {
+    max-width: 700px;
+    margin: 0 auto;
+    background: rgba(25, 30, 40, 0.6);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 16px;
+    border: 1px solid rgba(126, 224, 0, 0.2);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.form-container h2 {
+    color: #ffffff;
+    margin-bottom: 30px;
+    font-size: 32px;
+    font-weight: 800;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+label::after {
+    content: ' *';
+    color: #7ee000;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(15, 20, 25, 0.5);
+    border: 1.5px solid rgba(126, 224, 0, 0.2);
+    border-radius: 8px;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #666;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #7ee000;
+    background: rgba(15, 20, 25, 0.8);
+    box-shadow: 0 0 20px rgba(126, 224, 0, 0.2);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 140px;
+}
+
+.form-group button {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #7ee000, #5ec200);
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 10px 30px rgba(126, 224, 0, 0.3);
+}
+
+.form-group button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(126, 224, 0, 0.4);
+}
+
+/* ===== REVIEWS ===== */
+.reviews-container {
+    padding: 60px 0;
+}
+
+section h2 {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #7ee000, #5ec200);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 40px;
+    letter-spacing: -1px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background: rgba(15, 20, 25, 0.9);
+    padding: 40px 20px;
+    text-align: center;
+    border-top: 2px solid #7ee000;
+    box-shadow: 0 -8px 32px rgba(126, 224, 0, 0.1);
+}
+
+.contact-info {
+    color: #7ee000;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.contact-info a {
+    color: #7ee000;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+    opacity: 0.8;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.social-links a {
+    color: #7ee000;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    opacity: 0.8;
+}
+
+/* HIDE TRUSTMARY */
+.trustmary-branding {
+    display: none !important;
+}
+
+/* ===== MEDIA QUERIES ===== */
+@media (max-width: 1024px) {
+    .hero h1 { font-size: 42px; }
+    .hero p { font-size: 16px; }
+}
+
+@media (max-width: 768px) {
+    .logo-img { width: 100px; }
+    nav ul { gap: 20px; justify-content: center; }
+    .hero h1 { font-size: 32px; }
+    .hero p { font-size: 14px; }
+    .features { gap: 15px; }
+    .form-container { padding: 30px; }
+}
+
+@media (max-width: 480px) {
+    .hero h1 { font-size: 28px; }
+    .hero p { font-size: 13px; }
+    .cta-button { padding: 12px 24px; font-size: 14px; }
+}
+</style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo" onclick="showPage('home')">
-                    <img src="IMG_3501.png" alt="Burleigh Electrical Logo" class="logo-img">
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="#" class="nav-link active" onclick="showPage('home'); return false;">Home</a></li>
-                        <li><a href="#" class="nav-link" onclick="showPage('contact'); return false;">Contact</a></li>
-                        <li><a href="#" class="nav-link" onclick="showPage('reviews'); return false;">Reviews</a></li>
-                        <!-- <li><a href="#" class="nav-link" onclick="showPage('gallery'); return false;">Gallery</a></li> -->
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
 
-    <!-- Home Page -->
-    <div id="home" class="page active">
-        <div class="hero">
-            <div class="hero-content">
-                <div class="container">
-                    <h1>⚡ Electrical Excellence</h1>
-                    <p>Kent based electrical services you can trust. Qualified and reliable.</p>
-                    <button class="cta-button" onclick="showPage('contact')">Get Your Free Quote</button>
-                </div>
+<header>
+    <div class="container">
+        <div class="header-content">
+            <div class="logo" onclick="showPage('home')">
+                <img src="../IMG_3501.png" alt="Burleigh Electrical Logo" class="logo-img">
             </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link active" onclick="showPage('home'); return false;">Home</a></li>
+                    <li><a href="#" class="nav-link" onclick="showPage('contact'); return false;">Contact</a></li>
+                    <li><a href="#" class="nav-link" onclick="showPage('reviews'); return false;">Reviews</a></li>
+                </ul>
+            </nav>
         </div>
-        <div class="container">
-            <div class="features">
-                <div class="feature-card">
-                    <div class="feature-icon">🔧</div>
-                    <h3>Professional Experts</h3>
-                    <p>Qualified and insured electricians with years of experience in the industry.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Reliable Service</h3>
-                    <p>On time service with meticulous attention to detail and quality workmanship.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🛡️</div>
-                    <h3>24/7 Available</h3>
-                    <p>Emergency call outs available for urgent electrical issues.</p>
-                </div>
-            </div>
-            <div class="services-section">
-                <h3>Our Services</h3>
-                <div class="services-grid">
-                    <div class="service-item">Full House Rewires</div>
-                    <div class="service-item">EV Charger Installation</div>
-                    <div class="service-item">EICR</div>
-                    <div class="service-item">PAT Testing</div>
-                    <div class="service-item">Fuse Board Upgrades</div>
-                    <div class="service-item">Lighting Installation & Repair</div>
-                    <div class="service-item">Additional Sockets</div>
-                    <div class="service-item">Fault Finding</div>
-                    <div class="service-item">Emergency Call Outs</div>
-                    <div class="service-item">Garden Rooms</div>
-                </div>
-                <div class="services-footer">
-                    All jobs covered. <a href="#" onclick="showPage('contact'); return false;" style="color: #7ee000; text-decoration: none;">Contact us for a quote</a>
-                </div>
-            </div>
+    </div>
+</header>
+
+<!-- HOME PAGE -->
+<div id="home" class="page active">
+    <div class="hero">
+        <div class="hero-content">
+            <h1>⚡ Electrical Excellence</h1>
+            <p>Kent based electrical services you can trust. Qualified and reliable.</p>
+            <button class="cta-button" onclick="showPage('contact')">Get Your Free Quote</button>
         </div>
     </div>
 
-    <!-- Contact Page -->
-    <div id="contact" class="page">
-        <div class="form-section">
-            <div class="container">
-                <div class="form-container">
-                    <h2>Get a Free Quote</h2>
-                    <form id="contactForm" action="https://formspree.io/f/xbddjlap" method="POST">
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" name="name" placeholder="John Smith" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" placeholder="john@example.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" placeholder="07786 067085" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="service">Service Type</label>
-                            <select id="service" name="service" required>
-                                <option value="">Select a service...</option>
-                                <option value="full-house-rewires">Full House Rewires</option>
-                                <option value="ev-charger">EV Charger Installation</option>
-                                <option value="eicr">EICR</option>
-                                <option value="pat-testing">PAT Testing</option>
-                                <option value="fuse-board">Fuse Board Upgrades</option>
-                                <option value="lighting">Lighting Installation & Repair</option>
-                                <option value="sockets">Additional Sockets</option>
-                                <option value="fault-finding">Fault Finding</option>
-                                <option value="emergency">Emergency Call Outs</option>
-                                <option value="garden-rooms">Garden Rooms</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" placeholder="How can we help..." required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit">Send Enquiry</button>
-                        </div>
-                    </form>
-                </div>
+    <div class="container">
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🔧</div>
+                <h3>Professional Experts</h3>
+                <p>Qualified and insured electricians with years of experience in the industry.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Reliable Service</h3>
+                <p>On time service with meticulous attention to detail and quality workmanship.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3>24/7 Available</h3>
+                <p>Emergency call outs available for urgent electrical issues.</p>
+            </div>
+        </div>
+
+        <div class="services-section">
+            <h3>Our Services</h3>
+            <div class="services-grid">
+                <div class="service-item">Full House Rewires</div>
+                <div class="service-item">EV Charger Installation</div>
+                <div class="service-item">EICR</div>
+                <div class="service-item">PAT Testing</div>
+                <div class="service-item">Fuse Board Upgrades</div>
+                <div class="service-item">Lighting Installation & Repair</div>
+                <div class="service-item">Additional Sockets</div>
+                <div class="service-item">Fault Finding</div>
+                <div class="service-item">Emergency Call Outs</div>
+                <div class="service-item">Garden Rooms</div>
+            </div>
+            <div class="services-footer">
+                All jobs covered. <a href="#" onclick="showPage('contact'); return false;" style="color: #7ee000;">Contact us for a quote</a>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Reviews Page -->
-    <div id="reviews" class="page">
-        <div class="reviews-container">
-            <div class="container">
-                <div style="margin-top: 10px;">
-                    <script src="https://widget.trustmary.com/DiY3cgW-f"></script>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Gallery Page -->
-    <!-- <div id="gallery" class="page">
-        <div class="gallery-container">
-            <div class="container">
-                <h2>Our Work</h2>
-                <div id="galleryGrid" class="gallery-grid">
-                    <!-- Gallery will be populated by JavaScript -->
-                <!-- </div>
-            </div>
-        </div>
-    </div> -->
-
-    <footer>
+<!-- CONTACT PAGE -->
+<div id="contact" class="page">
+    <div class="form-section">
         <div class="container">
-            <div class="contact-info">
-                <p>📞 <a href="tel:07786067085">07786 067085</a></p>
-                <p>📧 <a href="mailto:info@burleighelectrical.co.uk">info@burleighelectrical.co.uk</a></p>
+            <div class="form-container">
+                <h2>Get a Free Quote</h2>
+                <form id="contactForm" action="https://formspree.io/f/xbddjlap" method="POST">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="John Smith" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="07786 067085" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Service Type</label>
+                        <select id="service" name="service" required>
+                            <option value="">Select a service...</option>
+                            <option value="full-house-rewires">Full House Rewires</option>
+                            <option value="ev-charger">EV Charger Installation</option>
+                            <option value="eicr">EICR</option>
+                            <option value="pat-testing">PAT Testing</option>
+                            <option value="fuse-board">Fuse Board Upgrades</option>
+                            <option value="lighting">Lighting Installation & Repair</option>
+                            <option value="sockets">Additional Sockets</option>
+                            <option value="fault-finding">Fault Finding</option>
+                            <option value="emergency">Emergency Call Outs</option>
+                            <option value="garden-rooms">Garden Rooms</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="How can we help..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Send Enquiry</button>
+                    </div>
+                </form>
             </div>
-            <div class="social-links">
-                <a href="https://www.instagram.com/burleighelectricalservices/" target="_blank" rel="noopener noreferrer">📷 Instagram</a>
-            </div>
-            <p style="color: #666; margin-top: 16px; font-size: 13px;">&copy; 2024 Burleigh Electrical. All rights reserved.</p>
         </div>
-    </footer>
+    </div>
+</div>
 
-    <script>
-        function showPage(pageId) {
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => page.classList.remove('active'));
+<!-- REVIEWS PAGE -->
+<div id="reviews" class="page">
+    <div class="reviews-container">
+        <div class="container">
+            <div style="margin-top: 10px;">
+                <script src="https://widget.trustmary.com/DiY3cgW-f"></script>
+            </div>
+        </div>
+    </div>
+</div>
 
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
-            }
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <div class="contact-info">
+            <p>📞 <a href="tel:07786067085">07786 067085</a></p>
+            <p>📧 <a href="mailto:info@burleighelectrical.co.uk">info@burleighelectrical.co.uk</a></p>
+        </div>
+        <div class="social-links">
+            <a href="https://www.instagram.com/burleighelectricalservices/" target="_blank" rel="noopener noreferrer">📷 Instagram</a>
+        </div>
+        <p style="color: #666; margin-top: 16px; font-size: 13px;">&copy; 2026 Burleigh Electrical. All rights reserved.</p>
+    </div>
+</footer>
 
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => link.classList.remove('active'));
-            const activeLink = document.querySelector(`a[onclick*="'${pageId}'"]`);
-            if (activeLink) {
-                activeLink.classList.add('active');
-            }
+<script>
+function showPage(pageId) {
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(page => page.classList.remove('active'));
 
-            window.scrollTo(0, 0);
-        }
-    </script>
+    const targetPage = document.getElementById(pageId);
+    if (targetPage) targetPage.classList.add('active');
+
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => link.classList.remove('active'));
+
+    const activeLink = document.querySelector(`a[onclick*="'${pageId}'"]`);
+    if (activeLink) activeLink.classList.add('active');
+
+    window.scrollTo(0,0);
+}
+</script>
+
 </body>
 </html>
