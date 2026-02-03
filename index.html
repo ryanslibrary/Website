@@ -45,12 +45,12 @@ header {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px; /* Responsive padding */
+    padding: 0 20px;
 }
 
 .header-content {
     display: flex;
-    justify-content: space-between; /* Auto spacing */
+    justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
 }
@@ -325,7 +325,7 @@ select {
     width: 100%;
     padding: 12px 16px;
     background: rgba(15, 20, 25, 0.5);
-    border: 1.5px solid rgba(126, 224, 0, 0.2);
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
     border-radius: 8px;
     color: #ffffff;
     font-family: inherit;
@@ -342,9 +342,9 @@ input:focus,
 textarea:focus,
 select:focus {
     outline: none;
-    border-color: #7ee000;
+    border-color: #ffffff;
     background: rgba(15, 20, 25, 0.8);
-    box-shadow: 0 0 20px rgba(126, 224, 0, 0.2);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
 }
 
 textarea {
@@ -374,20 +374,232 @@ textarea {
 }
 
 /* ===== REVIEWS ===== */
-.reviews-container {
-    padding: 60px 0;
+.reviews-page {
+    padding: 60px 0 80px;
 }
 
-section h2 {
+.reviews-header {
     text-align: center;
-    font-size: 36px;
+    margin-bottom: 48px;
+}
+
+.reviews-header h2 {
+    font-size: 40px;
     font-weight: 800;
     background: linear-gradient(135deg, #7ee000, #5ec200);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 40px;
     letter-spacing: -1px;
+    margin-bottom: 16px;
+}
+
+/* Summary bar */
+.reviews-summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(25, 30, 40, 0.7);
+    border: 1px solid rgba(126, 224, 0, 0.2);
+    border-radius: 40px;
+    padding: 12px 28px;
+}
+
+.summary-score {
+    font-size: 32px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1;
+}
+
+.summary-middle {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+}
+
+.summary-stars {
+    display: flex;
+    gap: 3px;
+}
+
+.summary-stars .star {
+    font-size: 18px;
+    color: #7ee000;
+}
+
+.summary-count {
+    font-size: 13px;
+    color: #888;
+}
+
+.google-badge {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    color: #aaa;
+    font-weight: 600;
+}
+
+.google-badge .g-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* Review grid */
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.review-card {
+    background: rgba(25, 30, 40, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(126, 224, 0, 0.12);
+    border-radius: 14px;
+    padding: 28px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    animation: fadeInUp 0.5s ease-out both;
+}
+
+.review-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(126, 224, 0, 0.35);
+    box-shadow: 0 12px 36px rgba(126, 224, 0, 0.12);
+}
+
+.review-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.review-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7ee000, #3a8a00);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 800;
+    color: #000;
+    flex-shrink: 0;
+}
+
+.review-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.review-name {
+    font-weight: 700;
+    font-size: 15px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.local-guide-badge {
+    font-size: 11px;
+    font-weight: 600;
+    color: #000;
+    background: linear-gradient(135deg, #7ee000, #5ec200);
+    padding: 2px 7px;
+    border-radius: 10px;
+    letter-spacing: 0.3px;
+}
+
+.review-stars {
+    display: flex;
+    gap: 2px;
+}
+
+.review-stars .star {
+    font-size: 14px;
+    color: #7ee000;
+}
+
+.review-stars .star.empty {
+    color: #3a3a3a;
+}
+
+.review-text {
+    color: #b0b0b0;
+    font-size: 14px;
+    line-height: 1.7;
+    flex-grow: 1;
+    margin-bottom: 18px;
+}
+
+.review-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 14px;
+    border-top: 1px solid rgba(126, 224, 0, 0.08);
+}
+
+.review-date {
+    font-size: 12px;
+    color: #666;
+}
+
+.review-source {
+    font-size: 11px;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.review-source .g-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #4285f4; /* Google blue */
+}
+
+/* CTA strip below reviews */
+.reviews-cta {
+    text-align: center;
+    margin-top: 56px;
+}
+
+.reviews-cta p {
+    color: #888;
+    font-size: 15px;
+    margin-bottom: 16px;
+}
+
+.reviews-cta a {
+    display: inline-block;
+    background: linear-gradient(135deg, #7ee000, #5ec200);
+    color: #000;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 8px 24px rgba(126, 224, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.reviews-cta a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 36px rgba(126, 224, 0, 0.4);
 }
 
 /* ===== FOOTER ===== */
@@ -428,17 +640,14 @@ footer {
     text-decoration: none;
     font-size: 14px;
     transition: all 0.3s ease;
-
-    /* NEW: align icon and text */
     display: inline-flex;
     align-items: center;
-    gap: 6px; /* space between icon and text */
+    gap: 6px;
 }
 
 .social-links a:hover {
     opacity: 0.8;
 }
-
 
 /* ===== MEDIA QUERIES ===== */
 @media (max-width: 1024px) {
@@ -453,6 +662,9 @@ footer {
     .hero p { font-size: 14px; }
     .features { gap: 15px; }
     .form-container { padding: 30px; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .reviews-header h2 { font-size: 32px; }
+    .reviews-summary { flex-direction: column; gap: 8px; padding: 16px 24px; }
 }
 
 @media (max-width: 480px) {
@@ -474,7 +686,7 @@ footer {
                 <ul>
                     <li><a href="#" class="nav-link active" onclick="showPage('home'); return false;">Home</a></li>
                     <li><a href="#" class="nav-link" onclick="showPage('contact'); return false;">Contact</a></li>
-                    <!-- <li><a href="#" class="nav-link" onclick="showPage('reviews'); return false;">Reviews</a></li> -->
+                    <li><a href="#" class="nav-link" onclick="showPage('reviews'); return false;">Reviews</a></li>
                 </ul>
             </nav>
         </div>
@@ -486,7 +698,7 @@ footer {
     <div class="hero">
         <div class="hero-content">
             <h1>⚡ Electrical Excellence</h1>
-        <p>Kent based, **family run** electrical services you can trust. Qualified and reliable.</p>
+            <p>Kent based, <strong>family run</strong> electrical services you can trust. Qualified and reliable.</p>
             <button class="cta-button" onclick="showPage('contact')">Get Your Free Quote</button>
         </div>
     </div>
@@ -531,6 +743,27 @@ footer {
     </div>
 </div>
 
+<!-- REVIEWS PAGE -->
+<div id="reviews" class="page">
+    <div class="reviews-page">
+        <div class="container">
+            <div class="reviews-header">
+                <h2>Customer Reviews</h2>
+                <div class="reviews-summary" id="reviewsSummary">
+                    <!-- Filled by JS -->
+                </div>
+            </div>
+            <div class="reviews-grid" id="reviewsGrid">
+                <!-- Filled by JS -->
+            </div>
+            <div class="reviews-cta">
+                <p>Had a great experience? Leave us a review on Google.</p>
+                <a href="https://www.google.com/maps/place/?q=place_id:ChIJX41E_fmye2wR3krI7LrWol4" target="_blank" rel="noopener">Leave a Review</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- CONTACT PAGE -->
 <div id="contact" class="page">
     <div class="form-section">
@@ -567,11 +800,10 @@ footer {
                             <option value="eicr">EICR</option>
                             <option value="pat-testing">PAT Testing</option>
                             <option value="fuse-board">Consumer Board Upgrade</option>
-                            <option value="lighting"> Repair</option>
+                            <option value="lighting">Repair</option>
                             <option value="sockets">Additional Installation</option>
                             <option value="garden-room">Garden Room</option>
                             <option value="other">Other</option>
-
                         </select>
                     </div>
                     <div class="form-group">
@@ -587,18 +819,6 @@ footer {
     </div>
 </div>
 
-<!-- REVIEWS PAGE - commented out until Place ID available -->
-<!--
-<div id="reviews" class="page">
-    <div class="reviews-container container">
-        <section>
-            <h2>Customer Reviews</h2>
-            <p>Coming soon!</p>
-        </section>
-    </div>
-</div>
--->
-
 <footer>
     <p class="contact-info">Burleigh Electrical Services Ltd</p>
     <p class="contact-info">Phone: <a href="tel:+447786067085">07786 067085</a></p>
@@ -612,14 +832,117 @@ footer {
 <script>
 // ===== PAGE NAVIGATION =====
 function showPage(pageId) {
-    const pages = document.querySelectorAll('.page');
-    pages.forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(pageId).classList.add('active');
 
-    const links = document.querySelectorAll('.nav-link');
-    links.forEach(l => l.classList.remove('active'));
+    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
     document.querySelector(`.nav-link[onclick="showPage('${pageId}'); return false;"]`).classList.add('active');
+
+    // Scroll to top on page switch
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+// ===== REVIEWS DATA =====
+// ┌──────────────────────────────────────────────────────────┐
+// │  To update reviews, edit the array below.                │
+// │  Copy text directly from your Google Business Profile.   │
+// │  Fields: name, initials, stars (1-5), text, date.        │
+// └──────────────────────────────────────────────────────────┘
+const REVIEWS = [
+    {
+        name: "Tolga Tuna",
+        initials: "TT",
+        stars: 5,
+        text: "Two electricians from Burleigh Electrical Services Ltd came to replace my old induction hob and did a great job. They were very kind, careful, and professional throughout the work. Everything was done neatly and smoothly. I'm very happy with the service and would definitely recommend them.",
+        date: "January 2025",
+        badge: "Local Guide"
+    },
+    {
+        name: "Jackie Giltrow",
+        initials: "JG",
+        stars: 5,
+        text: "Excellent job done (sorting transformers and lighting). Efficient and good communication. Would highly recommend.",
+        date: "January 2025",
+        badge: null
+    },
+    {
+        name: "JM S-B",
+        initials: "JS",
+        stars: 5,
+        text: "Really helpful guys. Made no complaint about having to crawl into tiny loft space, fixed new bathroom fan. Also fitted new garage light. Prompt. Efficient. Trustworthy. Many thanks.",
+        date: "January 2025",
+        badge: "Local Guide"
+    },
+    {
+        name: "Martin Wilson",
+        initials: "MW",
+        stars: 5,
+        text: "Excellent service. Burleigh Electrical Services installed new kitchen lighting for us and security lights on the driveway. The team were superb from the first contact and we were thrilled with how neat the result was. I'd have no hesitation recommending them.",
+        date: "December 2024",
+        badge: null
+    }
+];
+
+// ===== RENDER REVIEWS =====
+function renderReviews() {
+    const grid = document.getElementById('reviewsGrid');
+    const summaryEl = document.getElementById('reviewsSummary');
+
+    // Calculate average
+    const avg = REVIEWS.reduce((sum, r) => sum + r.stars, 0) / REVIEWS.length;
+    const avgRounded = Math.round(avg * 10) / 10;
+
+    // Summary bar
+    summaryEl.innerHTML = `
+        <span class="summary-score">${avgRounded}</span>
+        <div class="summary-middle">
+            <div class="summary-stars">${starBar(avg, 18)}</div>
+            <span class="summary-count">${REVIEWS.length} Google Reviews</span>
+        </div>
+        <div class="google-badge">
+            <svg class="g-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+            </svg>
+            Google
+        </div>
+    `;
+
+    // Review cards with staggered animation
+    grid.innerHTML = REVIEWS.map((r, i) => `
+        <div class="review-card" style="animation-delay: ${i * 0.08}s">
+            <div>
+                <div class="review-top">
+                    <div class="review-avatar">${r.initials}</div>
+                    <div class="review-meta">
+                        <span class="review-name">${r.name}${r.badge ? `<span class="local-guide-badge">${r.badge}</span>` : ''}</span>
+                        <div class="review-stars">${starBar(r.stars, 14)}</div>
+                    </div>
+                </div>
+                <p class="review-text">${r.text}</p>
+            </div>
+            <div class="review-footer">
+                <span class="review-date">${r.date}</span>
+                <span class="review-source"><span class="g-dot"></span> Google Review</span>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Helper: renders a row of star spans
+function starBar(count, size) {
+    const filled = Math.round(count);
+    let html = '';
+    for (let i = 1; i <= 5; i++) {
+        html += `<span class="star${i > filled ? ' empty' : ''}" style="font-size:${size}px">★</span>`;
+    }
+    return html;
+}
+
+// Run on load
+renderReviews();
 </script>
 
 </body>
