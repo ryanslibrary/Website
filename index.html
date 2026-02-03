@@ -13,6 +13,7 @@
 </script>
  
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Kent-based electricians offering full rewires, EV charger installations, EICRs, PAT testing and emergency call outs. Fully insured, no hidden charges. Get a free quote today.">
 <title>Burleigh Electrical - Professional Electrical Services</title>
 <style>
 /* ===== RESET ===== */
@@ -104,6 +105,139 @@ nav a.active {
     color: #7ee000;
 }
 
+/* ===== HEADER PHONE ACTIONS ===== */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+}
+
+.header-btn--call {
+    background: linear-gradient(135deg, #7ee000, #5ec200);
+    color: #000;
+    box-shadow: 0 4px 14px rgba(126, 224, 0, 0.35);
+}
+
+.header-btn--call:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(126, 224, 0, 0.45);
+}
+
+.header-btn--sms {
+    background: transparent;
+    color: #e0e0e0;
+    border: 1.5px solid rgba(255,255,255,0.2);
+}
+
+.header-btn--sms:hover {
+    border-color: rgba(255,255,255,0.5);
+    color: #fff;
+}
+
+.header-btn--wa {
+    background: transparent;
+    color: #e0e0e0;
+    border: 1.5px solid rgba(255,255,255,0.2);
+    padding: 9px 10px;
+}
+
+.header-btn--wa:hover {
+    border-color: #25d366;
+    color: #25d366;
+}
+
+.header-btn svg {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+}
+
+/* ===== TOOLTIPS ===== */
+.header-btn {
+    position: relative;
+}
+
+.header-btn .tooltip {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1e1e1e;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    transform: translateX(-50%) translateY(4px);
+    z-index: 200;
+}
+
+/* little arrow pointing down */
+.header-btn .tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: #1e1e1e;
+}
+
+.header-btn:hover .tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ===== TRUST STRIP ===== */
+.trust-strip {
+    background: rgba(18, 22, 28, 0.85);
+    border-bottom: 1px solid rgba(126, 224, 0, 0.12);
+    padding: 10px 20px;
+}
+
+.trust-strip-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 28px;
+}
+
+.trust-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #b0b0b0;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.trust-item svg {
+    width: 18px;
+    height: 18px;
+    color: #7ee000;
+    flex-shrink: 0;
+}
+
 /* ===== PAGES ===== */
 .page {
     display: none;
@@ -188,7 +322,7 @@ nav a.active {
 /* ===== FEATURES ===== */
 .features {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     padding: 60px 0;
 }
@@ -196,35 +330,86 @@ nav a.active {
 .feature-card {
     background: rgba(25, 30, 40, 0.6);
     backdrop-filter: blur(10px);
-    padding: 32px;
-    border-radius: 12px;
-    border: 1px solid rgba(126, 224, 0, 0.15);
-    text-align: center;
+    padding: 36px 28px 32px;
+    border-radius: 14px;
+    border: 1px solid rgba(126, 224, 0, 0.12);
+    text-align: left;
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* top green accent line */
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #7ee000, transparent);
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
 }
 
 .feature-card:hover {
-    transform: translateY(-6px);
-    border-color: #7ee000;
-    box-shadow: 0 15px 40px rgba(126, 224, 0, 0.15);
+    transform: translateY(-5px);
+    border-color: rgba(126, 224, 0, 0.3);
+    box-shadow: 0 16px 44px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(126, 224, 0, 0.15);
 }
 
+.feature-card:hover::before {
+    opacity: 1;
+}
+
+/* icon inside a subtle circle */
 .feature-icon {
-    font-size: 40px;
-    margin-bottom: 16px;
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: rgba(126, 224, 0, 0.08);
+    border: 1px solid rgba(126, 224, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+    background: rgba(126, 224, 0, 0.14);
+    border-color: rgba(126, 224, 0, 0.3);
+}
+
+.feature-icon svg {
+    width: 26px;
+    height: 26px;
+    color: #7ee000;
 }
 
 .feature-card h3 {
-    color: #7ee000;
-    margin-bottom: 12px;
+    color: #ffffff;
+    margin-bottom: 10px;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 18px;
+    letter-spacing: -0.3px;
 }
 
 .feature-card p {
-    color: #a0a0a0;
+    color: #7a7a7a;
     font-size: 14px;
-    line-height: 1.6;
+    line-height: 1.7;
+}
+
+/* small green tag under the title */
+.feature-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #7ee000;
+    margin-bottom: 10px;
 }
 
 /* ===== SERVICES ===== */
@@ -649,6 +834,36 @@ footer {
     opacity: 0.8;
 }
 
+/* ===== MOBILE FLOATING CALL BUTTON ===== */
+.fab-call {
+    display: none; /* hidden on desktop */
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 999;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7ee000, #5ec200);
+    box-shadow: 0 6px 24px rgba(126, 224, 0, 0.45);
+    text-decoration: none;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+}
+
+.fab-call:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 30px rgba(126, 224, 0, 0.55);
+}
+
+.fab-call svg {
+    width: 28px;
+    height: 28px;
+    color: #000;
+}
+
 /* ===== MEDIA QUERIES ===== */
 @media (max-width: 1024px) {
     .hero h1 { font-size: 42px; }
@@ -660,11 +875,18 @@ footer {
     nav ul { gap: 20px; justify-content: center; }
     .hero h1 { font-size: 32px; }
     .hero p { font-size: 14px; }
-    .features { gap: 15px; }
+    .features { gap: 15px; grid-template-columns: 1fr; }
     .form-container { padding: 30px; }
     .reviews-grid { grid-template-columns: 1fr; }
     .reviews-header h2 { font-size: 32px; }
     .reviews-summary { flex-direction: column; gap: 8px; padding: 16px 24px; }
+
+    /* hide text on call/sms, keep icons only */
+    .header-btn--call .btn-label,
+    .header-btn--sms .btn-label { display: none; }
+
+    /* show the floating call button */
+    .fab-call { display: flex; }
 }
 
 @media (max-width: 480px) {
@@ -689,16 +911,57 @@ footer {
                     <li><a href="#" class="nav-link" onclick="showPage('reviews'); return false;">Reviews</a></li>
                 </ul>
             </nav>
+            <div class="header-actions">
+                <!-- Call -->
+                <a href="tel:+447786067085" class="header-btn header-btn--call">
+                    <span class="tooltip">Telephone</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                    <span class="btn-label">Call Now</span>
+                </a>
+                <!-- SMS -->
+                <a href="sms:+447786067085" class="header-btn header-btn--sms">
+                    <span class="tooltip">SMS</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                    <span class="btn-label">SMS</span>
+                </a>
+                <!-- WhatsApp -->
+                <a href="https://wa.me/447786067085" target="_blank" rel="noopener" class="header-btn header-btn--wa">
+                    <span class="tooltip">WhatsApp</span>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.454 3.515A11.945 11.945 0 0012 0 11.945 11.945 0 00.079 14.64l-.079.36.36-.079A11.921 11.921 0 0012 24c6.627 0 12-5.373 12-12 0-3.187-1.182-6.088-3.546-8.485zM12 22c-5.514 0-10-4.486-10-10 0-.277.022-.554.04-.83l5.49 3.417 1.23-3.69-1.416-.483 2.498-3.078h3.158l.27-1.336H12c-2.761 0-5-2.239-5-5 0-.15.023-.293.04-.437l2.08 1.295-1.27-3.81H5.82l1.135-1.398c-1.563-.877-3.362-1.355-5.181-1.355C2.577 4.065 2.295 4.088 2.02 4.118A10 10 0 0012 22zm4.727-18.505a9.952 9.952 0 014.746 4.02l-2.46 1.53-1.287-.802-.063-3.748z"/></svg>
+                </a>
+            </div>
         </div>
     </div>
 </header>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+    <div class="trust-strip-inner">
+        <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Fully Insured
+        </div>
+        <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            24/7 Emergency Call Outs
+        </div>
+        <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            No Hidden Charges
+        </div>
+        <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            Family Run Business
+        </div>
+    </div>
+</div>
 
 <!-- HOME PAGE -->
 <div id="home" class="page active">
     <div class="hero">
         <div class="hero-content">
             <h1>⚡ Electrical Excellence</h1>
-            <p>Kent based, <strong>family run</strong> electrical services you can trust. Qualified and reliable.</p>
+            <p>Kent based, <strong>family run</strong> Reliable electrical services you can trust.</p>
             <button class="cta-button" onclick="showPage('contact')">Get Your Free Quote</button>
         </div>
     </div>
@@ -706,19 +969,31 @@ footer {
     <div class="container">
         <div class="features">
             <div class="feature-card">
-                <div class="feature-icon">🔧</div>
+                <div class="feature-icon">
+                    <!-- wrench / spanner -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+                </div>
+                <span class="feature-tag">Qualified &amp; Insured</span>
                 <h3>Professional Experts</h3>
-                <p>Qualified and insured electricians with years of experience in the industry.</p>
+                <p>Our electricians are qualified, insured, and backed by years of hands on experience.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">⚡</div>
+                <div class="feature-icon">
+                    <!-- bolt / lightning -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                </div>
+                <span class="feature-tag">On Time, Every Time</span>
                 <h3>Reliable Service</h3>
-                <p>On time service with meticulous attention to detail and quality workmanship.</p>
+                <p>Meticulous attention to detail and quality workmanship on every job — no shortcuts, no compromises.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🛡️</div>
+                <div class="feature-icon">
+                    <!-- clock / emergency -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <span class="feature-tag">Day or Night</span>
                 <h3>24/7 Available</h3>
-                <p>Emergency call outs available for urgent electrical issues.</p>
+                <p>Electrical emergencies don't wait — and neither do we. Available around the clock for urgent call outs.</p>
             </div>
         </div>
 
@@ -826,8 +1101,14 @@ footer {
     <div class="social-links">
         <a href="https://www.facebook.com/burleighelectrical" target="_blank">Facebook</a>
         <a href="https://www.instagram.com/burleighelectrical" target="_blank">Instagram</a>
+        <a href="https://wa.me/447786067085" target="_blank" rel="noopener">WhatsApp</a>
     </div>
 </footer>
+
+<!-- MOBILE FLOATING CALL BUTTON -->
+<a href="tel:+447786067085" class="fab-call" aria-label="Call us now">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+</a>
 
 <script>
 // ===== PAGE NAVIGATION =====
