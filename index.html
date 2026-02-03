@@ -151,7 +151,6 @@ nav a.active {
     background: transparent;
     color: #e0e0e0;
     border: 1.5px solid rgba(255,255,255,0.2);
-    padding: 9px 10px;
 }
 
 .header-btn--wa:hover {
@@ -881,9 +880,10 @@ footer {
     .reviews-header h2 { font-size: 32px; }
     .reviews-summary { flex-direction: column; gap: 8px; padding: 16px 24px; }
 
-    /* hide text on call/sms, keep icons only */
+    /* hide text on call/sms/wa, keep icons only */
     .header-btn--call .btn-label,
-    .header-btn--sms .btn-label { display: none; }
+    .header-btn--sms .btn-label,
+    .header-btn--wa .btn-label { display: none; }
 
     /* show the floating call button */
     .fab-call { display: flex; }
@@ -925,11 +925,9 @@ footer {
                     <span class="btn-label">SMS</span>
                 </a>
                 <!-- WhatsApp -->
-                <a href="https://wa.me/447786067085" target="_blank" rel="noopener" class="header-btn header-btn--wa">
+                <a href="https://wa.me/447786067085" target="_blank" rel="noopener noreferrer" class="header-btn header-btn--wa">
                     <span class="tooltip">WhatsApp</span>
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.454 3.515A11.945 11.945 0 0012 0 11.945 11.945 0 00.079 14.64l-.079.36.36-.079A11.921 11.921 0 0012 24c6.627 0 12-5.373 12-12 0-3.187-1.182-6.088-3.546-8.485zM12 22c-5.514 0-10-4.486-10-10 0-.277.022-.554.04-.83l5.49 3.417 1.23-3.69-1.416-.483 2.498-3.078h3.158l.27-1.336H12c-2.761 0-5-2.239-5-5 0-.15.023-.293.04-.437l2.08 1.295-1.27-3.81H5.82l1.135-1.398c-1.563-.877-3.362-1.355-5.181-1.355C2.577 4.065 2.295 4.088 2.02 4.118A10 10 0 0012 22zm4.727-18.505a9.952 9.952 0 014.746 4.02l-2.46 1.53-1.287-.802-.063-3.748z"/></svg>
-                    <span class="btn-label">WhatsApp</span>
-
                 </a>
             </div>
         </div>
@@ -963,7 +961,7 @@ footer {
     <div class="hero">
         <div class="hero-content">
             <h1>⚡ Electrical Excellence</h1>
-            <p>Kent based, <strong>family run</strong> Reliable electrical services you can trust.</p>
+            <p>Kent based, <strong>family run</strong> electrical services you can trust. Qualified and reliable.</p>
             <button class="cta-button" onclick="showPage('contact')">Get Your Free Quote</button>
         </div>
     </div>
@@ -977,7 +975,7 @@ footer {
                 </div>
                 <span class="feature-tag">Qualified &amp; Insured</span>
                 <h3>Professional Experts</h3>
-                <p>Our electricians are qualified, insured, and backed by years of hands on experience.</p>
+                <p>Our electricians are fully qualified, insured, and backed by years of hands-on experience across residential and commercial projects.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">
@@ -1035,7 +1033,7 @@ footer {
             </div>
             <div class="reviews-cta">
                 <p>Had a great experience? Leave us a review on Google.</p>
-                <a href="https://www.google.com/maps/place/?q=place_id:ChIJX41E_fmye2wR3krI7LrWol4" target="_blank" rel="noopener">Leave a Review</a>
+                <a href="https://www.google.com/maps/place/?q=place_id:ChIJX41E_fmye2wR3krI7LrWol4" target="_blank" rel="noopener noreferrer">Leave a Review</a>
             </div>
         </div>
     </div>
@@ -1099,11 +1097,11 @@ footer {
 <footer>
     <p class="contact-info">Burleigh Electrical Services Ltd</p>
     <p class="contact-info">Phone: <a href="tel:+447786067085">07786 067085</a></p>
-    <p class="contact-info">Email: <a href="mailto:info@burleighelectrical.co.uk">info@burleighelectrical.co.uk</a></p>
+    <p class="contact-info">Email: <a href="/cdn-cgi/l/email-protection#cca5a2aaa38caeb9bea0a9a5aba4a9a0a9afb8bea5afada0e2afa3e2b9a7"><span class="__cf_email__" data-cfemail="2a43444c456a485f58464f434d424f464f495e5843494b46044945045f41">[email&#160;protected]</span></a></p>
     <div class="social-links">
-        <a href="https://www.facebook.com/burleighelectrical" target="_blank">Facebook</a>
-        <a href="https://www.instagram.com/burleighelectrical" target="_blank">Instagram</a>
-        <a href="https://wa.me/447786067085" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://www.facebook.com/burleighelectrical" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a href="https://www.instagram.com/burleighelectrical" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://wa.me/447786067085" target="_blank" rel="noopener noreferrer">WhatsApp</a>
     </div>
 </footer>
 
@@ -1112,7 +1110,7 @@ footer {
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
 </a>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ===== PAGE NAVIGATION =====
 function showPage(pageId) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
