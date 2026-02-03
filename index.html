@@ -105,11 +105,15 @@ nav a.active {
     color: #7ee000;
 }
 
-/* ===== HEADER PHONE ACTIONS ===== */
+/* ===== MESSAGE DROPDOWN ===== */
 .header-actions {
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.message-dropdown {
+    position: relative;
 }
 
 .header-btn {
@@ -123,39 +127,19 @@ nav a.active {
     text-decoration: none;
     transition: all 0.25s ease;
     white-space: nowrap;
+    border: none;
+    cursor: pointer;
 }
 
-.header-btn--call {
+.header-btn--message {
     background: linear-gradient(135deg, #7ee000, #5ec200);
     color: #000;
     box-shadow: 0 4px 14px rgba(126, 224, 0, 0.35);
 }
 
-.header-btn--call:hover {
+.header-btn--message:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(126, 224, 0, 0.45);
-}
-
-.header-btn--sms {
-    background: transparent;
-    color: #e0e0e0;
-    border: 1.5px solid rgba(255,255,255,0.2);
-}
-
-.header-btn--sms:hover {
-    border-color: rgba(255,255,255,0.5);
-    color: #fff;
-}
-
-.header-btn--wa {
-    background: transparent;
-    color: #e0e0e0;
-    border: 1.5px solid rgba(255,255,255,0.2);
-}
-
-.header-btn--wa:hover {
-    border-color: #25d366;
-    color: #25d366;
 }
 
 .header-btn svg {
@@ -164,44 +148,52 @@ nav a.active {
     flex-shrink: 0;
 }
 
-/* ===== TOOLTIPS ===== */
-.header-btn {
-    position: relative;
-}
-
-.header-btn .tooltip {
+/* Dropdown options */
+.message-options {
     position: absolute;
-    bottom: calc(100% + 10px);
-    left: 50%;
-    transform: translateX(-50%);
-    background: #1e1e1e;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 600;
-    padding: 6px 12px;
-    border-radius: 6px;
-    white-space: nowrap;
+    top: calc(100% + 8px);
+    right: 0;
+    background: rgba(18, 22, 28, 0.98);
+    border: 1px solid rgba(126, 224, 0, 0.2);
+    border-radius: 8px;
+    padding: 8px;
+    min-width: 160px;
     opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-    transform: translateX(-50%) translateY(4px);
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     z-index: 200;
 }
 
-/* little arrow pointing down */
-.header-btn .tooltip::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 5px solid transparent;
-    border-top-color: #1e1e1e;
+.message-dropdown:hover .message-options {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 
-.header-btn:hover .tooltip {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
+.message-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    color: #e0e0e0;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.message-option:hover {
+    background: rgba(126, 224, 0, 0.1);
+    color: #7ee000;
+}
+
+.message-option svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
 }
 
 /* ===== TRUST STRIP ===== */
@@ -835,7 +827,6 @@ footer {
 
 /* ===== MOBILE FLOATING CALL BUTTON ===== */
 .fab-call {
-    display: none; /* hidden on desktop */
     position: fixed;
     bottom: 24px;
     right: 24px;
@@ -846,7 +837,7 @@ footer {
     background: linear-gradient(135deg, #7ee000, #5ec200);
     box-shadow: 0 6px 24px rgba(126, 224, 0, 0.45);
     text-decoration: none;
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.25s ease;
@@ -880,13 +871,8 @@ footer {
     .reviews-header h2 { font-size: 32px; }
     .reviews-summary { flex-direction: column; gap: 8px; padding: 16px 24px; }
 
-    /* hide text on call/sms/wa, keep icons only */
-    .header-btn--call .btn-label,
-    .header-btn--sms .btn-label,
-    .header-btn--wa .btn-label { display: none; }
-
-    /* show the floating call button */
-    .fab-call { display: flex; }
+    /* hide "Message Us" text on mobile, keep icon only */
+    .header-btn--message .btn-label { display: none; }
 }
 
 @media (max-width: 480px) {
@@ -912,23 +898,23 @@ footer {
                 </ul>
             </nav>
             <div class="header-actions">
-                <!-- Call -->
-                <a href="tel:+447786067085" class="header-btn header-btn--call">
-                    <span class="tooltip">Telephone</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-                    <span class="btn-label">Call Now</span>
-                </a>
-                <!-- SMS -->
-                <a href="sms:+447786067085" class="header-btn header-btn--sms">
-                    <span class="tooltip">SMS</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-                    <span class="btn-label">SMS</span>
-                </a>
-                <!-- WhatsApp -->
-                <a href="https://wa.me/447786067085" target="_blank" rel="noopener noreferrer" class="header-btn header-btn--wa">
-                    <span class="tooltip">WhatsApp</span>
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.454 3.515A11.945 11.945 0 0012 0 11.945 11.945 0 00.079 14.64l-.079.36.36-.079A11.921 11.921 0 0012 24c6.627 0 12-5.373 12-12 0-3.187-1.182-6.088-3.546-8.485zM12 22c-5.514 0-10-4.486-10-10 0-.277.022-.554.04-.83l5.49 3.417 1.23-3.69-1.416-.483 2.498-3.078h3.158l.27-1.336H12c-2.761 0-5-2.239-5-5 0-.15.023-.293.04-.437l2.08 1.295-1.27-3.81H5.82l1.135-1.398c-1.563-.877-3.362-1.355-5.181-1.355C2.577 4.065 2.295 4.088 2.02 4.118A10 10 0 0012 22zm4.727-18.505a9.952 9.952 0 014.746 4.02l-2.46 1.53-1.287-.802-.063-3.748z"/></svg>
-                </a>
+                <!-- Message Us - with dropdown -->
+                <div class="message-dropdown">
+                    <button class="header-btn header-btn--message">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                        <span class="btn-label">Message Us</span>
+                    </button>
+                    <div class="message-options">
+                        <a href="sms:+447786067085" class="message-option">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                            <span>SMS</span>
+                        </a>
+                        <a href="https://wa.me/447786067085" target="_blank" rel="noopener noreferrer" class="message-option">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.454 3.515A11.945 11.945 0 0012 0 11.945 11.945 0 00.079 14.64l-.079.36.36-.079A11.921 11.921 0 0012 24c6.627 0 12-5.373 12-12 0-3.187-1.182-6.088-3.546-8.485zM12 22c-5.514 0-10-4.486-10-10 0-.277.022-.554.04-.83l5.49 3.417 1.23-3.69-1.416-.483 2.498-3.078h3.158l.27-1.336H12c-2.761 0-5-2.239-5-5 0-.15.023-.293.04-.437l2.08 1.295-1.27-3.81H5.82l1.135-1.398c-1.563-.877-3.362-1.355-5.181-1.355C2.577 4.065 2.295 4.088 2.02 4.118A10 10 0 0012 22zm4.727-18.505a9.952 9.952 0 014.746 4.02l-2.46 1.53-1.287-.802-.063-3.748z"/></svg>
+                            <span>WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -1097,20 +1083,20 @@ footer {
 <footer>
     <p class="contact-info">Burleigh Electrical Services Ltd</p>
     <p class="contact-info">Phone: <a href="tel:+447786067085">07786 067085</a></p>
-    <p class="contact-info">Email: <a href="/cdn-cgi/l/email-protection#cca5a2aaa38caeb9bea0a9a5aba4a9a0a9afb8bea5afada0e2afa3e2b9a7"><span class="__cf_email__" data-cfemail="2a43444c456a485f58464f434d424f464f495e5843494b46044945045f41">[email&#160;protected]</span></a></p>
+    <p class="contact-info">Email: <a href="mailto:info@burleighelectrical.co.uk">info@burleighelectrical.co.uk</a></p>
     <div class="social-links">
-        <a href="https://www.facebook.com/burleighelectrical" target="_blank" rel="noopener noreferrer">Facebook</a>
-        <a href="https://www.instagram.com/burleighelectrical" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://nextdoor.co.uk/page/burleigh-electrical-services?utm_campaign=1770117863679&share_action_id=afd88e93-2e8a-4a1e-aceb-b7641b0208c4" target="_blank" rel="noopener noreferrer">NextDoor</a>
+        <a href="https://www.instagram.com/burleighelectricalservices?igsh=MTdhMGIwbnppYzc3bg==" target="_blank" rel="noopener noreferrer">Instagram</a>
         <a href="https://wa.me/447786067085" target="_blank" rel="noopener noreferrer">WhatsApp</a>
     </div>
 </footer>
 
-<!-- MOBILE FLOATING CALL BUTTON -->
+<!-- MOBILE FLOATING CALL BUTTON (Always visible) -->
 <a href="tel:+447786067085" class="fab-call" aria-label="Call us now">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
 </a>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // ===== PAGE NAVIGATION =====
 function showPage(pageId) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -1124,11 +1110,6 @@ function showPage(pageId) {
 }
 
 // ===== REVIEWS DATA =====
-// ┌──────────────────────────────────────────────────────────┐
-// │  To update reviews, edit the array below.                │
-// │  Copy text directly from your Google Business Profile.   │
-// │  Fields: name, initials, stars (1-5), text, date.        │
-// └──────────────────────────────────────────────────────────┘
 const REVIEWS = [
     {
         name: "Tolga Tuna",
