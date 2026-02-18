@@ -103,11 +103,6 @@ html { scroll-behavior: smooth; }
 body {
   font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background-color: #000;
-  background-image: url('IMG_3501.png');
-  background-size: cover;
-  background-position: center center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
   color: var(--text);
   line-height: 1.6;
   min-height: 100vh;
@@ -115,19 +110,36 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-@media (max-width: 1024px) {
-  body {
-    background-attachment: scroll;
-    background-size: cover;
-    background-position: center top;
-  }
+/* Fixed background image using pseudo-element — works on ALL devices including iOS/Android
+   which don't support background-attachment: fixed */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url('IMG_3501.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  z-index: -2;
+}
 
+/* Dark overlay so text stays readable */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.72);
+  z-index: -1;
+  pointer-events: none;
+}
+
+@media (max-width: 1024px) {
   /* Force transparency on all cards/grids on mobile so background shows through */
   .why-card,
   .srv,
   .client-card,
   .area-pill {
-    background: rgba(0,0,0,0.45) !important;
+    background: rgba(0,0,0,0.5) !important;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
   }
@@ -135,7 +147,7 @@ body {
   .why-card:hover,
   .srv:hover,
   .client-card:hover {
-    background: rgba(0,0,0,0.6) !important;
+    background: rgba(0,0,0,0.65) !important;
   }
 
   .why-grid,
@@ -143,24 +155,6 @@ body {
   .clients-grid {
     background: rgba(255,255,255,0.03);
   }
-}
-
-@media (max-width: 480px) {
-  body {
-    background-size: contain;
-    background-position: center top;
-    background-repeat: no-repeat;
-  }
-}
-
-/* Dark overlay so text stays readable over the background image */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.82);
-  z-index: -1;
-  pointer-events: none;
 }
 
 /* Ensure all content sits above the body::before overlay */
