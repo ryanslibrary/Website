@@ -595,14 +595,16 @@ header {
   display: grid;
   grid-template-columns: repeat(3,1fr);
   gap: 2px;
-  background: rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.04);
   border-radius: 20px;
   overflow: hidden;
   margin-top: 48px;
 }
 
 .why-card {
-  background: #0a0a0a;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 40px 32px;
   transition: background var(--transition-fast);
   position: relative;
@@ -621,7 +623,7 @@ header {
   transition: opacity var(--transition-med);
 }
 
-.why-card:hover { background: #0f0f0f; }
+.why-card:hover { background: rgba(0,0,0,0.7); }
 .why-card:hover::after { opacity: 1; }
 
 .why-icon {
@@ -666,20 +668,22 @@ header {
 .why-card p { color: var(--text-tertiary); font-size: 14px; line-height: 1.65; }
 
 /* ─── SERVICES ─── */
-.services-section { background: #030303; }
+.services-section { background: transparent; }
 
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
   gap: 1px;
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.04);
   border-radius: 16px;
   overflow: hidden;
   margin-top: 48px;
 }
 
 .srv {
-  background: #080808;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 20px 22px;
   color: var(--text-secondary);
   font-size: 14px;
@@ -693,7 +697,7 @@ header {
 }
 
 .srv:hover {
-  background: #0f0f0f;
+  background: rgba(0,0,0,0.72);
   color: var(--text);
 }
 
@@ -710,13 +714,13 @@ header {
 .srv:hover .srv-dot { opacity: 1; }
 
 /* ─── COMMERCIAL ─── */
-.commercial-section { background: #000; }
+.commercial-section { background: transparent; }
 
 .clients-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
   gap: 2px;
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.04);
   border-radius: 16px;
   overflow: hidden;
   margin-top: 48px;
@@ -724,12 +728,14 @@ header {
 }
 
 .client-card {
-  background: #0a0a0a;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 28px 24px;
   transition: background var(--transition-fast);
 }
 
-.client-card:hover { background: #0f0f0f; }
+.client-card:hover { background: rgba(0,0,0,0.72); }
 
 .client-icon { font-size: 22px; margin-bottom: 12px; }
 
@@ -744,7 +750,7 @@ header {
 .client-card p { color: var(--text-tertiary); font-size: 12px; line-height: 1.55; }
 
 /* ─── AREAS ─── */
-.areas-section { background: #030303; }
+.areas-section { background: transparent; }
 
 .areas-pills {
   display: grid;
@@ -755,8 +761,10 @@ header {
 }
 
 .area-pill {
-  background: rgba(126,224,0,0.04);
-  border: 0.5px solid rgba(126,224,0,0.14);
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 0.5px solid rgba(126,224,0,0.2);
   border-radius: 10px;
   padding: 14px 16px;
   text-align: center;
@@ -764,8 +772,8 @@ header {
 }
 
 .area-pill:hover {
-  background: rgba(126,224,0,0.08);
-  border-color: rgba(126,224,0,0.28);
+  background: rgba(0,0,0,0.65);
+  border-color: rgba(126,224,0,0.4);
   transform: translateY(-2px);
 }
 
