@@ -294,7 +294,7 @@ function toggleMobileMenu(){var nl=document.getElementById('navLinks');if(nl)nl.
   <div class="container">
     <div class="header-content">
       <a class="logo" href="#" onclick="showPage('home');return false;">
-        <img class="logo-img" src="../IMG_3501.png" alt="Burleigh Electrical Logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <img class="logo-img" src="https://www.burleighelectrical.co.uk/logo.png" alt="Burleigh Electrical Services" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="logo-text" style="display:none;">
           <span class="logo-name">Burleigh Electrical</span>
           <span class="logo-sub">Services Ltd</span>
@@ -689,12 +689,12 @@ function toggleMobileMenu(){var nl=document.getElementById('navLinks');if(nl)nl.
 
 <script>
 var REVIEWS=[
+   {name:"Bereket Fesshaie",initials:"BF",stars:5,text:"Excellent service.",date:"February 2026",badge:null},
   {name:"Kim S",initials:"KS",stars:5,text:"Excellent service. Double checked everything to make sure it was working. Thoroughly recommend. Great to have an honest trustworthy electrician. Nothing too difficult. Great service.",date:"February 2026",badge:null},
   {name:"Tolga Tuna",initials:"TT",stars:5,text:"Two electricians from Burleigh Electrical Services Ltd came to replace my old induction hob and did a great job. They were very kind, careful, and professional throughout the work. Everything was done neatly and smoothly. I'm very happy with the service and would definitely recommend them.",date:"January 2026",badge:"Local Guide"},
   {name:"Jackie Giltrow",initials:"JG",stars:5,text:"Excellent job done (sorting transformers and lighting). Efficient and good communication. Would highly recommend.",date:"January 2026",badge:null},
   {name:"JM S-B",initials:"JS",stars:5,text:"Really helpful guys. Made no complaint about having to crawl into tiny loft space, fixed new bathroom fan. Also fitted new garage light. Prompt. Efficient. Trustworthy. Many thanks.",date:"January 2026",badge:"Local Guide"},
   {name:"Martin Wilson",initials:"MW",stars:5,text:"Excellent service. Burleigh Electrical Services installed new kitchen lighting for us and security lights on the driveway. The team were superb from the first contact and we were thrilled with how neat the result was. I'd have no hesitation recommending them.",date:"December 2025",badge:null},
-  {name:"Bereket Fesshaie",initials:"BF",stars:5,text:"Brilliant service from start to finish. Very professional, clean and tidy work. Would highly recommend Burleigh Electrical to anyone looking for a reliable and trustworthy electrician in the area.",date:"November 2025",badge:null}
 ];
 function starBar(count,size){var h='';for(var i=1;i<=5;i++)h+='<span class="star'+(i>Math.round(count)?' empty':'')+'" style="font-size:'+size+'px">&#9733;</span>';return h;}
 function renderReviews(){
