@@ -214,7 +214,7 @@ header {
 }
 
 .logo-img {
-  height: 240px;
+  height: 110px;
   width: auto;
   display: block;
   transition: transform var(--transition-fast), opacity var(--transition-fast);
@@ -318,7 +318,39 @@ header {
 .location-strip p { color: var(--text-tertiary); font-size: 12px; letter-spacing: 0.3px; }
 .location-strip strong { color: var(--green); font-weight: 600; }
 
-/* ─── HERO ─── */
+/* ─── TRANSPARENT INTRO SCREEN ─── */
+.intro-screen {
+  height: calc(100vh - 120px);
+  width: 100%;
+  background: transparent;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 40px;
+}
+
+.intro-scroll-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255,255,255,0.4);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  animation: bob 2s ease-in-out infinite;
+}
+
+.intro-scroll-hint svg {
+  width: 22px;
+  height: 22px;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
 .hero {
   min-height: calc(100vh - 52px);
   display: flex;
@@ -1665,6 +1697,14 @@ footer {
 
 <!-- HOME -->
 <div id="home" class="page active">
+
+  <!-- Full viewport transparent intro — just shows the background logo on load -->
+  <section class="intro-screen">
+    <div class="intro-scroll-hint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      <span>Scroll</span>
+    </div>
+  </section>
 
   <!-- Hero -->
   <section class="hero">
