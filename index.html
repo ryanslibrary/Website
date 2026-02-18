@@ -110,11 +110,11 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Fixed background image — desktop */
-body::after {
-  content: '';
+/* Background image div — more reliable than pseudo-elements on all devices */
+#site-bg {
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   background-image: url('IMG_3501.png');
   background-size: cover;
   background-position: center center;
@@ -122,39 +122,24 @@ body::after {
   z-index: -2;
 }
 
-/* Dark overlay */
-body::before {
-  content: '';
+#site-bg-overlay {
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   background: rgba(0,0,0,0.72);
   z-index: -1;
   pointer-events: none;
 }
 
+/* Ensure all content sits above the background divs */
+header { z-index: 100; }
+.page { position: relative; z-index: 1; }
+footer { position: relative; z-index: 1; }
+.fab-call { z-index: 999; }
+.page-transition { z-index: 9999; }
+.cursor-glow { z-index: 2; }
+
 @media (max-width: 1024px) {
-  html {
-    background-color: #000;
-    background-image: url('IMG_3501.png');
-    background-size: cover;
-    background-position: center top;
-    background-repeat: repeat-y;
-    background-attachment: scroll;
-  }
-
-  body::after {
-    display: none;
-  }
-
-  body::before {
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    bottom: auto;
-    min-height: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.65);
-  }
-
   .why-card,
   .srv,
   .client-card,
@@ -170,14 +155,6 @@ body::before {
     background: rgba(255,255,255,0.03);
   }
 }
-
-/* Ensure all content sits above the body::before overlay */
-header { z-index: 100; }
-.page { position: relative; z-index: 1; }
-footer { position: relative; z-index: 1; }
-.fab-call { z-index: 999; }
-.page-transition { z-index: 9999; }
-.cursor-glow { z-index: 2; }
 
 /* ─── CURSOR GLOW ─── */
 .cursor-glow {
@@ -1634,6 +1611,10 @@ footer {
 </style>
 </head>
 <body>
+
+<!-- Background image + overlay — using divs for reliable cross-device support -->
+<div id="site-bg"></div>
+<div id="site-bg-overlay"></div>
 
 <!-- Page transition overlay -->
 <div class="page-transition" id="pageTransition"></div>
