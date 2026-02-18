@@ -200,7 +200,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 52px;
+  height: 80px;
 }
 
 /* ─── LOGO ─── */
@@ -214,12 +214,16 @@ header {
 }
 
 .logo-img {
-  height: 44px;
+  height: 72px;
   width: auto;
   display: block;
   transition: transform var(--transition-fast), opacity var(--transition-fast);
 }
 .logo:hover .logo-img { transform: scale(1.04); opacity: 0.9; }
+
+@media (max-width: 768px) {
+  .logo-img { height: 52px; }
+}
 
 .logo-text {
   display: flex;
@@ -1637,7 +1641,9 @@ footer {
 <header>
   <div class="container">
     <div class="header-content">
-      <a class="logo" href="#" onclick="showPage('home');return false;"></a>
+      <a class="logo" href="#" onclick="showPage('home');return false;">
+        <img src="IMG_3501.png" alt="Burleigh Electrical Services" class="logo-img">
+      </a>
       <nav>
         <ul class="nav-links" id="navLinks">
           <li><a class="nav-link active" data-page="home" href="#" onclick="showPage('home');return false;">Home</a></li>
@@ -1736,7 +1742,7 @@ footer {
           </div>
           <span class="why-tag">Qualified &amp; Insured</span>
           <h3>Professional Electricians</h3>
-          <p>Fully insured,qualified and backed by years of hands on experience throughout Kent.</p>
+          <p>Fully qualified, insured, and backed by years of hands-on experience across domestic and commercial work throughout Kent.</p>
         </div>
         <div class="why-card">
           <div class="why-icon">
@@ -2054,7 +2060,7 @@ footer {
   </div>
   <div class="footer-links">
     <a href="tel:+447786067085">07786 067085</a>
-    <a href="mailto:info@burleighelectrical.co.uk">info@burleighelectrical.co.uk</a>
+    <a href="/cdn-cgi/l/email-protection#036a6d656c436176716f666a646b666f666077716a60626f2d606c2d7668"><span class="__cf_email__" data-cfemail="274e494148674552554b424e404f424b424453554e44464b09444809524c">[email&#160;protected]</span></a>
     <a href="https://www.instagram.com/burleighelectricalservices" target="_blank" rel="noopener">Instagram</a>
     <a href="https://nextdoor.co.uk/page/burleigh-electrical-services" target="_blank" rel="noopener">Nextdoor</a>
   </div>
@@ -2067,7 +2073,7 @@ footer {
   </svg>
 </a>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ─── SEO ───
 window.SEO = {
   home: { title:'Burleigh Electrical | Electrician Sevenoaks, Tunbridge Wells, Tonbridge & Kent', desc:'Family run electricians in Hildenborough & Borough Green. Rewires, EV chargers, EICR, PAT testing, emergency call outs across Kent. Free quotes.', url:'https://www.burleighelectrical.co.uk/' },
@@ -2200,14 +2206,4 @@ document.addEventListener('DOMContentLoaded', function() {
   observeElements();
 });
 
-// Also call renderReviews when reviews page is shown
-var _origShowPage = window.showPage;
-window.showPage = function(id) {
-  _origShowPage(id);
-  if (id === 'reviews') {
-    setTimeout(function() { renderReviews(); observeElements(); }, 250);
-  }
-};
-</script>
-</body>
-</html>
+// Also call
