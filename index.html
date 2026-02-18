@@ -115,12 +115,33 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* On tablets and mobile, fixed attachment can cause issues — switch to scroll */
 @media (max-width: 1024px) {
   body {
     background-attachment: scroll;
     background-size: cover;
     background-position: center top;
+  }
+
+  /* Force transparency on all cards/grids on mobile so background shows through */
+  .why-card,
+  .srv,
+  .client-card,
+  .area-pill {
+    background: rgba(0,0,0,0.45) !important;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .why-card:hover,
+  .srv:hover,
+  .client-card:hover {
+    background: rgba(0,0,0,0.6) !important;
+  }
+
+  .why-grid,
+  .services-grid,
+  .clients-grid {
+    background: rgba(255,255,255,0.03);
   }
 }
 
