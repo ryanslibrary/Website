@@ -318,39 +318,7 @@ header {
 .location-strip p { color: var(--text-tertiary); font-size: 12px; letter-spacing: 0.3px; }
 .location-strip strong { color: var(--green); font-weight: 600; }
 
-/* ─── TRANSPARENT INTRO SCREEN ─── */
-.intro-screen {
-  height: calc(100vh - 120px);
-  width: 100%;
-  background: transparent;
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding-bottom: 40px;
-}
 
-.intro-scroll-hint {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  color: rgba(255,255,255,0.4);
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  animation: bob 2s ease-in-out infinite;
-}
-
-.intro-scroll-hint svg {
-  width: 22px;
-  height: 22px;
-}
-
-@keyframes bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(6px); }
-}
 .hero {
   min-height: calc(100vh - 52px);
   display: flex;
@@ -2238,4 +2206,14 @@ document.addEventListener('DOMContentLoaded', function() {
   observeElements();
 });
 
-// Also call
+// Re-render reviews when switching to reviews page
+var _origShowPage = window.showPage;
+window.showPage = function(id) {
+  _origShowPage(id);
+  if (id === 'reviews') {
+    setTimeout(function() { renderReviews(); observeElements(); }, 250);
+  }
+};
+</script>
+</body>
+</html>
