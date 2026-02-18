@@ -19,6 +19,52 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script>
+// Defined early so inline onclick attributes work before body script loads
+function toggleMobileMenu() {
+  var nl = document.getElementById('navLinks');
+  if (nl) nl.classList.toggle('open');
+}
+function showPage(id) {
+  var transitioning = window._transitioning;
+  if (transitioning) return;
+  window._transitioning = true;
+  var overlay = document.getElementById('pageTransition');
+  if (overlay) overlay.classList.add('active');
+  setTimeout(function() {
+    document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+    var pg = document.getElementById(id);
+    if (pg) pg.classList.add('active');
+    document.querySelectorAll('.nav-link').forEach(function(l) { l.classList.remove('active'); });
+    var lk = document.querySelector('.nav-link[data-page="'+id+'"]');
+    if (lk) lk.classList.add('active');
+    window.scrollTo({ top: 0 });
+    var nl = document.getElementById('navLinks');
+    if (nl) nl.classList.remove('open');
+    if (window.SEO && window.SEO[id]) window.updateSEO(window.SEO[id]);
+    if (id === 'blog') backToBlog();
+    if (typeof observeElements === 'function') observeElements();
+    if (overlay) overlay.classList.remove('active');
+    window._transitioning = false;
+  }, 220);
+}
+function showArticle(id) {
+  var lv = document.getElementById('blogListView');
+  if (lv) lv.style.display = 'none';
+  document.querySelectorAll('.article-view').forEach(function(a) { a.style.display = 'none'; });
+  var art = document.getElementById(id);
+  if (art) art.style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (window.ARTICLE_SEO && window.ARTICLE_SEO[id]) window.updateSEO(window.ARTICLE_SEO[id]);
+}
+function backToBlog() {
+  document.querySelectorAll('.article-view').forEach(function(a) { a.style.display = 'none'; });
+  var lv = document.getElementById('blogListView');
+  if (lv) lv.style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (window.SEO && window.SEO['blog']) window.updateSEO(window.SEO['blog']);
+}
+</script>
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -75,15 +121,17 @@ body::before {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.82);
-  z-index: 0;
+  z-index: -1;
   pointer-events: none;
 }
 
-/* Ensure all content sits above the overlay */
-header, .page, footer, .fab-call, .page-transition, .cursor-glow {
-  position: relative;
-  z-index: 1;
-}
+/* Ensure all content sits above the body::before overlay */
+header { z-index: 100; }
+.page { position: relative; z-index: 1; }
+footer { position: relative; z-index: 1; }
+.fab-call { z-index: 999; }
+.page-transition { z-index: 9999; }
+.cursor-glow { z-index: 2; }
 
 /* ─── CURSOR GLOW ─── */
 .cursor-glow {
@@ -131,7 +179,7 @@ header {
 }
 
 .logo-img {
-  height: 90px;
+  height: 44px;
   width: auto;
   display: block;
   transition: transform var(--transition-fast), opacity var(--transition-fast);
@@ -1912,76 +1960,28 @@ footer {
   </svg>
 </a>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // ─── SEO ───
-var SEO = {
+window.SEO = {
   home: { title:'Burleigh Electrical | Electrician Sevenoaks, Tunbridge Wells, Tonbridge & Kent', desc:'Family run electricians in Hildenborough & Borough Green. Rewires, EV chargers, EICR, PAT testing, emergency call outs across Kent. Free quotes.', url:'https://www.burleighelectrical.co.uk/' },
   blog: { title:'Electrical News | Burleigh Electrical Kent', desc:'Latest electrical regulation news for homeowners and landlords across Sevenoaks, Tunbridge Wells and Kent.', url:'https://www.burleighelectrical.co.uk/#news' },
   reviews: { title:'Customer Reviews | Burleigh Electrical Services | Kent', desc:'5-star rated family run electricians across Sevenoaks, Tunbridge Wells and Kent.', url:'https://www.burleighelectrical.co.uk/#reviews' },
   contact: { title:'Free Quote | Electrician Sevenoaks, Kent | Burleigh Electrical', desc:'Get a free no-obligation quote. Covering Sevenoaks, Tunbridge Wells, Tonbridge, Westerham and all of Kent. Call 07786 067085.', url:'https://www.burleighelectrical.co.uk/#contact' }
 };
 
-var ARTICLE_SEO = {
+window.ARTICLE_SEO = {
   article1: { title:'New EICR Rules for Social Housing Landlords in Kent 2025/26 | Burleigh Electrical', desc:'Major changes to electrical safety law now require EICR inspections for social housing landlords in Kent.', url:'https://www.burleighelectrical.co.uk/#eicr-social-housing' },
   article2: { title:'EV Charger Planning Permission Scrapped UK 2026 | Burleigh Electrical Kent', desc:'Planning permission no longer required for most home EV charger installations in the UK.', url:'https://www.burleighelectrical.co.uk/#ev-charger-planning-2026' }
 };
 
-function updateSEO(s) {
+window.updateSEO = function(s) {
   document.title = s.title;
   var m = document.querySelector('meta[name="description"]'); if(m) m.content = s.desc;
   var c = document.querySelector('link[rel="canonical"]'); if(c) c.href = s.url;
 }
 
 // ─── PAGE TRANSITIONS ───
-var transitioning = false;
-
-function showPage(id) {
-  if (transitioning) return;
-  transitioning = true;
-
-  var overlay = document.getElementById('pageTransition');
-  overlay.classList.add('active');
-
-  setTimeout(function() {
-    document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
-    var pg = document.getElementById(id);
-    if (pg) pg.classList.add('active');
-
-    document.querySelectorAll('.nav-link').forEach(function(l) { l.classList.remove('active'); });
-    var lk = document.querySelector('.nav-link[data-page="'+id+'"]');
-    if (lk) lk.classList.add('active');
-
-    window.scrollTo({ top: 0 });
-    var nl = document.getElementById('navLinks'); if (nl) nl.classList.remove('open');
-    if (SEO[id]) updateSEO(SEO[id]);
-    if (id === 'blog') backToBlog();
-
-    // Re-trigger animations on new page
-    observeElements();
-
-    overlay.classList.remove('active');
-    transitioning = false;
-  }, 220);
-}
-
-function showArticle(id) {
-  var lv = document.getElementById('blogListView'); if(lv) lv.style.display = 'none';
-  document.querySelectorAll('.article-view').forEach(function(a) { a.style.display = 'none'; });
-  var art = document.getElementById(id); if(art) art.style.display = 'block';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  if (ARTICLE_SEO[id]) updateSEO(ARTICLE_SEO[id]);
-}
-
-function backToBlog() {
-  document.querySelectorAll('.article-view').forEach(function(a) { a.style.display = 'none'; });
-  var lv = document.getElementById('blogListView'); if(lv) lv.style.display = 'block';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  if (SEO['blog']) updateSEO(SEO['blog']);
-}
-
-function toggleMobileMenu() {
-  var nl = document.getElementById('navLinks'); if(nl) nl.classList.toggle('open');
-}
+// (showPage, showArticle, backToBlog, toggleMobileMenu defined in <head>)
 
 // ─── REVIEWS ───
 var REVIEWS = [
