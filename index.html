@@ -115,6 +115,23 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* On tablets and mobile, fixed attachment can cause issues — switch to scroll */
+@media (max-width: 1024px) {
+  body {
+    background-attachment: scroll;
+    background-size: cover;
+    background-position: center top;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    background-size: contain;
+    background-position: center top;
+    background-repeat: no-repeat;
+  }
+}
+
 /* Dark overlay so text stays readable over the background image */
 body::before {
   content: '';
@@ -508,6 +525,44 @@ header {
 .section { padding: 100px 24px; position: relative; }
 .section-sm { padding: 60px 24px; }
 
+/* Section backgrounds — transparent so logo background shows through */
+.why-section, .services-section, .commercial-section, .areas-section {
+  background: transparent;
+}
+
+/* Section label pill — makes the section identity immediately obvious */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(126,224,0,0.08);
+  border: 0.5px solid rgba(126,224,0,0.2);
+  border-radius: 980px;
+  padding: 5px 14px 5px 8px;
+  margin-bottom: 20px;
+}
+
+.section-label-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--green), var(--green-dark));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.section-label-dot svg { width: 10px; height: 10px; color: #000; }
+
+.section-label span {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--green);
+}
+
 .section-eyebrow {
   color: var(--green);
   font-size: 12px;
@@ -535,9 +590,6 @@ header {
   max-width: 560px;
   letter-spacing: -0.2px;
 }
-
-/* ─── WHY CARDS ─── */
-.why-section { background: #000; }
 
 .why-grid {
   display: grid;
@@ -1636,7 +1688,13 @@ footer {
   <!-- Why Choose Us -->
   <section class="section why-section">
     <div class="container">
-      <span class="section-eyebrow fade-up">Why Choose Us</span>
+      <div class="section-label fade-up">
+        <div class="section-label-dot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <span>Why Choose Us</span>
+      </div>
+      <span class="section-eyebrow fade-up" style="display:none;">Why Choose Us</span>
       <h2 class="section-title fade-up">Electrical work done<br>right, every time.</h2>
       <div class="why-grid stagger">
         <div class="why-card">
@@ -1677,6 +1735,12 @@ footer {
   <!-- Services -->
   <section class="section services-section">
     <div class="container">
+      <div class="section-label fade-up">
+        <div class="section-label-dot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <span>Our Services</span>
+      </div>
       <span class="section-eyebrow fade-up">What We Do</span>
       <h2 class="section-title fade-up">Our Electrical Services<br>in Kent</h2>
       <div class="services-grid scale-in">
@@ -1698,6 +1762,12 @@ footer {
   <!-- Commercial -->
   <section class="section commercial-section">
     <div class="container">
+      <div class="section-label fade-up">
+        <div class="section-label-dot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-4 0v2"/></svg>
+        </div>
+        <span>Commercial &amp; Trade</span>
+      </div>
       <span class="section-eyebrow fade-up" style="text-align:left;">Commercial &amp; Trade</span>
       <h2 class="section-title fade-up">Not Just Homes —<br>We Work With Businesses Too.</h2>
       <p class="section-sub fade-up" style="margin-bottom:0;">Whether you're a property manager, a builder who needs a reliable electrician on site, or a business that can't afford downtime — we're the team Kent professionals trust.</p>
@@ -1715,6 +1785,12 @@ footer {
   <!-- Areas -->
   <section class="section areas-section">
     <div class="container">
+      <div class="section-label fade-up">
+        <div class="section-label-dot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <span>Areas We Cover</span>
+      </div>
       <span class="section-eyebrow fade-up">Coverage</span>
       <h2 class="section-title fade-up">Local Electricians Covering<br>All of West Kent</h2>
       <p class="section-sub fade-up">Based in Hildenborough and Borough Green — covering these towns and all surrounding villages:</p>
