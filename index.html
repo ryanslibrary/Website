@@ -175,6 +175,36 @@ footer { position: relative; z-index: 1; }
   }
 }
 
+/* ─── HEADER LOCATION BAR ─── */
+.header-location {
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 0.5px solid rgba(126,224,0,0.12);
+  padding: 6px 24px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--green);
+  letter-spacing: 0.3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: sticky;
+  top: 120px;
+  z-index: 99;
+}
+
+.header-location-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  flex-shrink: 0;
+  animation: pulse 2s ease infinite;
+}
+
 /* ─── CURSOR GLOW ─── */
 .cursor-glow {
   position: fixed;
@@ -351,6 +381,7 @@ header {
   padding: 8px 18px;
   border-radius: 980px;
   animation: fadeSlideDown 0.8s 0.2s cubic-bezier(0.4,0,0.2,1) both;
+  margin-top: auto;
 }
 
 .intro-eyebrow-dot {
@@ -423,6 +454,18 @@ header {
 @media (max-width: 768px) {
   .intro-screen { height: calc(100vh - 80px); padding: 60px 24px 40px; }
   .intro-phone { font-size: 20px; padding: 14px 24px; }
+  .hero-content { padding: 24px 22px; }
+}
+
+.hero-content {
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 36px 40px;
+  margin-bottom: 32px;
+  border: 0.5px solid rgba(255,255,255,0.08);
+}
 }
 
 .hero {
@@ -1776,16 +1819,16 @@ footer {
     </div>
   </div>
 </header>
+<div class="header-location">
+  <span class="header-location-dot"></span>
+  Based in Hildenborough &amp; Borough Green, Kent
+</div>
 
 <!-- HOME -->
 <div id="home" class="page active">
 
   <!-- Full viewport intro — logo background + phone number + scroll hint -->
   <section class="intro-screen">
-    <div class="intro-eyebrow">
-      <span class="intro-eyebrow-dot"></span>
-      Based in Hildenborough &amp; Borough Green, Kent
-    </div>
     <div class="intro-bottom">
       <a href="tel:+447786067085" class="intro-phone">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
@@ -1804,12 +1847,14 @@ footer {
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-grid"></div>
-
+    <div class="hero-content">
     <h1>Electricians in<br><em>Sevenoaks, Tunbridge<br>Wells</em> &amp; Kent</h1>
 
     <p class="hero-sub">
       A family run team covering Sevenoaks, Tunbridge Wells, Tonbridge, Westerham and all surrounding areas. Qualified, reliable, fully insured.
     </p>
+
+    </div>
 
     <div class="hero-actions">
       <button class="btn-primary" onclick="showPage('contact')">Get a Free Quote</button>
