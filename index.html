@@ -1502,24 +1502,38 @@ footer {
   bottom: 28px;
   right: 28px;
   z-index: 999;
-  width: 56px;
   height: 56px;
-  border-radius: 50%;
+  padding: 0 20px 0 16px;
+  border-radius: 980px;
   background: linear-gradient(135deg, var(--green), var(--green-dark));
   box-shadow: 0 6px 24px rgba(126,224,0,0.4);
   text-decoration: none;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 10px;
   transition: all var(--transition-fast);
+  animation: fabPopIn 0.6s 1.2s cubic-bezier(0.34,1.56,0.64,1) both;
 }
 
 .fab-call:hover {
-  transform: scale(1.1);
+  transform: scale(1.06);
   box-shadow: 0 10px 36px rgba(126,224,0,0.55);
 }
 
-.fab-call svg { width: 24px; height: 24px; color: #000; }
+.fab-call svg { width: 22px; height: 22px; color: #000; flex-shrink: 0; }
+
+.fab-call-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #000;
+  letter-spacing: -0.2px;
+  white-space: nowrap;
+}
+
+@keyframes fabPopIn {
+  from { opacity: 0; transform: scale(0.5) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
 
 /* ─── ANIMATIONS ─── */
 @keyframes fadeSlideDown {
@@ -2073,6 +2087,7 @@ footer {
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
   </svg>
+  <span class="fab-call-label">Call Now</span>
 </a>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
@@ -2100,12 +2115,14 @@ window.updateSEO = function(s) {
 
 // ─── REVIEWS ───
 var REVIEWS = [
-  { name:"Bereket Fesshaie", initials:"BF", stars:5, text:"Excellent service.", date:"February 2026", badge:null },
+    { name:"Bereket Fesshaie", initials:"BF", stars:5, text:"Excellent service.", date:"February 2026", badge:null },
+
   { name:"Kim S", initials:"KS", stars:5, text:"Excellent service. Double checked everything to make sure it was working. Thoroughly recommend. Great to have an honest trustworthy electrician. Nothing too difficult. Great service.", date:"February 2026", badge:null },
   { name:"Tolga Tuna", initials:"TT", stars:5, text:"Two electricians from Burleigh Electrical Services Ltd came to replace my old induction hob and did a great job. They were very kind, careful, and professional throughout the work. Everything was done neatly and smoothly. I'm very happy with the service and would definitely recommend them.", date:"January 2026", badge:"Local Guide" },
   { name:"Jackie Giltrow", initials:"JG", stars:5, text:"Excellent job done (sorting transformers and lighting). Efficient and good communication. Would highly recommend.", date:"January 2026", badge:null },
   { name:"JM S-B", initials:"JS", stars:5, text:"Really helpful guys. Made no complaint about having to crawl into tiny loft space, fixed new bathroom fan. Also fitted new garage light. Prompt. Efficient. Trustworthy. Many thanks.", date:"January 2026", badge:"Local Guide" },
-  { name:"Martin Wilson", initials:"MW", stars:5, text:"Excellent service. Burleigh Electrical Services installed new kitchen lighting for us and security lights on the driveway. The team were superb from the first contact and we were thrilled with how neat the result was. I'd have no hesitation recommending them.", date:"December 2025", badge:null }];
+  { name:"Martin Wilson", initials:"MW", stars:5, text:"Excellent service. Burleigh Electrical Services installed new kitchen lighting for us and security lights on the driveway. The team were superb from the first contact and we were thrilled with how neat the result was. I'd have no hesitation recommending them.", date:"December 2025", badge:null }
+];
 
 function starBar(count, size) {
   var h = '';
