@@ -458,7 +458,7 @@ header {
 }
 
 .hero-content {
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.5);
   border-radius: 20px;
   padding: 36px 40px;
   margin-bottom: 32px;
@@ -475,7 +475,7 @@ header {
   padding: 80px 24px 120px;
   position: relative;
   overflow: hidden;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.5);
 }
 
 .hero-bg {
@@ -770,7 +770,7 @@ header {
 }
 
 .why-card {
-  background: rgba(0,0,0,0.55);
+  background: rgba(0,0,0,0.5);
   padding: 40px 32px;
   transition: background var(--transition-fast);
   position: relative;
@@ -789,7 +789,7 @@ header {
   transition: opacity var(--transition-med);
 }
 
-.why-card:hover { background: rgba(0,0,0,0.7); }
+.why-card:hover { background: rgba(0,0,0,0.62); }
 .why-card:hover::after { opacity: 1; }
 
 .why-icon {
@@ -847,7 +847,7 @@ header {
 }
 
 .srv {
-  background: rgba(0,0,0,0.55);
+  background: rgba(0,0,0,0.5);
   padding: 20px 22px;
   color: var(--text-secondary);
   font-size: 15px;
@@ -892,12 +892,12 @@ header {
 }
 
 .client-card {
-  background: rgba(0,0,0,0.55);
+  background: rgba(0,0,0,0.5);
   padding: 28px 24px;
   transition: background var(--transition-fast);
 }
 
-.client-card:hover { background: rgba(0,0,0,0.72); }
+.client-card:hover { background: rgba(0,0,0,0.62); }
 
 .client-icon { font-size: 22px; margin-bottom: 12px; }
 
@@ -923,7 +923,7 @@ header {
 }
 
 .area-pill {
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.5);
   border: 0.5px solid rgba(126,224,0,0.2);
   border-radius: 10px;
   padding: 14px 16px;
@@ -932,7 +932,7 @@ header {
 }
 
 .area-pill:hover {
-  background: rgba(0,0,0,0.65);
+  background: rgba(0,0,0,0.5);
   border-color: rgba(126,224,0,0.4);
   transform: translateY(-2px);
 }
@@ -1619,18 +1619,17 @@ footer {
 .footer-contact a:hover { color: var(--text); }
 
 .footer-seo {
-  color: var(--text-tertiary);
-  font-size: 12px;
-  line-height: 1.8;
-  margin-top: 24px;
-  padding-top: 20px;
-  border-top: 0.5px solid rgba(255,255,255,0.05);
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+  color: transparent;
+  font-size: 0;
+  line-height: 0;
+  height: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  border: none;
 }
 
-.footer-seo strong { color: rgba(255,255,255,0.25); font-weight: 500; }
+.footer-seo strong { color: transparent; }
 
 /* ─── FAB ─── */
 .fab-call {
@@ -2223,7 +2222,7 @@ footer {
   </div>
   <div class="footer-links">
     <a href="tel:+447786067085">07786 067085</a>
-    <a href="mailto:info@burleighelectrical.co.uk">info@burleighelectrical.co.uk</a>
+    <a href="/cdn-cgi/l/email-protection#147d7a727b5476616678717d737c7178717760667d7775783a777b3a617f"><span class="__cf_email__" data-cfemail="a6cfc8c0c9e6c4d3d4cac3cfc1cec3cac3c5d2d4cfc5c7ca88c5c988d3cd">[email&#160;protected]</span></a>
     <a href="https://www.instagram.com/burleighelectricalservices" target="_blank" rel="noopener">Instagram</a>
     <a href="https://nextdoor.co.uk/page/burleigh-electrical-services" target="_blank" rel="noopener">Nextdoor</a>
   </div>
@@ -2237,7 +2236,7 @@ footer {
   <span class="fab-call-label">Call Now</span>
 </a>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ─── SEO ───
 window.SEO = {
   home: { title:'Burleigh Electrical | Electrician Sevenoaks, Tunbridge Wells, Tonbridge & Kent', desc:'Family run electricians in Hildenborough & Borough Green. Rewires, EV chargers, EICR, PAT testing, emergency call outs across Kent. Free quotes.', url:'https://www.burleighelectrical.co.uk/' },
@@ -2379,14 +2378,4 @@ document.addEventListener('DOMContentLoaded', function() {
   document.body.classList.add('intro-visible');
 });
 
-// Re-render reviews when switching to reviews page
-var _origShowPage = window.showPage;
-window.showPage = function(id) {
-  _origShowPage(id);
-  if (id === 'reviews') {
-    setTimeout(function() { renderReviews(); observeElements(); }, 250);
-  }
-};
-</script>
-</body>
-</html>
+// Re-rende
