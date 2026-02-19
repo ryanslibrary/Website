@@ -88,9 +88,9 @@ function backToBlog() {
   --bg: #000;
   --surface: rgba(18,18,18,0.8);
   --border: rgba(126,224,0,0.12);
-  --text: #f5f5f7;
-  --text-secondary: #b0b0b5;
-  --text-tertiary: #a0a0a5;
+  --text: #ffffff;
+  --text-secondary: #d0d0d5;
+  --text-tertiary: #b8b8be;
   --transition-fast: 0.2s cubic-bezier(0.4,0,0.2,1);
   --transition-med: 0.45s cubic-bezier(0.4,0,0.2,1);
   --transition-slow: 0.8s cubic-bezier(0.4,0,0.2,1);
@@ -458,14 +458,11 @@ header {
 }
 
 .hero-content {
-  background: rgba(0,0,0,0.5);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(0,0,0,0.7);
   border-radius: 20px;
   padding: 36px 40px;
   margin-bottom: 32px;
   border: 0.5px solid rgba(255,255,255,0.08);
-}
 }
 
 .hero {
@@ -478,7 +475,7 @@ header {
   padding: 80px 24px 120px;
   position: relative;
   overflow: hidden;
-  background: rgba(0,0,0,0.45);
+  background: rgba(0,0,0,0.7);
 }
 
 .hero-bg {
@@ -558,7 +555,7 @@ header {
   margin: 0 auto 40px;
   line-height: 1.6;
   letter-spacing: -0.3px;
-  font-weight: 300;
+  font-weight: 400;
   animation: fadeSlideDown 1s 0.2s var(--transition-slow) both;
 }
 
@@ -601,7 +598,6 @@ header {
   letter-spacing: -0.2px;
   cursor: pointer;
   transition: all var(--transition-fast);
-  backdrop-filter: blur(10px);
 }
 
 .btn-secondary:hover {
@@ -757,7 +753,7 @@ header {
 .section-sub {
   font-size: 16px;
   color: var(--text-secondary);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.6;
   max-width: 560px;
   letter-spacing: -0.2px;
@@ -775,8 +771,6 @@ header {
 
 .why-card {
   background: rgba(0,0,0,0.55);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   padding: 40px 32px;
   transition: background var(--transition-fast);
   position: relative;
@@ -854,8 +848,6 @@ header {
 
 .srv {
   background: rgba(0,0,0,0.55);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   padding: 20px 22px;
   color: var(--text-secondary);
   font-size: 15px;
@@ -901,8 +893,6 @@ header {
 
 .client-card {
   background: rgba(0,0,0,0.55);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   padding: 28px 24px;
   transition: background var(--transition-fast);
 }
@@ -933,9 +923,7 @@ header {
 }
 
 .area-pill {
-  background: rgba(0,0,0,0.45);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(0,0,0,0.7);
   border: 0.5px solid rgba(126,224,0,0.2);
   border-radius: 10px;
   padding: 14px 16px;
@@ -1166,7 +1154,7 @@ textarea { resize: vertical; min-height: 120px; }
   font-size: 15px;
   font-style: italic;
   line-height: 1.7;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: -0.1px;
 }
 
@@ -1240,7 +1228,7 @@ textarea { resize: vertical; min-height: 120px; }
   line-height: 1.7;
   flex-grow: 1;
   margin-bottom: 16px;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: -0.1px;
 }
 
@@ -1258,7 +1246,7 @@ textarea { resize: vertical; min-height: 120px; }
 .g-dot { width: 8px; height: 8px; border-radius: 50%; background: #4285f4; }
 
 .reviews-cta { text-align: center; padding: 48px 24px 0; }
-.reviews-cta p { color: var(--text-secondary); font-size: 15px; margin-bottom: 16px; font-weight: 300; }
+.reviews-cta p { color: var(--text-secondary); font-size: 15px; margin-bottom: 16px; font-weight: 400; }
 .reviews-cta a {
   display: inline-block;
   background: var(--green);
@@ -1291,7 +1279,7 @@ textarea { resize: vertical; min-height: 120px; }
   margin-bottom: 10px;
 }
 
-.blog-header p { color: var(--text-secondary); font-size: 15px; font-weight: 300; }
+.blog-header p { color: var(--text-secondary); font-size: 15px; font-weight: 400; }
 
 .blog-featured {
   display: grid;
@@ -1362,7 +1350,7 @@ textarea { resize: vertical; min-height: 120px; }
   color: var(--text-secondary);
   font-size: 15px;
   line-height: 1.65;
-  font-weight: 300;
+  font-weight: 400;
   margin-bottom: 20px;
 }
 
@@ -1425,7 +1413,7 @@ textarea { resize: vertical; min-height: 120px; }
   color: var(--text-secondary);
   font-size: 15px;
   line-height: 1.6;
-  font-weight: 300;
+  font-weight: 400;
   flex-grow: 1;
   margin-bottom: 16px;
 }
@@ -1488,7 +1476,7 @@ textarea { resize: vertical; min-height: 120px; }
   font-size: 18px;
   color: var(--text-secondary);
   line-height: 1.7;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: -0.3px;
   margin-bottom: 32px;
 }
@@ -1505,7 +1493,7 @@ textarea { resize: vertical; min-height: 120px; }
   color: var(--text-secondary);
   font-size: 15px;
   line-height: 1.8;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: -0.1px;
   margin-bottom: 18px;
 }
@@ -1514,7 +1502,7 @@ textarea { resize: vertical; min-height: 120px; }
   color: var(--text-secondary);
   font-size: 15px;
   line-height: 1.8;
-  font-weight: 300;
+  font-weight: 400;
   margin: 0 0 18px 20px;
 }
 
@@ -2157,7 +2145,7 @@ footer {
     <div class="container">
       <div class="reviews-header fade-up">
         <h2>What Our Customers Say</h2>
-        <p style="color:var(--text-secondary);font-size:14px;font-weight:300;">Trusted by homeowners, landlords and businesses across Sevenoaks, Tunbridge Wells, Tonbridge &amp; Kent</p>
+        <p style="color:var(--text-secondary);font-size:14px;font-weight:400;">Trusted by homeowners, landlords and businesses across Sevenoaks, Tunbridge Wells, Tonbridge &amp; Kent</p>
         <div class="reviews-summary" id="reviewsSummary"></div>
       </div>
       <div class="reviews-insight fade-up">
@@ -2235,7 +2223,7 @@ footer {
   </div>
   <div class="footer-links">
     <a href="tel:+447786067085">07786 067085</a>
-    <a href="/cdn-cgi/l/email-protection#1c75727a735c7e696e7079757b747970797f686e757f7d70327f73326977"><span class="__cf_email__" data-cfemail="21484f474e614354534d44484649444d444255534842404d0f424e0f544a">[email&#160;protected]</span></a>
+    <a href="mailto:info@burleighelectrical.co.uk">info@burleighelectrical.co.uk</a>
     <a href="https://www.instagram.com/burleighelectricalservices" target="_blank" rel="noopener">Instagram</a>
     <a href="https://nextdoor.co.uk/page/burleigh-electrical-services" target="_blank" rel="noopener">Nextdoor</a>
   </div>
@@ -2249,7 +2237,7 @@ footer {
   <span class="fab-call-label">Call Now</span>
 </a>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // ─── SEO ───
 window.SEO = {
   home: { title:'Burleigh Electrical | Electrician Sevenoaks, Tunbridge Wells, Tonbridge & Kent', desc:'Family run electricians in Hildenborough & Borough Green. Rewires, EV chargers, EICR, PAT testing, emergency call outs across Kent. Free quotes.', url:'https://www.burleighelectrical.co.uk/' },
