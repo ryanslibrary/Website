@@ -2179,7 +2179,7 @@ footer {
       <div class="form-container scale-in">
         <h2>Get a Free Quote</h2>
         <p class="form-sub">Serving Sevenoaks, Tunbridge Wells, Tonbridge, Westerham &amp; all of Kent. We'll get back to you promptly.</p>
-        <form id="contactForm" action="https://formspree.io/f/xbddjlap" method="POST">
+        <form id="contactForm" novalidate>
           <div class="form-group"><label for="name">Full Name</label><input type="text" id="name" name="name" placeholder="John Smith" required autocomplete="name"></div>
           <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" name="email" placeholder="john@example.com" required autocomplete="email"></div>
           <div class="form-group"><label for="phone">Phone Number</label><input type="tel" id="phone" name="phone" placeholder="07700 000000" required autocomplete="tel"></div>
@@ -2203,8 +2203,72 @@ footer {
             </select>
           </div>
           <div class="form-group"><label for="message">Additional Details</label><textarea id="message" name="message" placeholder="Tell us about your job, property type, or any other details..."></textarea></div>
-          <div class="form-group"><button type="submit" class="submit-btn">Send Message — Get My Free Quote</button></div>
+          <div id="form-error" style="display:none;color:#f87171;font-size:14px;margin-bottom:12px;padding:10px;background:rgba(239,68,68,0.1);border-radius:8px;"></div>
+          <div class="form-group"><button type="submit" class="submit-btn" id="submitBtn">Send Message — Get My Free Quote</button></div>
         </form>
+        <div id="form-success" style="display:none;text-align:center;padding:32px 16px;">
+          <div style="font-size:48px;margin-bottom:12px;">✅</div>
+          <h3 style="color:#10b981;margin-bottom:8px;">Message Sent!</h3>
+          <p style="color:#94a3b8;">Thanks, we'll be in touch shortly with your free quote.</p>
+        </div>
+        <script>
+        // ── Set this to your CRM server URL ──────────────────────────────────
+        const PORTAL_API = 'https://YOUR_CRM_SERVER/pub/webhook/enquiry';
+        // ─────────────────────────────────────────────────────────────────────
+
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+          e.preventDefault();
+          const form = e.target;
+          const btn = document.getElementById('submitBtn');
+          const errEl = document.getElementById('form-error');
+
+          // Basic validation
+          const required = form.querySelectorAll('[required]');
+          let missing = false;
+          required.forEach(el => {
+            if (!el.value.trim()) { el.style.borderColor = '#f87171'; missing = true; }
+            else { el.style.borderColor = ''; }
+          });
+          if (missing) {
+            errEl.textContent = 'Please fill in all required fields.';
+            errEl.style.display = 'block';
+            return;
+          }
+          errEl.style.display = 'none';
+
+          btn.disabled = true;
+          btn.textContent = 'Sending…';
+
+          const payload = {
+            name:     form.name.value.trim(),
+            email:    form.email.value.trim(),
+            phone:    form.phone.value.trim(),
+            address:  form.address.value.trim(),
+            postcode: form.postcode.value.trim(),
+            service:  form.service.value,
+            message:  form.message.value.trim(),
+          };
+
+          try {
+            const r = await fetch(PORTAL_API, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+            });
+            if (r.ok) {
+              form.style.display = 'none';
+              document.getElementById('form-success').style.display = 'block';
+            } else {
+              throw new Error('Server error ' + r.status);
+            }
+          } catch (err) {
+            errEl.textContent = 'Something went wrong — please call us on 07786 067085 or try again.';
+            errEl.style.display = 'block';
+            btn.disabled = false;
+            btn.textContent = 'Send Message — Get My Free Quote';
+          }
+        });
+        </script>
       </div>
     </div>
   </div>
@@ -2216,7 +2280,7 @@ footer {
   </div>
   <div class="footer-links">
     <a href="tel:+447786067085">07786 067085</a>
-    <a href="/cdn-cgi/l/email-protection#147d7a727b5476616678717d737c7178717760667d7775783a777b3a617f"><span class="__cf_email__" data-cfemail="a6cfc8c0c9e6c4d3d4cac3cfc1cec3cac3c5d2d4cfc5c7ca88c5c988d3cd">[email&#160;protected]</span></a>
+    <a href="mailto:info@burleighelectrical.co.uk">info@burleighelectrical.co.uk</a>
     <a href="https://www.instagram.com/burleighelectricalservices" target="_blank" rel="noopener">Instagram</a>
     <a href="https://nextdoor.co.uk/page/burleigh-electrical-services" target="_blank" rel="noopener">Nextdoor</a>
   </div>
