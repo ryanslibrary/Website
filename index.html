@@ -1550,6 +1550,26 @@ textarea { resize: vertical; min-height: 120px; }
   transform: scale(1.04);
 }
 
+/* ─── CUSTOMER PORTAL ─── */
+.portal-section { background: linear-gradient(135deg, #0a0a0a 0%, #111 100%); border-top: 0.5px solid rgba(255,255,255,0.06); border-bottom: 0.5px solid rgba(255,255,255,0.06); }
+.portal-inner { display: flex; align-items: center; gap: 56px; }
+.portal-text { flex: 1; }
+.portal-features { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 28px 0; }
+.portal-feature { display: flex; align-items: flex-start; gap: 10px; padding: 14px; background: rgba(255,255,255,0.04); border: 0.5px solid rgba(255,255,255,0.08); border-radius: 12px; }
+.portal-feature-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.portal-feature h4 { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.portal-feature p { font-size: 12px; color: var(--text-tertiary); line-height: 1.5; margin: 0; }
+.portal-qr-block { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; }
+.portal-qr-frame { background: #fff; border-radius: 16px; padding: 12px; display: inline-block; box-shadow: 0 0 0 1px rgba(126,224,0,0.3), 0 8px 32px rgba(0,0,0,0.4); }
+.portal-qr-frame img { display: block; width: 130px; height: 130px; border-radius: 4px; }
+.portal-qr-label { font-size: 12px; color: var(--text-secondary); line-height: 1.5; max-width: 160px; }
+.portal-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; background: rgba(126,224,0,0.12); border: 0.5px solid rgba(126,224,0,0.3); border-radius: 20px; font-size: 11px; font-weight: 600; color: var(--green); margin-bottom: 14px; }
+@media (max-width: 768px) {
+  .portal-inner { flex-direction: column; gap: 32px; }
+  .portal-qr-block { width: 100%; }
+  .portal-features { grid-template-columns: 1fr; }
+}
+
 /* ─── FOOTER ─── */
 footer {
   background: #050505;
@@ -1971,6 +1991,47 @@ footer {
         <div class="client-card"><div class="client-icon">🎓</div><h4>Schools</h4><p>Safe, compliant electrical work during holidays or out of hours. Full documentation provided.</p></div>
       </div>
       <button class="btn-primary fade-up" onclick="showPage('contact')">Enquire Now</button>
+    </div>
+  </section>
+
+  <!-- Customer Portal -->
+  <section class="section portal-section">
+    <div class="container">
+      <div class="portal-inner">
+        <div class="portal-text">
+          <div class="portal-badge">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            Your Personal Customer Portal
+          </div>
+          <h2 class="section-title fade-up" style="margin-bottom:12px;">Track Your Job<br><em>Online, Anytime.</em></h2>
+          <p class="section-sub fade-up" style="margin-bottom:0;">Every Burleigh Electrical customer gets their own secure online portal — so you're always in the loop, without needing to call.</p>
+          <div class="portal-features stagger">
+            <div class="portal-feature">
+              <div class="portal-feature-icon">📋</div>
+              <div><h4>View &amp; Approve Quotes</h4><p>See your itemised quote and approve it with one tap.</p></div>
+            </div>
+            <div class="portal-feature">
+              <div class="portal-feature-icon">📍</div>
+              <div><h4>Appointment Details</h4><p>Your site visit and job dates in one place.</p></div>
+            </div>
+            <div class="portal-feature">
+              <div class="portal-feature-icon">🧾</div>
+              <div><h4>Download Your Invoice</h4><p>Access and download your invoice whenever you need it.</p></div>
+            </div>
+            <div class="portal-feature">
+              <div class="portal-feature-icon">💬</div>
+              <div><h4>Submit an Enquiry</h4><p>New or returning customer — send a job request in seconds.</p></div>
+            </div>
+          </div>
+          <button class="btn-primary fade-up" onclick="showPage('contact')">Get a Free Quote →</button>
+        </div>
+        <div class="portal-qr-block fade-up">
+          <div class="portal-qr-frame">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=https://burleighelectricalportal.uk/pub/register&color=000000&bgcolor=ffffff&qzone=1" alt="Scan to register for your customer portal" width="130" height="130">
+          </div>
+          <p class="portal-qr-label">Scan to create your free customer account &amp; access your portal</p>
+        </div>
+      </div>
     </div>
   </section>
 
