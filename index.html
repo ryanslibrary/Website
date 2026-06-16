@@ -17,6 +17,17 @@
 <meta property="og:title" content="Burleigh Electrical | Electricians in Sevenoaks, Tunbridge Wells &amp; Kent">
 <meta property="og:description" content="Family run electricians based in Hildenborough &amp; Borough Green, Kent. Rewires, EV chargers, EICR, PAT testing &amp; emergency call outs. No hidden charges. Free quotes.">
 <meta name="keywords" content="electrician Sevenoaks, electrician Tunbridge Wells, electrician Tonbridge, electrician Westerham, electrician Hildenborough, electrician Borough Green, electrician Kent, EV charger installation Kent, EICR Kent, PAT testing Kent, emergency electrician Kent, rewire Kent, consumer unit upgrade Kent">
+<!-- ═══════════════════════════════════════════════════════════════
+     GOOGLE TAG MANAGER — replace GTM-XXXXXXX with your container ID
+     Create at: https://tagmanager.google.com
+     ═══════════════════════════════════════════════════════════════ -->
+<!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-XXXXXXX');</script> -->
+<!-- END GTM HEAD -->
+
+<!-- META PIXEL — replace XXXXXXXXXXXXXXXXXX with your Pixel ID
+     Create at: https://business.facebook.com/events_manager
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_GB/fbevents.js');fbq('init','XXXXXXXXXXXXXXXXXX');fbq('track','PageView');</script>
+-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -42,28 +53,10 @@ function showPage(id) {
     window.scrollTo({ top: 0 });
     var nl = document.getElementById('navLinks');
     if (nl) nl.classList.remove('open');
-    if (window.SEO && window.SEO[id]) window.updateSEO(window.SEO[id]);
-    if (id === 'blog') backToBlog();
     if (typeof observeElements === 'function') observeElements();
     if (overlay) overlay.classList.remove('active');
     window._transitioning = false;
   }, 220);
-}
-function showArticle(id) {
-  var lv = document.getElementById('blogListView');
-  if (lv) lv.style.display = 'none';
-  document.querySelectorAll('.article-view').forEach(function(a) { a.style.display = 'none'; });
-  var art = document.getElementById(id);
-  if (art) art.style.display = 'block';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  if (window.ARTICLE_SEO && window.ARTICLE_SEO[id]) window.updateSEO(window.ARTICLE_SEO[id]);
-}
-function backToBlog() {
-  document.querySelectorAll('.article-view').forEach(function(a) { a.style.display = 'none'; });
-  var lv = document.getElementById('blogListView');
-  if (lv) lv.style.display = 'block';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  if (window.SEO && window.SEO['blog']) window.updateSEO(window.SEO['blog']);
 }
 </script>
 <script type="application/ld+json">
@@ -77,7 +70,44 @@ function backToBlog() {
   "email":"info@burleighelectrical.co.uk",
   "description":"Family run electricians based in Hildenborough and Borough Green, providing professional electrical services across Sevenoaks, Tunbridge Wells, Tonbridge, Westerham and surrounding Kent areas.",
   "address":{"@type":"PostalAddress","addressLocality":"Hildenborough","addressRegion":"Kent","addressCountry":"GB","postalCode":"TN11"},
-  "aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"6","bestRating":"5","worstRating":"1"}
+  "priceRange":"££",
+  "areaServed":["Sevenoaks","Tunbridge Wells","Tonbridge","Westerham","Hildenborough","Borough Green","Edenbridge","Hadlow","Paddock Wood","Otford","Swanley","Kent"],
+  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"10","bestRating":"5","worstRating":"1"},
+  "review":[
+    {"@type":"Review","author":{"@type":"Person","name":"Elizabeth Fraser"},"datePublished":"2026-04-28","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Extremely knowledgable, reliable, and honest. I had an issue with my kitchen lights that I thought was genuinely unfixable, but Burleigh Electrical got them working again and for a really reasonable price. I would happily recommend them and will definitely go to them again."},
+    {"@type":"Review","author":{"@type":"Person","name":"Gillian Fitnum"},"datePublished":"2026-04-07","reviewRating":{"@type":"Rating","ratingValue":"4","bestRating":"5"},"reviewBody":"Thank you. Very professional although 2 hours late for appointment."},
+    {"@type":"Review","author":{"@type":"Person","name":"Karen Barber"},"datePublished":"2026-03-03","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"We cannot recommend Burleigh Electrical Services enough. From the first call they were super efficient and came to look at the job the very same evening after working all day. The work was promptly scheduled and the old cable removal, new neat trunking around a difficult cellar space, supply / fitting of new recessed spotlights and other items were completed with diligence and care. The guys worked late into the evening having encountered unexpected difficulties and returned to complete the job list on a 2nd visit as part of a light was missing. And all for a very reasonable cost which was not a penny more than the original quote despite the issues encountered. 10/10"},
+    {"@type":"Review","author":{"@type":"Person","name":"Stuart Howard"},"datePublished":"2026-02-23","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"First class service. Very efficient, effective and friendly."},
+    {"@type":"Review","author":{"@type":"Person","name":"Martin Wilson"},"datePublished":"2026-01-06","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Excellent service. Burleigh Electrical Services installed new kitchen lighting for us and security lights on the driveway. The team were superb from the first contact and we were thrilled with how neat the result was. I'd have no hesitation recommending them."},
+    {"@type":"Review","author":{"@type":"Person","name":"JM S-B"},"datePublished":"2026-01-01","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Really helpful guys. Made no complaint about having to crawl into tiny loft space, fixed new bathroom fan. Also fitted new garage light. Prompt. Efficient. Trustworthy. Many thanks."},
+    {"@type":"Review","author":{"@type":"Person","name":"Jackie Giltrow"},"datePublished":"2026-01-01","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Excellent job done (sorting transformers and lighting). Efficient and good communication. Would highly recommend."},
+    {"@type":"Review","author":{"@type":"Person","name":"Tolga Tuna"},"datePublished":"2026-01-01","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Two electricians from Burleigh Electrical Services Ltd came to replace my old induction hob and did a great job. They were very kind, careful, and professional throughout the work. Everything was done neatly and smoothly. I'm very happy with the service and would definitely recommend them."},
+    {"@type":"Review","author":{"@type":"Person","name":"Kim S"},"datePublished":"2026-02-01","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Excellent service. Double checked everything to make sure it was working. Thoroughly recommend. Great to have an honest trustworthy electrician. Nothing too difficult. Great service."},
+    {"@type":"Review","author":{"@type":"Person","name":"Bereket Fesshaie"},"datePublished":"2026-02-01","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Excellent service."}
+  ],
+  "hasOfferCatalog":{"@type":"OfferCatalog","name":"Electrical Services","itemListElement":[
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Full House Rewire","areaServed":"Kent"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"EV Charger Installation","areaServed":"Kent"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"EICR Electrical Safety Certificate","areaServed":"Kent"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"PAT Testing","areaServed":"Kent"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Consumer Unit Upgrade","areaServed":"Kent"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Emergency Electrician","areaServed":"Kent"}}
+  ]}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"How much does an EICR cost in Kent?","acceptedAnswer":{"@type":"Answer","text":"EICR costs vary depending on property size. For a typical 3-bedroom home in Sevenoaks, Tonbridge or Tunbridge Wells, you can expect to pay between £150–£250. Contact us for a free no-obligation quote."}},
+    {"@type":"Question","name":"How long does a full house rewire take?","acceptedAnswer":{"@type":"Answer","text":"A full rewire of a typical 3-bedroom house in Kent usually takes 5–8 days. The exact timescale depends on property size, access and whether you can remain in the property during works. We'll give you a clear schedule before work begins."}},
+    {"@type":"Question","name":"Do I need planning permission for an EV charger?","acceptedAnswer":{"@type":"Answer","text":"For most homes in Kent, no planning permission is required. Changes to permitted development rules mean most residential EV charger installations are now classed as permitted development. Listed buildings and conservation areas may still require permission."}},
+    {"@type":"Question","name":"Are you NICEIC registered?","acceptedAnswer":{"@type":"Answer","text":"Yes, Burleigh Electrical Services Ltd is fully accredited and registered with a government-approved scheme. All our work is certified and compliant with BS 7671 wiring regulations."}},
+    {"@type":"Question","name":"What areas do you cover?","acceptedAnswer":{"@type":"Answer","text":"We cover all of West Kent including Sevenoaks, Tunbridge Wells, Tonbridge, Westerham, Hildenborough, Borough Green, Edenbridge, Hadlow, Paddock Wood, Otford and Swanley. We also take on jobs across the wider Kent area."}},
+    {"@type":"Question","name":"How quickly can you respond to an emergency?","acceptedAnswer":{"@type":"Answer","text":"We offer emergency call-out services across Kent. Response times depend on our current schedule but we prioritise genuine electrical emergencies. Call us on 07886 067085 for immediate assistance."}},
+    {"@type":"Question","name":"Do you provide a certificate after the work?","acceptedAnswer":{"@type":"Answer","text":"Yes. All notifiable electrical work is certified under Part P of the Building Regulations. You will receive a completion certificate for any work that requires notification to your local authority."}}
+  ]
 }
 </script>
 <style>
@@ -1634,9 +1664,14 @@ footer {
 .footer-contact a:hover { color: var(--text); }
 
 .footer-seo {
-  color: transparent;
-  font-size: 0;
-  line-height: 0;
+  color: var(--text-tertiary);
+  font-size: 12px;
+  line-height: 1.7;
+  text-align: center;
+  margin-top: 16px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
   height: 0;
   overflow: hidden;
   margin: 0;
@@ -1644,7 +1679,32 @@ footer {
   border: none;
 }
 
-.footer-seo strong { color: transparent; }
+.footer-seo strong { color: var(--text-secondary); }
+
+/* ─── FAQ ─── */
+.faq-section { background: var(--surface); }
+.faq-list { max-width: 720px; margin-top: 36px; }
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  padding: 0;
+}
+.faq-item:first-child { border-top: 1px solid var(--border); }
+.faq-q {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 4px;
+  font-size: 15px; font-weight: 600; color: var(--text);
+  cursor: pointer; list-style: none; gap: 12px;
+}
+.faq-q::-webkit-details-marker { display: none; }
+.faq-q::after {
+  content: '+'; font-size: 20px; font-weight: 300;
+  color: var(--green); flex-shrink: 0; transition: transform 0.2s;
+}
+.faq-item[open] .faq-q::after { transform: rotate(45deg); }
+.faq-a {
+  padding: 0 4px 18px; font-size: 14px;
+  color: var(--text-secondary); line-height: 1.7; margin: 0;
+}
 
 /* ─── FAB ─── */
 .fab-call {
@@ -1801,9 +1861,10 @@ footer {
       </a>
       <nav>
         <ul class="nav-links" id="navLinks">
-          <li><a class="nav-link active" data-page="home" href="#" onclick="showPage('home');return false;">Home</a></li>
-          <li><a class="nav-link" data-page="blog" href="#" onclick="showPage('blog');return false;">News</a></li>
-          <li><a class="nav-link" data-page="reviews" href="#" onclick="showPage('reviews');return false;">Reviews</a></li>
+          <li><a class="nav-link active" href="index.html">Home</a></li>
+          <li><a class="nav-link" href="news.html">News</a></li>
+          <li><a class="nav-link" href="reviews.html">Reviews</a></li>
+          <li><a class="nav-link" href="https://burleighelectricalportal.uk" target="_blank" rel="noopener noreferrer" style="opacity:0.75;">My Portal</a></li>
           <li><a class="nav-link nav-cta" data-page="contact" href="#" onclick="showPage('contact');return false;">Free Quote</a></li>
         </ul>
       </nav>
@@ -1855,7 +1916,7 @@ footer {
 
     <div class="hero-actions">
       <button class="btn-primary" onclick="showPage('contact')">Get a Free Quote</button>
-      <button class="btn-secondary" onclick="showPage('reviews')">Read Reviews &#9733;</button>
+      <a class="btn-secondary" href="reviews.html">Read Reviews &#9733;</a>
     </div>
 
     <div class="hero-stats">
@@ -1978,7 +2039,7 @@ footer {
             <img src="https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=https://burleighelectricalportal.uk/pub/register&color=000000&bgcolor=ffffff&qzone=1" alt="Scan to register for your customer portal" width="130" height="130">
           </div>
           <p class="portal-qr-label">Scan to create your free customer account &amp; access your portal</p>
-          <a href="https://burleighelectricalportal.uk/pub/register" class="btn-primary fade-up" style="display:inline-block;text-decoration:none;margin-top:14px;">Register Now</a>
+          <a href="https://burleighelectricalportal.uk/pub/register" class="btn-primary fade-up" style="display:inline-block;text-decoration:none;margin-top:14px;" rel="noopener noreferrer">Register Now</a>
         </div>
       </div>
     </div>
@@ -2069,169 +2130,45 @@ footer {
     </div>
   </section>
 
-</div>
-
-<!-- NEWS -->
-<div id="blog" class="page">
-  <div class="blog-page">
+  <!-- FAQ -->
+  <section class="section faq-section">
     <div class="container">
-      <div class="blog-list-view" id="blogListView">
-        <div class="blog-header">
-          <h2>News</h2>
-          <p>The latest electrical industry news and regulation updates for homeowners, landlords and businesses across Kent.</p>
-        </div>
-
-        <!-- Featured Article -->
-        <div class="blog-featured fade-up" onclick="showArticle('article1')">
-          <div class="blog-featured-img">⚡</div>
-          <div class="blog-featured-body">
-            <span class="blog-tag tag-landlord">Landlords &amp; Agents</span>
-            <div class="blog-meta">
-              <span>📅 February 2026</span>
-              <span>⏱ 4 min read</span>
-              <span>🏘 Regulation Update</span>
-            </div>
-            <h3>New EICR Rules for Social Housing: What Landlords in Kent Need to Know</h3>
-            <p>Major changes to electrical safety law now extend mandatory five-yearly EICR inspections to social housing landlords. Deadlines are in force — here's exactly what's changed.</p>
-            <span class="blog-read-more">Read Article →</span>
-          </div>
-        </div>
-
-        <div class="blog-grid stagger">
-          <div class="blog-card" onclick="showArticle('article2')">
-            <div class="blog-card-img">🔌</div>
-            <div class="blog-card-body">
-              <span class="blog-tag tag-ev">EV Charging</span>
-              <h3>Planning Permission for EV Chargers Scrapped — What UK Homeowners Need to Know in 2026</h3>
-              <p>The government has removed planning permission requirements for most home EV charger installations. Less red tape, faster installs.</p>
-              <div class="blog-card-footer">
-                <span class="blog-card-date">January 2026</span>
-                <span class="blog-read-more">Read →</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Article 1 -->
-      <div class="article-view" id="article1">
-        <div class="article-container">
-          <button class="article-back" onclick="backToBlog()">← Back to News</button>
-          <span class="blog-tag tag-landlord">Landlords &amp; Agents</span>
-          <h1>New EICR Rules for Social Housing: What Landlords in Kent Need to Know</h1>
-          <div class="article-meta">
-            <span>📅 February 2026</span>
-            <span>⏱ 4 min read</span>
-            <span>✍️ Burleigh Electrical Services</span>
-          </div>
-          <p class="article-lead">Electrical safety law has changed significantly. New regulations now bring social housing landlords under the same mandatory inspection regime that private landlords have operated under since 2020 — and the deadlines are already in force.</p>
-
-          <h2>What's changed?</h2>
-          <p>The Social Housing (Regulation) Act 2023 and accompanying guidance has extended the requirement for five-yearly Electrical Installation Condition Reports (EICRs) to registered providers of social housing in England. This closes a long-standing gap in the law — private sector landlords have been required to carry out EICRs since 2020, but social housing providers were previously not subject to the same mandatory regime.</p>
-
-          <h2>Who does this affect?</h2>
-          <p>The new rules apply to registered providers of social housing — this includes local councils, housing associations and other registered providers with residential tenancies in England. If you manage a portfolio of social housing properties in Kent, you need to ensure every property has a valid EICR in place.</p>
-
-          <div class="article-highlight">
-            <p>An EICR must be carried out at least every five years, or at every change of tenancy — whichever comes sooner.</p>
-          </div>
-
-          <h2>What are the deadlines?</h2>
-          <p>The government has staggered rollout, but the deadlines are now in force. If you haven't already started reviewing your portfolio for compliance, you need to act now. Failure to comply can result in remedial notices, financial penalties, and reputational damage.</p>
-
-          <h2>What does an EICR involve?</h2>
-          <p>An EICR is a detailed inspection of a property's fixed electrical installation — consumer unit, wiring, sockets, switches, light fittings and earthing. The inspection is carried out by a qualified electrician and produces a report graded C1 (danger present), C2 (potential danger), C3 (improvement recommended) or FI (further investigation required).</p>
-          <p>Any C1 or C2 observations must be remedied within 28 days of the report being issued.</p>
-
-          <h2>We work with letting agents and property managers across Kent</h2>
-          <p>Burleigh Electrical Services regularly works with estate agents, letting agents and housing providers across Sevenoaks, Tunbridge Wells, Tonbridge and the wider Kent area. We offer fast turnaround EICRs, clear reports and remedial work where required.</p>
-
-          <div class="article-cta-box">
-            <h3>Need EICRs for your portfolio?</h3>
-            <p>We work with landlords, letting agents and property managers across Sevenoaks, Tunbridge Wells, Tonbridge and all of Kent. Fast turnaround, clear reports, competitive rates.</p>
-            <button onclick="showPage('contact')">Get a Quote</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Article 2 -->
-      <div class="article-view" id="article2">
-        <div class="article-container">
-          <button class="article-back" onclick="backToBlog()">← Back to News</button>
-          <span class="blog-tag tag-ev">EV Charging</span>
-          <h1>Planning Permission for EV Chargers Scrapped — What UK Homeowners Need to Know in 2026</h1>
-          <div class="article-meta">
-            <span>📅 January 2026</span>
-            <span>⏱ 3 min read</span>
-            <span>✍️ Burleigh Electrical Services</span>
-          </div>
-          <p class="article-lead">Installing a home EV charger just got simpler. The government has removed planning permission requirements for the majority of residential and commercial EV charger installations — cutting red tape, reducing costs, and making it easier than ever to make the switch.</p>
-
-          <h2>What's changed?</h2>
-          <p>Changes to the Town and Country Planning (General Permitted Development) (England) Order 2015 now mean that most home EV charger installations are classed as permitted development — meaning you no longer need to apply for planning permission before installation in most cases.</p>
-          <p>This change applies to standalone EV charging units on houses and flats (including on walls and on structures such as car ports), subject to certain conditions including height limits and placement restrictions.</p>
-
-          <div class="article-highlight">
-            <p>For the majority of Kent homeowners, you can now have an EV charger installed without any planning application — saving time, cost and paperwork.</p>
-          </div>
-
-          <h2>Are there any exceptions?</h2>
-          <p>There are some restrictions that still apply. Listed buildings and properties in designated areas (such as conservation areas, Areas of Outstanding Natural Beauty, or National Parks) may still require planning permission. If your property falls into these categories, it's worth checking with your local planning authority before proceeding.</p>
-
-          <h2>Does the charger still need to be installed by a qualified electrician?</h2>
-          <p>Yes — absolutely. While planning permission may no longer be required, an EV charger installation is a notifiable electrical work under Part P of the Building Regulations. It must be carried out by a qualified, registered electrician who can self-certify the work, or notified to building control.</p>
-          <p>Burleigh Electrical Services installs EV chargers across Sevenoaks, Tunbridge Wells, Tonbridge and the wider Kent area. We handle all certification and notification as part of every installation.</p>
-
-          <div class="article-cta-box">
-            <h3>Ready to install an EV charger?</h3>
-            <p>We install EV home chargers across Sevenoaks, Tunbridge Wells, Tonbridge and Kent. Get in touch for a free quote.</p>
-            <button onclick="showPage('contact')">Get a Free Quote</button>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- REVIEWS -->
-<div id="reviews" class="page">
-  <div class="reviews-page">
-    <div class="container">
-      <div class="reviews-header fade-up">
-        <h2>What Our Customers Say</h2>
-        <p style="color:var(--text-secondary);font-size:14px;font-weight:400;">Trusted by homeowners, landlords and businesses across Sevenoaks, Tunbridge Wells, Tonbridge &amp; Kent</p>
-        <div class="reviews-summary" id="reviewsSummary"></div>
-      </div>
-      <div class="reviews-insight fade-up">
-        <div class="insight-inner">
-          <h3 style="font-size:20px;font-weight:600;color:var(--text);letter-spacing:-0.5px;margin-bottom:4px;">At a Glance</h3>
-          <p style="color:var(--text-tertiary);font-size:13px;margin-bottom:24px;">What customers consistently say across our Google reviews</p>
-          <div class="insight-themes">
-            <div class="insight-theme"><div class="theme-label">Top Quality</div><div class="theme-value">Neat &amp; Professional Work</div><div class="theme-detail">Customers repeatedly praise the quality and finish of every job — no mess left behind.</div></div>
-            <div class="insight-theme"><div class="theme-label">Trust</div><div class="theme-value">Honest &amp; Transparent</div><div class="theme-detail">"Honest trustworthy electrician" — the phrase customers reach for most.</div></div>
-            <div class="insight-theme"><div class="theme-label">Attitude</div><div class="theme-value">Nothing Too Difficult</div><div class="theme-detail">From tight loft spaces to complex installs — no job is treated as an inconvenience.</div></div>
-            <div class="insight-theme"><div class="theme-label">Communication</div><div class="theme-value">Prompt &amp; Responsive</div><div class="theme-detail">Great communication from first contact to job completion.</div></div>
-          </div>
-          <div class="sentiment-tags">
-            <span class="sentiment-tag">Trustworthy</span><span class="sentiment-tag">Professional</span><span class="sentiment-tag">Neat &amp; Tidy</span>
-            <span class="sentiment-tag">Prompt</span><span class="sentiment-tag">Efficient</span><span class="sentiment-tag">Great Communication</span>
-            <span class="sentiment-tag">Highly Recommended</span><span class="sentiment-tag">No Hidden Charges</span>
-            <span class="sentiment-tag">Family Run</span><span class="sentiment-tag">Nothing Too Difficult</span>
-          </div>
-          <div class="insight-quote">
-            <p>"The team were superb from the first contact and we were thrilled with how neat the result was."</p>
-            <span>— Martin Wilson, verified Google review</span>
-          </div>
-        </div>
-      </div>
-      <div class="reviews-grid" id="reviewsGrid"></div>
-      <div class="reviews-cta">
-        <p>Experienced our service? A Google review helps your neighbours find a local electrician they can trust.</p>
-        <a href="https://g.page/r/Cd5KyOy61qJeEAE/review" target="_blank" rel="noopener noreferrer">Leave a Google Review ★</a>
+      <div class="section-number fade-up">06</div>
+      <span class="section-eyebrow fade-up">Common Questions</span>
+      <h2 class="section-title fade-up">Frequently Asked<br>Questions</h2>
+      <div class="faq-list fade-up">
+        <details class="faq-item">
+          <summary class="faq-q">How much does an EICR cost in Kent?</summary>
+          <p class="faq-a">EICR costs depend on property size. For a typical 3-bedroom home in Sevenoaks, Tonbridge or Tunbridge Wells, expect to pay between £150–£250. <a href="#" onclick="showPage('contact');return false;" style="color:var(--green);">Contact us for a free quote →</a></p>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-q">How long does a full house rewire take?</summary>
+          <p class="faq-a">A typical 3-bedroom house rewire takes 5–8 days. We'll give you a clear schedule before work begins and keep disruption to a minimum throughout.</p>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-q">Do I need planning permission for an EV charger?</summary>
+          <p class="faq-a">For most Kent homes, no. Recent changes to permitted development rules mean most residential EV charger installations no longer need planning permission. Listed buildings and conservation areas may still require it — we'll advise before starting.</p>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-q">Are you registered and accredited?</summary>
+          <p class="faq-a">Yes. Burleigh Electrical Services Ltd is registered with a government-approved scheme. All our work is certified and compliant with BS 7671 wiring regulations, and all notifiable work is registered with your local authority.</p>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-q">Do you provide a certificate after the work?</summary>
+          <p class="faq-a">Yes. You'll receive the appropriate certificate for every job — an Electrical Installation Certificate (EIC) for new installations, or a Minor Electrical Installation Works Certificate for smaller jobs. All Part P notifiable work is registered.</p>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-q">How quickly can you respond to an emergency?</summary>
+          <p class="faq-a">We offer emergency call-outs across Kent. Call us directly on <a href="tel:+447886067085" style="color:var(--green);">07886 067085</a> for the fastest response.</p>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-q">What areas do you cover?</summary>
+          <p class="faq-a">We cover all of West Kent — Sevenoaks, Tunbridge Wells, Tonbridge, Westerham, Hildenborough, Borough Green, Edenbridge, Hadlow, Paddock Wood, Otford, Swanley and all surrounding villages.</p>
+        </details>
       </div>
     </div>
-  </div>
+  </section>
+
 </div>
 
 <!-- CONTACT -->
@@ -2343,8 +2280,8 @@ footer {
   <div class="footer-links">
     <a href="tel:+447886067085">07886 067085</a>
     <a href="mailto:info@burleighelectrical.co.uk">info@burleighelectrical.co.uk</a>
-    <a href="https://www.instagram.com/burleighelectricalservices" target="_blank" rel="noopener">Instagram</a>
-    <a href="https://nextdoor.co.uk/page/burleigh-electrical-services" target="_blank" rel="noopener">Nextdoor</a>
+    <a href="https://www.instagram.com/burleighelectricalservices" target="_blank" rel="noopener noreferrer">Instagram</a>
+    <a href="https://nextdoor.co.uk/page/burleigh-electrical-services" target="_blank" rel="noopener noreferrer">Nextdoor</a>
   </div>
   <p class="footer-seo">Electricians serving <strong>Sevenoaks</strong>, <strong>Tunbridge Wells</strong>, <strong>Tonbridge</strong>, <strong>Westerham</strong>, Hildenborough, Borough Green, Edenbridge, Hadlow, Paddock Wood, Otford, Swanley and all surrounding <strong>Kent</strong> areas. Full house rewires, EV charger installation, EICR electrical certificates, PAT testing, consumer unit upgrades, lighting, fault finding, emergency electrician. Working with estate agents, letting agents, property managers, builders, developers and schools across Kent.</p>
 </footer>
@@ -2356,6 +2293,14 @@ footer {
   <span class="fab-call-label">Call Now</span>
 </a>
 
+<!-- GDPR Cookie Banner -->
+<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#0f172a;border-top:1px solid #1e293b;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+  <p style="margin:0;font-size:13px;color:#94a3b8;flex:1;min-width:200px;">We use cookies to analyse site traffic and improve your experience. <a href="mailto:info@burleighelectrical.co.uk" style="color:#7ee000;">Learn more</a>.</p>
+  <div style="display:flex;gap:8px;flex-shrink:0;">
+    <button onclick="acceptCookies()" style="background:#7ee000;color:#000;border:none;padding:8px 18px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;">Accept</button>
+    <button onclick="declineCookies()" style="background:transparent;color:#64748b;border:1px solid #334155;padding:8px 14px;border-radius:6px;font-size:13px;cursor:pointer;">Decline</button>
+  </div>
+</div>
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ─── SEO ───
 window.SEO = {
@@ -2377,55 +2322,7 @@ window.updateSEO = function(s) {
 }
 
 // ─── PAGE TRANSITIONS ───
-// (showPage, showArticle, backToBlog, toggleMobileMenu defined in <head>)
-
-// ─── REVIEWS ───
-var REVIEWS = [
-  { name:"Bereket Fesshaie", initials:"BF", stars:5, text:"Excellent service.", date:"February 2026", badge:null },
-  { name:"Kim S", initials:"KS", stars:5, text:"Excellent service. Double checked everything to make sure it was working. Thoroughly recommend. Great to have an honest trustworthy electrician. Nothing too difficult. Great service.", date:"February 2026", badge:null },
-  { name:"Tolga Tuna", initials:"TT", stars:5, text:"Two electricians from Burleigh Electrical Services Ltd came to replace my old induction hob and did a great job. They were very kind, careful, and professional throughout the work. Everything was done neatly and smoothly. I'm very happy with the service and would definitely recommend them.", date:"January 2026", badge:"Local Guide" },
-  { name:"Jackie Giltrow", initials:"JG", stars:5, text:"Excellent job done (sorting transformers and lighting). Efficient and good communication. Would highly recommend.", date:"January 2026", badge:null },
-  { name:"JM S-B", initials:"JS", stars:5, text:"Really helpful guys. Made no complaint about having to crawl into tiny loft space, fixed new bathroom fan. Also fitted new garage light. Prompt. Efficient. Trustworthy. Many thanks.", date:"January 2026", badge:"Local Guide" },
-  { name:"Martin Wilson", initials:"MW", stars:5, text:"Excellent service. Burleigh Electrical Services installed new kitchen lighting for us and security lights on the driveway. The team were superb from the first contact and we were thrilled with how neat the result was. I'd have no hesitation recommending them.", date:"December 2025", badge:null }
-];
-
-function starBar(count, size) {
-  var h = '';
-  for (var i = 1; i <= 5; i++) h += '<span class="star'+(i > Math.round(count) ? ' empty' : '')+'" style="font-size:'+size+'px">★</span>';
-  return h;
-}
-
-function renderReviews() {
-  var grid = document.getElementById('reviewsGrid');
-  var sumEl = document.getElementById('reviewsSummary');
-  if (!grid || !sumEl) return;
-
-  var avg = REVIEWS.reduce(function(s, r) { return s + r.stars; }, 0) / REVIEWS.length;
-  var avgR = Math.round(avg * 10) / 10;
-
-  sumEl.innerHTML = '<span class="summary-score">'+avgR+'</span>'+
-    '<div style="display:flex;flex-direction:column;gap:2px;"><div class="summary-stars">'+starBar(avg, 16)+'</div>'+
-    '<span class="summary-count">'+REVIEWS.length+' Google Reviews</span></div>'+
-    '<div class="google-badge">'+
-    '<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>Google</div>';
-
-  grid.innerHTML = REVIEWS.map(function(r, i) {
-    return '<article class="review-card" style="animation-delay:'+(i*0.07)+'s">'+
-      '<div class="review-top">'+
-        '<div class="review-avatar">'+r.initials+'</div>'+
-        '<div>'+
-          '<div class="review-name">'+r.name+(r.badge ? '<span class="local-guide-badge">'+r.badge+'</span>' : '')+'</div>'+
-          '<div class="review-stars">'+starBar(r.stars, 12)+'</div>'+
-        '</div>'+
-      '</div>'+
-      '<p class="review-text">'+r.text+'</p>'+
-      '<div class="review-footer">'+
-        '<span class="review-date">'+r.date+'</span>'+
-        '<span class="review-source"><span class="g-dot"></span> Google</span>'+
-      '</div>'+
-    '</article>';
-  }).join('');
-}
+// (showPage, toggleMobileMenu defined in <head>)
 
 // ─── INTERSECTION OBSERVER ANIMATIONS ───
 var observer;
@@ -2490,12 +2387,38 @@ window.addEventListener('scroll', function() {
   }
 });
 
+// ─── COOKIE CONSENT ───
+function acceptCookies() {
+  localStorage.setItem('cookie_consent', 'accepted');
+  document.getElementById('cookieBanner').style.display = 'none';
+  // Uncomment to enable GTM after consent:
+  // enableGTM('GTM-XXXXXXX');
+}
+function declineCookies() {
+  localStorage.setItem('cookie_consent', 'declined');
+  document.getElementById('cookieBanner').style.display = 'none';
+}
+
 // ─── INIT ───
 document.addEventListener('DOMContentLoaded', function() {
-  renderReviews();
+  // Handle deep-links from other pages (e.g. news/reviews "Free Quote" → index.html#contact)
+  if (window.location.hash === '#contact' || sessionStorage.getItem('goContact') === '1') {
+    sessionStorage.removeItem('goContact');
+    showPage('contact');
+  }
   observeElements();
-  // Start with lighter overlay since intro screen is visible on load
   document.body.classList.add('intro-visible');
+
+  // Show cookie banner if no decision made yet
+  if (!localStorage.getItem('cookie_consent')) {
+    var banner = document.getElementById('cookieBanner');
+    if (banner) banner.style.display = 'flex';
+  }
+
+  // Lazy-load below-fold images
+  document.querySelectorAll('img[data-src]').forEach(function(img) {
+    img.src = img.dataset.src;
+  });
 });
 
 // Re-rende
