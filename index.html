@@ -2414,4 +2414,56 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+// ─── BES ANALYTICS ───
+(function() {
+  var ENDPOINT = 'https://bes.myheadquarters.app/pub/track';
+  var PAGE = 'home';
+
+  function getSession() {
+    var s = localStorage.getItem('_bes_sid');
+    if (!s) { s = Math.random().toString(36).slice(2) + Date.now().toString(36); localStorage.setItem('_bes_sid', s); }
+    return s;
+  }
+
+  function send(payload) {
+    if (localStorage.getItem('cookie_consent') !== 'accepted') return;
+    payload.session_id = getSession();
+    payload.page = PAGE;
+    navigator.sendBeacon ? navigator.sendBeacon(ENDPOINT, JSON.stringify(payload))
+      : fetch(ENDPOINT, { method: 'POST', body: JSON.stringify(payload), headers: { 'Content-Type': 'application/json' }, keepalive: true });
+  }
+
+  // Page view
+  document.addEventListener('DOMContentLoaded', function() {
+    send({ event_type: 'pageview', referrer: document.referrer });
+  });
+
+  // Clicks
+  document.addEventListener('click', function(e) {
+    var el = e.target.closest('a,button');
+    if (!el) return;
+    var label = (el.id || el.innerText || el.getAttribute('href') || '').trim().slice(0, 100);
+    send({ event_type: 'click', element: label });
+  }, true);
+
+  // Form submit
+  document.addEventListener('submit', function() {
+    send({ event_type: 'form_submit', element: 'contact-form' });
+  });
+
+  // Scroll depth
+  var scrollFired = {};
+  window.addEventListener('scroll', function() {
+    if (localStorage.getItem('cookie_consent') !== 'accepted') return;
+    var pct = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+    [25, 50, 75, 100].forEach(function(d) {
+      if (pct >= d && !scrollFired[d]) { scrollFired[d] = true; send({ event_type: 'scroll', scroll_depth: d }); }
+    });
+  }, { passive: true });
+
+  // Also fire pageview when cookie is accepted mid-session
+  var _origAccept = window.acceptCookies;
+  window.acceptCookies = function() { _origAccept && _origAccept(); send({ event_type: 'pageview', referrer: document.referrer }); };
+})();
+
 // Re-rende
