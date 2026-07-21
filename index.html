@@ -1864,7 +1864,7 @@ footer {
           <li><a class="nav-link active" href="index.html">Home</a></li>
           <li><a class="nav-link" href="news.html">News</a></li>
           <li><a class="nav-link" href="reviews.html">Reviews</a></li>
-          <li><a class="nav-link" href="https://burleighelectricalportal.uk/pub/access" target="_blank" rel="noopener noreferrer" style="opacity:0.75;">My Portal</a></li>
+          <li><a class="nav-link" href="https://bes.myheadquarters.app/pub/access" target="_blank" rel="noopener noreferrer" style="opacity:0.75;">My Portal</a></li>
           <li><a class="nav-link nav-cta" data-page="contact" href="#" onclick="showPage('contact');return false;">Free Quote</a></li>
         </ul>
       </nav>
@@ -2205,7 +2205,7 @@ footer {
         </div>
         <script>
         // ── Set this to your CRM server URL ──────────────────────────────────
-        const PORTAL_API = 'https://burleighelectricalportal.uk/pub/webhook/enquiry';
+        const PORTAL_API = 'https://bes.myheadquarters.app/pub/webhook/enquiry';
         // ─────────────────────────────────────────────────────────────────────
 
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
@@ -2286,14 +2286,6 @@ footer {
   <span class="fab-call-label">Call Now</span>
 </a>
 
-<!-- GDPR Cookie Banner -->
-<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#0f172a;border-top:1px solid #1e293b;padding:14px 20px;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
-  <p style="margin:0;font-size:13px;color:#94a3b8;flex:1;min-width:200px;">We use cookies to analyse site traffic and improve your experience. <a href="https://burleighelectricalportal.uk/pub/privacy" target="_blank" rel="noopener noreferrer" style="color:#7ee000;">Learn more</a>.</p>
-  <div style="display:flex;gap:8px;flex-shrink:0;">
-    <button onclick="acceptCookies()" style="background:#7ee000;color:#000;border:none;padding:8px 18px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;">Accept</button>
-    <button onclick="declineCookies()" style="background:transparent;color:#64748b;border:1px solid #334155;padding:8px 14px;border-radius:6px;font-size:13px;cursor:pointer;">Decline</button>
-  </div>
-</div>
 <script>
 // ─── SEO ───
 window.SEO = {
@@ -2380,18 +2372,6 @@ window.addEventListener('scroll', function() {
   }
 });
 
-// ─── COOKIE CONSENT ───
-function acceptCookies() {
-  localStorage.setItem('cookie_consent', 'accepted');
-  document.getElementById('cookieBanner').style.display = 'none';
-  // Uncomment to enable GTM after consent:
-  // enableGTM('GTM-XXXXXXX');
-}
-function declineCookies() {
-  localStorage.setItem('cookie_consent', 'declined');
-  document.getElementById('cookieBanner').style.display = 'none';
-}
-
 // ─── INIT ───
 document.addEventListener('DOMContentLoaded', function() {
   // Handle deep-links from other pages (e.g. news/reviews "Free Quote" → index.html#contact)
@@ -2401,12 +2381,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   observeElements();
   document.body.classList.add('intro-visible');
-
-  // Show cookie banner if no decision made yet
-  if (!localStorage.getItem('cookie_consent')) {
-    var banner = document.getElementById('cookieBanner');
-    if (banner) banner.style.display = 'flex';
-  }
 
   // Lazy-load below-fold images
   document.querySelectorAll('img[data-src]').forEach(function(img) {
@@ -2426,7 +2400,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function send(payload) {
-    if (localStorage.getItem('cookie_consent') !== 'accepted') return;
     payload.session_id = getSession();
     payload.page = PAGE;
     navigator.sendBeacon ? navigator.sendBeacon(ENDPOINT, JSON.stringify(payload))
@@ -2454,16 +2427,11 @@ document.addEventListener('DOMContentLoaded', function() {
   // Scroll depth
   var scrollFired = {};
   window.addEventListener('scroll', function() {
-    if (localStorage.getItem('cookie_consent') !== 'accepted') return;
     var pct = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
     [25, 50, 75, 100].forEach(function(d) {
       if (pct >= d && !scrollFired[d]) { scrollFired[d] = true; send({ event_type: 'scroll', scroll_depth: d }); }
     });
   }, { passive: true });
-
-  // Also fire pageview when cookie is accepted mid-session
-  var _origAccept = window.acceptCookies;
-  window.acceptCookies = function() { _origAccept && _origAccept(); send({ event_type: 'pageview', referrer: document.referrer }); };
 })();
 
 // Re-rende
