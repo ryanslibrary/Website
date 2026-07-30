@@ -21,6 +21,33 @@
   {
     "@context":"https://schema.org",
     "@type":"Article",
+    "headline":"BS 7671 Amendment 4 (2026) Is Here — What It Means for Your Home and Business",
+    "datePublished":"2026-04-15",
+    "description":"The IET and BSI published a major update to the UK Wiring Regulations on 15 April 2026, with new battery storage rules and stricter EICR inspector qualifications taking full effect from 15 October 2026.",
+    "publisher":{"@type":"Organization","name":"Burleigh Electrical Services Ltd","url":"https://burleighelectricalservices.co.uk/"},
+    "url":"https://burleighelectricalservices.co.uk/news.html#a-bs7671-a4"
+  },
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline":"Home EV Charger Grants Just Went Up 40% — Now £500 Per Socket",
+    "datePublished":"2026-04-01",
+    "description":"The government increased home EV chargepoint grants to £500 per socket and extended the scheme to April 2027 — now open to renters, flat owners and homes without a driveway too.",
+    "publisher":{"@type":"Organization","name":"Burleigh Electrical Services Ltd","url":"https://burleighelectricalservices.co.uk/"},
+    "url":"https://burleighelectricalservices.co.uk/news.html#a-ev-grant-boost"
+  },
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline":"Smart Homes Are Growing Fast — and Qualified Electricians Are in Short Supply",
+    "datePublished":"2026-01-01",
+    "description":"The UK smart home market is valued at over £5.3bn and growing at 15% annually while qualified electricians remain in critical demand.",
+    "publisher":{"@type":"Organization","name":"Burleigh Electrical Services Ltd","url":"https://burleighelectricalservices.co.uk/"},
+    "url":"https://burleighelectricalservices.co.uk/news.html#a-smart-home"
+  },
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
     "headline":"Planning Permission for Home EV Chargers Scrapped in England",
     "datePublished":"2025-05-29",
     "description":"The UK government removed planning permission requirements for most home EV charger installations, confirmed 29 May 2025.",
@@ -35,15 +62,6 @@
     "description":"BS 7671 Amendment 3 updated requirements for consumer unit replacements including surge protection devices and RCD coverage.",
     "publisher":{"@type":"Organization","name":"Burleigh Electrical Services Ltd","url":"https://burleighelectricalservices.co.uk/"},
     "url":"https://burleighelectricalservices.co.uk/news.html#a-consumer-unit"
-  },
-  {
-    "@context":"https://schema.org",
-    "@type":"Article",
-    "headline":"Smart Homes Are Growing Fast — and Qualified Electricians Are in Short Supply",
-    "datePublished":"2026-01-01",
-    "description":"The UK smart home market is valued at over £5.3bn and growing at 15% annually while qualified electricians remain in critical demand.",
-    "publisher":{"@type":"Organization","name":"Burleigh Electrical Services Ltd","url":"https://burleighelectricalservices.co.uk/"},
-    "url":"https://burleighelectricalservices.co.uk/news.html#a-smart-home"
   }
 ]
 </script>
@@ -90,6 +108,13 @@ header { background:rgba(0,0,0,0.72); backdrop-filter:saturate(180%) blur(20px);
   .nav-links li { width:100%; }
   .nav-links a { width:100%; padding:10px 12px; border-radius:8px; display:block; }
 }
+
+/* ─── BACK BAR — history.back(), no destination URL is ever known or stored
+   here (avoids putting a customer's portal link/token anywhere near this
+   public, indexed site's URLs, logs or analytics). ─── */
+.back-bar { background:rgba(126,224,0,0.08); border-bottom:0.5px solid rgba(126,224,0,0.18); padding:10px 0; }
+.back-bar button { display:inline-flex; align-items:center; gap:6px; color:var(--green); font-size:14px; font-weight:600; background:none; border:none; cursor:pointer; font-family:inherit; padding:0; }
+.back-bar button:hover { color:#8cf200; }
 
 /* ─── PAGE HERO ─── */
 .news-hero { padding:72px 0 48px; }
@@ -180,6 +205,12 @@ footer { border-top:0.5px solid rgba(255,255,255,0.07); padding:40px 0 24px; tex
   </div>
 </header>
 
+<div class="back-bar">
+  <div class="container">
+    <button type="button" onclick="history.length > 1 ? history.back() : location.assign('index.html')">← Back</button>
+  </div>
+</div>
+
 <main>
   <!-- ══════════════════════════════════════════════════════════ ARTICLE LIST -->
   <div id="articleList">
@@ -208,6 +239,48 @@ footer { border-top:0.5px solid rgba(255,255,255,0.07); padding:40px 0 24px; tex
             </div>
           </div>
 
+          <div class="article-card" onclick="showArticle('a-bs7671-a4')">
+            <div class="card-emoji">📘</div>
+            <div class="card-body">
+              <span class="card-tag tag-safety">Safety Regulations</span>
+              <div class="card-source">Via <span>IET / BSI</span> · April 2026</div>
+              <h3>BS 7671 Amendment 4 (2026) Is Here — What It Means for Your Home and Business</h3>
+              <p>The biggest update to the UK Wiring Regulations since the 18th Edition — new rules for home battery storage, and stricter EICR inspector qualifications — became the only recognised standard from 15 October 2026.</p>
+              <div class="card-footer">
+                <span class="card-date">April–Oct 2026</span>
+                <span class="card-read">Read more →</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="article-card" onclick="showArticle('a-ev-grant-boost')">
+            <div class="card-emoji">💷</div>
+            <div class="card-body">
+              <span class="card-tag tag-ev">EV Charging</span>
+              <div class="card-source">Via <span>Octopus EV / OZEV Chargepoint Grant</span> · April 2026</div>
+              <h3>Home EV Charger Grants Just Went Up 40% — Now £500 Per Socket</h3>
+              <p>The government increased home EV chargepoint grants to £500 per socket and extended the scheme to April 2027 — now open to renters, flat owners and homes without a driveway too.</p>
+              <div class="card-footer">
+                <span class="card-date">Runs to April 2027</span>
+                <span class="card-read">Read more →</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="article-card" onclick="showArticle('a-smart-home')">
+            <div class="card-emoji">🏠</div>
+            <div class="card-body">
+              <span class="card-tag tag-smart">Smart Homes</span>
+              <div class="card-source">Via <span>Logic4Training / GreenMatch</span> · 2026</div>
+              <h3>Smart Homes Are Growing Fast — and Qualified Electricians Are in Short Supply</h3>
+              <p>The UK smart home market is valued at over £5.3bn and growing at ~15% annually. Government data classifies electrical trades as "critical demand" in 2025 and into 2026.</p>
+              <div class="card-footer">
+                <span class="card-date">2026 Report</span>
+                <span class="card-read">Read more →</span>
+              </div>
+            </div>
+          </div>
+
           <div class="article-card" onclick="showArticle('a-ev-planning')">
             <div class="card-emoji">⚡</div>
             <div class="card-body">
@@ -231,20 +304,6 @@ footer { border-top:0.5px solid rgba(255,255,255,0.07); padding:40px 0 24px; tex
               <p>BS 7671 Amendment 3, implemented throughout 2024–25, now requires Surge Protection Devices in more installations and tightens RCD requirements on fuse board replacements.</p>
               <div class="card-footer">
                 <span class="card-date">2024–2026</span>
-                <span class="card-read">Read more →</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="article-card" onclick="showArticle('a-smart-home')">
-            <div class="card-emoji">🏠</div>
-            <div class="card-body">
-              <span class="card-tag tag-smart">Smart Homes</span>
-              <div class="card-source">Via <span>Logic4Training / GreenMatch</span> · 2026</div>
-              <h3>Smart Homes Are Growing Fast — and Qualified Electricians Are in Short Supply</h3>
-              <p>The UK smart home market is valued at over £5.3bn and growing at ~15% annually. Government data classifies electrical trades as "critical demand" in 2025 and into 2026.</p>
-              <div class="card-footer">
-                <span class="card-date">2026 Report</span>
                 <span class="card-read">Read more →</span>
               </div>
             </div>
@@ -309,6 +368,123 @@ footer { border-top:0.5px solid rgba(255,255,255,0.07); padding:40px 0 24px; tex
         </div>
       </div>
     </section>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════ ARTICLE: BS 7671 AMENDMENT 4 -->
+  <div id="a-bs7671-a4" class="article-view">
+    <div class="container">
+      <div class="article-inner">
+        <button class="article-back" onclick="showList()">← Back to News</button>
+        <div class="article-source-banner">
+          <div>
+            <div class="source-label">Source</div>
+            <div class="source-name">IET &amp; BSI (Institution of Engineering and Technology / British Standards Institution)</div>
+          </div>
+          <a class="source-link" href="https://www.theiet.org/media/press-releases/press-releases-2026/press-releases-2026-april-june/15-april-2026-iet-bsi-officially-publish-amendment-4-2026-to-bs-76712018-iet-wiring-regulations" target="_blank" rel="noopener noreferrer">Read original ↗</a>
+        </div>
+        <span class="card-tag tag-safety">Safety Regulations</span>
+        <h1 class="article-h1">BS 7671 Amendment 4 (2026) Is Here — What It Means for Your Home and Business</h1>
+        <div class="article-meta">
+          <span>📅 Published 15 April 2026</span>
+          <span>⏱ 5 min read</span>
+          <span>📌 Old edition withdrawn 15 October 2026</span>
+        </div>
+        <p class="article-lead">On 15 April 2026, the IET and BSI officially published Amendment 4 (2026) to BS 7671:2018 — the IET Wiring Regulations that underpin all electrical installation work in the UK. It's the biggest single update since the 18th Edition itself, and from 15 October 2026 it becomes the only recognised standard for new electrical certificates.</p>
+
+        <h2>What's actually new?</h2>
+        <p>Amendment 4 introduces several substantial technical changes, the most relevant for homeowners and small businesses being:</p>
+        <ul>
+          <li><strong>A brand new chapter on Stationary Secondary Batteries</strong> — the first dedicated rules for home battery storage, solar-plus-battery systems and vehicle-to-home (V2H) EV charging</li>
+          <li><strong>New Section 716 covering Power over Ethernet (PoE)</strong> — relevant to smart home and network installations that supply devices like cameras and access points over data cabling</li>
+          <li><strong>A major revision of Section 710 (Medical Locations)</strong> — mainly relevant to healthcare premises, not typical homes</li>
+          <li><strong>New guidance on functional earthing for ICT equipment</strong> — server rooms and data cabinets</li>
+        </ul>
+
+        <h2>Home battery storage — the big one for homeowners</h2>
+        <p>If you're considering solar panels with battery storage, or a bidirectional EV charger that can power your home (V2H), this is the change that affects you most directly. Before Amendment 4, installers had no dedicated section of the Wiring Regulations covering battery storage design, protection and verification — they had to rely on general principles and manufacturer guidance. The new chapter sets out clear requirements for system design, battery location, ventilation and fire safety.</p>
+
+        <div class="highlight-box">
+          <p>📘 Planning solar panels with battery storage, or a battery-ready EV charger? Any installation certified from 15 October 2026 onward must meet the new Amendment 4 battery storage requirements.</p>
+        </div>
+
+        <h2>What happens to work done under the old standard?</h2>
+        <p>Amendment 4 is usable immediately, but there's a six-month transition period: between 15 April and 15 October 2026, electricians can design, inspect and certify work against either the previous edition (BS 7671:2018+A2:2022+A3:2024) or the new Amendment 4. From 15 October 2026, every new Electrical Installation Certificate (EIC), Minor Electrical Installation Works Certificate (MEIWC) and Electrical Installation Condition Report (EICR) must reference Amendment 4 — the previous "Brown Book" edition is formally withdrawn.</p>
+        <p>Existing certificates already issued aren't invalidated — this only affects new work and new inspections going forward.</p>
+
+        <h2>New EICR inspector qualification requirement</h2>
+        <p>Alongside the technical changes, the qualification bar for who can carry out an EICR is being tightened. From 1 October 2026, the "experience-only" route into EICR inspection work is closing — every individual carrying out EICR work, whether employee, subcontractor or sole trader, must hold the Level 3 award in electrical inspection and testing. This builds on the trend we've already covered around <a href="#a-eicr-social" onclick="showArticle('a-eicr-social')" style="color:var(--green)">EICR requirements extending to social housing</a> — inspection standards are being tightened across the board in 2026.</p>
+
+        <h2>Do I need to do anything as a homeowner?</h2>
+        <p>If you already have a valid EICR or certificate, nothing changes for you. It matters if you're planning new electrical work in the second half of 2026 — an extension, EV charger, battery storage or rewire — since it's worth checking your installer is up to speed on Amendment 4 before work starts.</p>
+
+        <div class="article-cta">
+          <h3>Amendment 4-compliant electrical work across Kent</h3>
+          <p>All our certification is kept fully up to date with the latest BS 7671 amendment, including the new battery storage and EV charging requirements. Get in touch for a free quote.</p>
+          <a href="index.html#contact" onclick="sessionStorage.setItem('goContact','1')">Get a Quote →</a>
+        </div>
+
+        <div class="source-footer">
+          Sources: <a href="https://www.theiet.org/media/press-releases/press-releases-2026/press-releases-2026-april-june/15-april-2026-iet-bsi-officially-publish-amendment-4-2026-to-bs-76712018-iet-wiring-regulations" target="_blank" rel="noopener noreferrer">IET Press Release</a> · <a href="https://knowledge.bsigroup.com/articles/bs-7671-2018-a4-2026-get-the-latest-amendment-to-the-uks-wiring-regulations" target="_blank" rel="noopener noreferrer">BSI Knowledge</a> · <a href="https://www.virtual-college.co.uk/resources/bs-7671-amendment-4-what-every-electrician-needs-to-do-before-15-october-2026" target="_blank" rel="noopener noreferrer">Virtual College</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════ ARTICLE: EV GRANT BOOST -->
+  <div id="a-ev-grant-boost" class="article-view">
+    <div class="container">
+      <div class="article-inner">
+        <button class="article-back" onclick="showList()">← Back to News</button>
+        <div class="article-source-banner">
+          <div>
+            <div class="source-label">Source</div>
+            <div class="source-name">Octopus EV / OZEV Chargepoint Grant Scheme</div>
+          </div>
+          <a class="source-link" href="https://octopusev.com/ev-hub/EV-charger-grants-just-got-a-boost" target="_blank" rel="noopener noreferrer">Read original ↗</a>
+        </div>
+        <span class="card-tag tag-ev">EV Charging</span>
+        <h1 class="article-h1">Home EV Charger Grants Just Went Up 40% — Now £500 Per Socket</h1>
+        <div class="article-meta">
+          <span>📅 Increase effective April 2026</span>
+          <span>⏱ 3 min read</span>
+          <span>📌 Scheme runs until April 2027</span>
+        </div>
+        <p class="article-lead">In April 2026 the government increased the home EV chargepoint grant by over 40% — up to £500 per socket — and extended the scheme through to April 2027, while also widening who's eligible to apply.</p>
+
+        <h2>How much is the grant now?</h2>
+        <p>The grant is now worth up to <strong>£500 per socket</strong>, up from £350 previously. With a typical home installation costing £949–£1,099, the grant now covers roughly half the cost for eligible households.</p>
+
+        <h2>Who can apply?</h2>
+        <p>The expanded 2026 scheme covers:</p>
+        <ul>
+          <li>Renters and flat owners</li>
+          <li>Households with on-street parking (subject to local authority permission)</li>
+          <li>Businesses — up to 40 sockets per workplace, via the Workplace Charging Scheme</li>
+          <li>Homes without a private driveway, garage or allocated parking space</li>
+          <li>Anyone who hasn't already claimed a chargepoint grant</li>
+        </ul>
+
+        <div class="highlight-box">
+          <p>💷 Homeowners with a driveway lost access to the original EVHS homeowner grant back in 2022. This 2026 scheme is different — it's specifically aimed at renters, flat-owners and on-street parkers who've never had a grant option before.</p>
+        </div>
+
+        <h2>How do you apply?</h2>
+        <p>Renters, flat owners and on-street parking applicants apply through the government's home chargepoint grant portal. Businesses apply via the Workplace Charging Scheme. In both cases, your installer submits the claim after the work is done and the grant is deducted directly from your invoice — you don't pay it upfront and reclaim it later.</p>
+
+        <h2>Still needs a qualified, Part P-registered electrician</h2>
+        <p>The grant doesn't change the underlying electrical requirements. EV charger installation remains notifiable work under Part P of the Building Regulations, and every new home charger must be a "smart" charger under the Electric Vehicles (Smart Charge Points) Regulations — meaning it defaults to off-peak scheduling (no charging 08:00–11:00 or 16:00–22:00 on weekdays unless you override it) and meets set cybersecurity standards.</p>
+
+        <div class="article-cta">
+          <h3>EV charger installations across Kent</h3>
+          <p>We handle the Part P certification and DNO notification as part of every installation, and can talk you through which grant route applies to your situation — driveway, on-street or workplace.</p>
+          <a href="index.html#contact" onclick="sessionStorage.setItem('goContact','1')">Get a Free Quote →</a>
+        </div>
+
+        <div class="source-footer">
+          Sources: <a href="https://octopusev.com/ev-hub/EV-charger-grants-just-got-a-boost" target="_blank" rel="noopener noreferrer">Octopus EV</a> · <a href="https://www.bestchargers.co.uk/new-ev-charging-laws-uk/" target="_blank" rel="noopener noreferrer">BestChargers.co.uk</a> · <a href="https://petrolprices.co.uk/uk-driveway-ev-charging-rule-2026.php" target="_blank" rel="noopener noreferrer">PetrolPrices.co.uk</a>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- ═══════════════════════════════════════════════════ ARTICLE: EICR SOCIAL -->
