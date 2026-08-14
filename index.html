@@ -1865,7 +1865,7 @@ footer {
           <li><a class="nav-link" href="news.html">News</a></li>
           <li><a class="nav-link" href="reviews.html">Reviews</a></li>
           <li><a class="nav-link" href="https://bes.myheadquarters.app/pub/access" target="_blank" rel="noopener noreferrer" style="opacity:0.75;">My Portal</a></li>
-          <li><a class="nav-link nav-cta" data-page="contact" href="#" onclick="showPage('contact');return false;">Free Quote</a></li>
+          <li><a class="nav-link nav-cta" data-page="contact" href="#" onclick="showPage('contact');return false;">Enquire Now</a></li>
         </ul>
       </nav>
       <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
@@ -1915,7 +1915,7 @@ footer {
     </div>
 
     <div class="hero-actions">
-      <button class="btn-primary" onclick="showPage('contact')">Get a Free Quote</button>
+      <button class="btn-primary" onclick="showPage('contact')">Enquire Now</button>
       <a class="btn-secondary" href="reviews.html">Read Reviews &#9733;</a>
     </div>
 
@@ -2118,7 +2118,7 @@ footer {
         <div class="area-pill"><strong>All of Kent</strong><span>Covered</span></div>
       </div>
       <div style="margin-top:36px;" class="fade-up">
-        <button class="btn-primary" onclick="showPage('contact')">Get a Free Quote →</button>
+        <button class="btn-primary" onclick="showPage('contact')">Enquire Now →</button>
       </div>
     </div>
   </section>
@@ -2169,7 +2169,7 @@ footer {
   <div class="form-section">
     <div class="container">
       <div class="form-container scale-in">
-        <h2>Get a Free Quote</h2>
+        <h2>Enquire Now</h2>
         <p class="form-sub">Serving Sevenoaks, Tunbridge Wells, Tonbridge, Westerham &amp; all of Kent. We'll get back to you promptly.</p>
         <form id="contactForm" novalidate>
           <div class="form-group"><label for="name">Full Name</label><input type="text" id="name" name="name" placeholder="John Smith" required autocomplete="name"></div>
@@ -2196,7 +2196,7 @@ footer {
           </div>
           <div class="form-group"><label for="message">Additional Details</label><textarea id="message" name="message" placeholder="Tell us about your job, property type, or any other details..."></textarea></div>
           <div id="form-error" style="display:none;color:#f87171;font-size:14px;margin-bottom:12px;padding:10px;background:rgba(239,68,68,0.1);border-radius:8px;"></div>
-          <div class="form-group"><button type="submit" class="submit-btn" id="submitBtn">Send Message — Get My Free Quote</button></div>
+          <div class="form-group"><button type="submit" class="submit-btn" id="submitBtn">Send Enquiry</button></div>
         </form>
         <div id="form-success" style="display:none;text-align:center;padding:32px 16px;">
           <div style="font-size:48px;margin-bottom:12px;">✅</div>
@@ -2257,7 +2257,7 @@ footer {
             errEl.textContent = 'Something went wrong — please call us on 07886 067085 or try again.';
             errEl.style.display = 'block';
             btn.disabled = false;
-            btn.textContent = 'Send Message — Get My Free Quote';
+            btn.textContent = 'Send Enquiry';
           }
         });
         </script>
@@ -2373,12 +2373,26 @@ window.addEventListener('scroll', function() {
 });
 
 // ─── INIT ───
-document.addEventListener('DOMContentLoaded', function() {
-  // Handle deep-links from other pages (e.g. news/reviews "Free Quote" → index.html#contact)
+// Handle deep-links from other pages (e.g. news/reviews "Enquire Now" → index.html#contact).
+// Split out to a named function and also run on 'pageshow', not just
+// 'DOMContentLoaded' — a real bug (found 2026-08-14): clicking through from
+// news.html/reviews.html landed on the plain homepage instead of the
+// contact section, and needed a second click to actually work. Cause: if
+// index.html was already in the browser's back/forward cache (bfcache) from
+// earlier in the same session, the browser restores it from cache instead
+// of reloading it — and bfcache restores fire 'pageshow' but never re-fire
+// 'DOMContentLoaded', so this check never ran and the goContact flag (and
+// #contact hash) were silently ignored. The second click worked because by
+// then the user was already ON the live index.html, using the plain
+// showPage('contact') nav handler directly, no reload involved.
+function handleContactDeepLink() {
   if (window.location.hash === '#contact' || sessionStorage.getItem('goContact') === '1') {
     sessionStorage.removeItem('goContact');
     showPage('contact');
   }
+}
+document.addEventListener('DOMContentLoaded', function() {
+  handleContactDeepLink();
   observeElements();
   document.body.classList.add('intro-visible');
 
@@ -2386,6 +2400,9 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('img[data-src]').forEach(function(img) {
     img.src = img.dataset.src;
   });
+});
+window.addEventListener('pageshow', function(e) {
+  if (e.persisted) handleContactDeepLink();
 });
 
 // ─── BES ANALYTICS ───
