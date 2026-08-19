@@ -50,19 +50,26 @@ header {
   background:var(--header-bg); position:sticky; top:0; z-index:100;
   border-bottom:1px solid rgba(255,255,255,.08);
 }
-.header-content { display:flex; justify-content:space-between; align-items:center; height:104px; }
-.logo { display:flex; align-items:center; gap:10px; }
-.logo-img { height:92px; width:auto; display:block; transition:transform .2s var(--ease); }
+/* Logo on its own centered row, nav centered on the row below it (desktop) —
+   was a single left-logo/right-nav row, but a "much bigger, centralized"
+   logo needs its own row to actually read as centered rather than just a
+   bigger left-aligned mark. Mobile keeps just the centered logo row, with
+   the hamburger absolutely positioned over it (no room for a second nav
+   row there — same collapsed-dropdown nav as before). */
+.header-content { display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative; padding:20px 0; row-gap:12px; }
+.logo { display:flex; align-items:center; justify-content:center; }
+.logo-img { height:150px; width:auto; display:block; transition:transform .2s var(--ease); }
 .logo:hover .logo-img { transform:scale(1.04); }
-.nav-links { display:flex; gap:4px; align-items:center; }
+.nav-links { display:flex; gap:4px; align-items:center; justify-content:center; flex-wrap:wrap; }
 .nav-links a { color:var(--header-dim); font-weight:500; font-size:14.5px; padding:8px 14px; border-radius:100px; transition:color .15s var(--ease), background .15s var(--ease); }
 .nav-links a:hover, .nav-links a.active { color:#fff; background:rgba(255,255,255,.08); }
 .nav-cta { background:var(--green)!important; color:#0a0a0a!important; font-weight:700!important; padding:9px 18px!important; }
 .nav-cta:hover { background:#8cf200!important; color:#0a0a0a!important; }
-.mobile-menu-toggle { display:none; background:none; border:none; cursor:pointer; padding:6px; color:#fff; }
+.mobile-menu-toggle { display:none; background:none; border:none; cursor:pointer; padding:6px; color:#fff; position:absolute; top:50%; right:24px; transform:translateY(-50%); }
 @media(max-width:820px){
   .mobile-menu-toggle { display:block; }
-  .nav-links { display:none; position:absolute; top:104px; left:0; right:0; background:#0a0a0a; padding:10px 16px 18px; flex-direction:column; align-items:stretch; gap:2px; border-bottom:1px solid rgba(255,255,255,.08); }
+  .header-content { padding:22px 0; }
+  .nav-links { display:none; position:absolute; top:100%; left:0; right:0; background:#0a0a0a; padding:10px 16px 18px; flex-direction:column; align-items:stretch; gap:2px; border-bottom:1px solid rgba(255,255,255,.08); }
   .nav-links.open { display:flex; }
   .nav-links a { width:100%; padding:12px 14px; text-align:center; }
 }
@@ -225,6 +232,12 @@ footer { background:var(--card); border-top:1px solid var(--border); padding:44p
 @media(max-width:600px){ .fab-call-label { display:none; } .fab-call { padding:14px; } }
 
 /* ── CONTACT / ENQUIRY FORM ── */
+/* scroll-margin-top offsets the #contact anchor clear of the sticky header
+   — was a hardcoded inline value tied to one exact header height, which
+   broke twice already as the header's own height kept changing. Generous
+   buffer per breakpoint here so it doesn't need to be pixel-perfect. */
+#contact { scroll-margin-top:210px; }
+@media(min-width:821px){ #contact { scroll-margin-top:260px; } }
 .form-section { padding:72px 24px; }
 .form-card { max-width:640px; margin:0 auto; background:var(--card); border-radius:var(--radius-lg); box-shadow:var(--shadow-md); border:1px solid var(--border); padding:36px; }
 .form-card h2 { font-size:1.7rem; font-weight:800; letter-spacing:-.6px; text-align:center; }
