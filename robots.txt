@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://burleighelectricalservices.co.uk/sitemap.xml
