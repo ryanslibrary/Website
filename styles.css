@@ -69,11 +69,17 @@ header {
 @media(max-width:820px){
   .mobile-menu-toggle { display:block; }
   .header-content { padding:22px 0; }
-  .nav-links { display:none; position:absolute; top:100%; left:0; right:0; background:#0a0a0a; padding:14px 20px 26px; flex-direction:column; align-items:stretch; gap:8px; border-bottom:1px solid rgba(255,255,255,.08); }
+  .nav-links { display:none; position:absolute; top:100%; left:0; right:0; background:#0a0a0a; padding:14px 20px 40px; flex-direction:column; align-items:stretch; gap:8px; border-bottom:1px solid rgba(255,255,255,.08); }
   .nav-links.open { display:flex; }
-  .nav-links a { width:100%; padding:18px 16px; text-align:center; font-size:16.5px; border-radius:10px; }
+  .nav-links a { width:100%; padding:18px 16px; text-align:center; font-size:16.5px; border-radius:10px; box-sizing:border-box; }
   .nav-links a:not(.nav-cta):active { background:rgba(255,255,255,.06); }
-  .nav-links .nav-cta { margin-top:8px; padding:16px!important; }
+  /* Was 16px flat (overriding the base .nav-cta pill padding), making the
+     button visibly shorter than the plain links above it — "squashed"
+     against the others, and against the bottom edge once combined with
+     too little container padding below it. Matches the others' 18px
+     vertical padding now, plus its own bottom margin for clear separation
+     from the dropdown's edge. */
+  .nav-links .nav-cta { margin-top:10px; margin-bottom:4px; padding:18px 16px!important; }
 }
 
 /* ── BUTTONS — pill, green bg, black text (best contrast; same rule the
