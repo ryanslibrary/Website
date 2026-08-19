@@ -73,13 +73,13 @@ header {
   .nav-links.open { display:flex; }
   .nav-links a { width:100%; padding:18px 16px; text-align:center; font-size:16.5px; border-radius:10px; box-sizing:border-box; }
   .nav-links a:not(.nav-cta):active { background:rgba(255,255,255,.06); }
-  /* Was 16px flat (overriding the base .nav-cta pill padding), making the
-     button visibly shorter than the plain links above it — "squashed"
-     against the others, and against the bottom edge once combined with
-     too little container padding below it. Matches the others' 18px
-     vertical padding now, plus its own bottom margin for clear separation
-     from the dropdown's edge. */
-  .nav-links .nav-cta { margin-top:10px; margin-bottom:4px; padding:18px 16px!important; }
+  /* First pass matched this to the plain links' full 18px padding to fix
+     it looking "squashed" — overcorrected into a full-height slab that
+     now reads as oversized against plain text rows next to it. Landed in
+     between: shorter than the 55px text rows (a CTA pill should look like
+     a button, not another list row) but still a clearly comfortable tap
+     target, with its own margin so it doesn't butt against them. */
+  .nav-links .nav-cta { margin-top:10px; margin-bottom:4px; padding:13px 16px!important; }
 }
 
 /* ── BUTTONS — pill, green bg, black text (best contrast; same rule the
