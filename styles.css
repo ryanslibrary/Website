@@ -46,6 +46,14 @@ img { max-width:100%; display:block; }
 .visually-hidden { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; }
 
 /* ── HEADER — solid black, matches the customer portal's own header ── */
+/* position:sticky already establishes a containing block for absolutely
+   positioned descendants (same as relative would) — the mobile dropdown
+   and hamburger button (both position:absolute) should anchor to THIS,
+   the full-width header, not to .header-content further down. That
+   mismatch was the actual bug: .header-content also had position:relative
+   on it, which — being the nearer ancestor — won instead, so the dropdown
+   inherited .header-content's own ~24px side padding and rendered as a
+   narrower floating box instead of a proper full-width mobile nav panel. */
 header {
   background:var(--header-bg); position:sticky; top:0; z-index:100;
   border-bottom:1px solid rgba(255,255,255,.08);
@@ -56,7 +64,7 @@ header {
    bigger left-aligned mark. Mobile keeps just the centered logo row, with
    the hamburger absolutely positioned over it (no room for a second nav
    row there — same collapsed-dropdown nav as before). */
-.header-content { display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative; padding:20px 0; row-gap:12px; }
+.header-content { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:20px 0; row-gap:12px; }
 .logo { display:flex; align-items:center; justify-content:center; }
 .logo-img { height:150px; width:auto; display:block; transition:transform .2s var(--ease); }
 .logo:hover .logo-img { transform:scale(1.04); }
