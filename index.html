@@ -441,6 +441,10 @@
         <div style="font-size:48px;margin-bottom:12px;">✅</div>
         <h3 style="color:var(--green-text);margin-bottom:8px;">Message Sent!</h3>
         <p style="color:var(--text-muted);">Thanks, we'll be in touch shortly with your free quote.</p>
+        <div id="form-success-portal" style="display:none;margin-top:20px;">
+          <p style="color:var(--text-muted);font-size:13.5px;margin-bottom:12px;">You can also track your enquiry and view any quotes we send, any time:</p>
+          <a id="form-success-portal-link" href="#" class="btn-primary" style="display:inline-block;text-decoration:none;">View My Portal →</a>
+        </div>
       </div>
     </div>
   </div>
@@ -507,8 +511,19 @@ document.getElementById('contactForm').addEventListener('submit', async function
       body: JSON.stringify(payload),
     });
     if (r.ok) {
+      // Portal link is handed back directly in the response now (same as the
+      // van QR code enquiry flow) rather than only ever arriving by email —
+      // that depended on the confirmation email actually being configured
+      // and landing, which isn't guaranteed (spam filters, etc.). Shown
+      // immediately here whenever the backend returns one, email or not.
+      let data = null;
+      try { data = await r.json(); } catch (e) { /* still a success either way */ }
       form.style.display = 'none';
       document.getElementById('form-success').style.display = 'block';
+      if (data && data.portal_url) {
+        document.getElementById('form-success-portal-link').href = data.portal_url;
+        document.getElementById('form-success-portal').style.display = 'block';
+      }
       if (window.__besTrack) window.__besTrack({ event_type: 'enquiry_sent', element: 'contact-form' });
     } else {
       throw new Error('Server error ' + r.status);
