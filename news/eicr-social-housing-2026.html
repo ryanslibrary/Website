@@ -143,8 +143,8 @@
   var ENDPOINT = 'https://bes.myheadquarters.app/pub/track';
   var PAGE = 'news/eicr-social-housing-2026';
   function getSession() {
-    var s = localStorage.getItem('_bes_sid');
-    if (!s) { s = Math.random().toString(36).slice(2) + Date.now().toString(36); localStorage.setItem('_bes_sid', s); }
+    var s = sessionStorage.getItem('_bes_sid');
+    if (!s) { s = Math.random().toString(36).slice(2) + Date.now().toString(36); sessionStorage.setItem('_bes_sid', s); }
     return s;
   }
   function send(payload) {
