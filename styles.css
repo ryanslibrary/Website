@@ -177,6 +177,7 @@ header {
 .tag-safety { background:#ffedd5; color:#ea580c; }
 .tag-smart { background:var(--green-bg); color:var(--green-text); }
 .tag-solar { background:#fef3c7; color:#b45309; }
+.tag-heatpump { background:#ccfbf1; color:#0f766e; }
 .card-source { font-size:11px; color:var(--text-muted); margin-bottom:8px; }
 .card-source span { color:var(--green-text); font-weight:600; }
 .card-body h3 { font-size:15.5px; font-weight:700; line-height:1.4; margin-bottom:8px; color:var(--text); }
