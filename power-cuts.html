@@ -87,6 +87,10 @@
   .pc-incident-area { font-weight:700; color:var(--text); font-size:14.5px; }
   .pc-incident p { font-size:13.5px; color:var(--text-secondary); line-height:1.6; margin:4px 0; }
   .pc-incident .pc-meta { font-size:12.5px; color:var(--text-muted); }
+  .pc-stats { display:flex; gap:20px; margin-top:12px; }
+  .pc-stat { display:flex; flex-direction:column; }
+  .pc-stat-num { font-size:20px; font-weight:800; color:var(--text); line-height:1.2; }
+  .pc-stat-label { font-size:11.5px; color:var(--text-muted); }
   .pc-source { font-size:12px; color:var(--text-muted); text-align:center; margin-top:6px; }
   .pc-source a { color:var(--green-text); font-weight:600; }
   .pc-refresh-btn { display:block; margin:14px auto 0; background:none; border:1px solid var(--border-strong); color:var(--text-secondary); font-size:13px; font-weight:600; padding:8px 16px; border-radius:100px; cursor:pointer; }
@@ -408,6 +412,21 @@
     if (kind !== 'history' && eta) meta.push('Estimated restoration: ' + eta);
     if (r.operatingzone) meta.push(escapeHtml(r.operatingzone));
     if (meta.length) html += '<p class="pc-meta">' + meta.join(' · ') + '</p>';
+    // Matches UKPN's own "Customers affected" / "Customer calls received"
+    // stats exactly (verified against a live incident) — shown as separate
+    // stat chips, not folded into the meta line, since they're numbers
+    // worth standing out rather than reading as more prose.
+    if (kind !== 'history' && (r.nocustomeraffected || r.nocallsreported != null)) {
+      var stats = '<div class="pc-stats">';
+      if (r.nocustomeraffected) {
+        stats += '<div class="pc-stat"><span class="pc-stat-num">' + r.nocustomeraffected + '</span><span class="pc-stat-label">Customers affected</span></div>';
+      }
+      if (r.nocallsreported != null) {
+        stats += '<div class="pc-stat"><span class="pc-stat-num">' + r.nocallsreported + '</span><span class="pc-stat-label">Customer calls received</span></div>';
+      }
+      stats += '</div>';
+      html += stats;
+    }
     div.innerHTML = html;
     return div;
   }

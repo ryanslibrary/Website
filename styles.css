@@ -58,19 +58,25 @@ header {
   background:var(--header-bg); position:sticky; top:0; z-index:100;
   border-bottom:1px solid rgba(255,255,255,.08);
 }
-/* Logo on its own centered row, nav centered on the row below it (desktop).
-   Mobile drops the nav row entirely (and the hamburger that used to
-   reveal it) — replaced by .mobile-bottomnav, an always-visible bar,
-   further down this file. Header on mobile is just the logo. */
+/* Mobile: logo on its own centered row, nav hidden entirely (replaced by
+   .mobile-bottomnav, an always-visible bar, further down this file) — the
+   min-width override below is what actually applies day-to-day, since
+   nav-links only ever shows above 820px anyway.
+   Desktop (min-width:821px, see override below): logo left, nav right,
+   same row — same logo size, but one row instead of two keeps the black
+   header shorter. */
 .header-content { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:20px 0; row-gap:12px; }
 .logo { display:flex; align-items:center; justify-content:center; }
 .logo-img { height:150px; width:auto; display:block; transition:transform .2s var(--ease); }
 .logo:hover .logo-img { transform:scale(1.04); }
 .nav-links { display:flex; gap:4px; align-items:center; justify-content:center; flex-wrap:wrap; }
-.nav-links a { color:var(--header-dim); font-weight:500; font-size:14.5px; padding:8px 14px; border-radius:100px; transition:color .15s var(--ease), background .15s var(--ease); }
+.nav-links a { color:var(--header-dim); font-weight:500; font-size:15.5px; padding:9px 16px; border-radius:100px; transition:color .15s var(--ease), background .15s var(--ease); }
 .nav-links a:hover, .nav-links a.active { color:#fff; background:rgba(255,255,255,.08); }
-.nav-cta { background:var(--green)!important; color:#0a0a0a!important; font-weight:700!important; padding:9px 18px!important; }
+.nav-cta { background:var(--green)!important; color:#0a0a0a!important; font-weight:700!important; padding:10px 20px!important; }
 .nav-cta:hover { background:#8cf200!important; color:#0a0a0a!important; }
+@media(min-width:821px){
+  .header-content { flex-direction:row; justify-content:space-between; padding:14px 0; }
+}
 @media(max-width:820px){
   .header-content { padding:22px 0; }
   .nav-links { display:none; }
@@ -274,7 +280,7 @@ footer { background:var(--card); border-top:1px solid var(--border); padding:44p
    broke twice already as the header's own height kept changing. Generous
    buffer per breakpoint here so it doesn't need to be pixel-perfect. */
 #contact { scroll-margin-top:210px; }
-@media(min-width:821px){ #contact { scroll-margin-top:260px; } }
+@media(min-width:821px){ #contact { scroll-margin-top:220px; } }
 .form-section { padding:72px 24px; }
 .form-card { max-width:640px; margin:0 auto; background:var(--card); border-radius:var(--radius-lg); box-shadow:var(--shadow-md); border:1px solid var(--border); padding:36px; }
 .form-card h2 { font-size:1.7rem; font-weight:800; letter-spacing:-.6px; text-align:center; }
