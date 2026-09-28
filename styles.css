@@ -46,16 +46,17 @@ img { max-width:100%; display:block; }
 .visually-hidden { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; }
 
 /* ── HEADER — solid black, matches the customer portal's own header ── */
-/* position:sticky already establishes a containing block for absolutely
-   positioned descendants (same as relative would) — the mobile dropdown
-   and hamburger button (both position:absolute) should anchor to THIS,
-   the full-width header, not to .header-content further down. That
-   mismatch was the actual bug: .header-content also had position:relative
-   on it, which — being the nearer ancestor — won instead, so the dropdown
-   inherited .header-content's own ~24px side padding and rendered as a
-   narrower floating box instead of a proper full-width mobile nav panel. */
+/* Not sticky/pinned — scrolls away with the rest of the page. Still
+   position:relative (not static) so it establishes a containing block for
+   absolutely positioned descendants — the mobile dropdown and hamburger
+   button (both position:absolute) anchor to THIS, the full-width header,
+   not to .header-content further down. That mismatch was a real past bug:
+   .header-content also had position:relative on it, which — being the
+   nearer ancestor — won instead, so the dropdown inherited
+   .header-content's own ~24px side padding and rendered as a narrower
+   floating box instead of a proper full-width mobile nav panel. */
 header {
-  background:var(--header-bg); position:sticky; top:0; z-index:100;
+  background:var(--header-bg); position:relative; z-index:100;
   border-bottom:1px solid rgba(255,255,255,.08);
 }
 /* Mobile: logo on its own centered row, nav hidden entirely (replaced by

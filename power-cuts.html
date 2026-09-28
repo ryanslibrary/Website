@@ -48,7 +48,7 @@
   "@context":"https://schema.org",
   "@type":"FAQPage",
   "mainEntity":[
-    {"@type":"Question","name":"This page shows no power cut, but I still have no power — what's wrong?","acceptedAnswer":{"@type":"Answer","text":"If UK Power Networks isn't reporting an incident near you, the problem is very likely inside your own property's electrical installation — a tripped RCD, a fault on a circuit, or an ageing consumer unit — rather than the supply itself. Call Burleigh Electrical on 07886 067085 or send an enquiry above and we'll get back to you promptly."}},
+    {"@type":"Question","name":"This page shows no power cut, but I still have no power — what's wrong?","acceptedAnswer":{"@type":"Answer","text":"If UK Power Networks isn't reporting an incident near you, the problem is very likely inside your own property's electrical installation. Call Burleigh Electrical on 07886 067085 or send an enquiry above and we'll get back to you promptly."}},
     {"@type":"Question","name":"How do I get help with an electrical fault at my property?","acceptedAnswer":{"@type":"Answer","text":"Call us on 07886 067085 or send an enquiry using the form above — we cover Sevenoaks, Tunbridge Wells, Tonbridge, Bexleyheath, Sidcup and the wider Kent & South East London area, and we'll get back to you promptly."}},
     {"@type":"Question","name":"Who do I contact about a power cut in Kent or South East London?","acceptedAnswer":{"@type":"Answer","text":"UK Power Networks is the distribution network operator for this area. Call them free on 105, any time, or check their live status checker directly at ukpowernetworks.co.uk."}}
   ]
@@ -248,7 +248,7 @@
     <div class="faq-list">
       <details class="faq-item">
         <summary>This page shows no power cut, but I still have no power — what's wrong? <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
-        <p>If UK Power Networks isn't reporting an incident near you, the problem is very likely inside your own property's electrical installation — a tripped RCD, a fault on a circuit, or an ageing consumer unit — rather than the supply itself. Call us on <a href="tel:+447886067085">07886 067085</a> or <a href="#contact-form">send an enquiry above</a> and we'll get back to you promptly.</p>
+        <p>If UK Power Networks isn't reporting an incident near you, the problem is very likely inside your own property's electrical installation. Call us on <a href="tel:+447886067085">07886 067085</a> or <a href="#contact-form">send an enquiry above</a> and we'll get back to you promptly.</p>
       </details>
       <details class="faq-item">
         <summary>How do I get help with an electrical fault at my property? <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
@@ -373,12 +373,35 @@
     return d.innerHTML;
   }
 
+  // UKPN's own incident text occasionally has a whole sentence-block
+  // duplicated back-to-back within a single field (seen in production,
+  // not something our own code introduces by combining fields) — collapse
+  // an exact repeated run of sentences down to one copy. Tries the largest
+  // possible repeated block first, since the duplicate isn't always
+  // exactly half the text (trailing unique content, e.g. a road-closure
+  // note, often follows the repeated part).
+  function dedupeRepeatedBlock(text) {
+    if (!text) return text;
+    var sentences = text.trim().split(/(?<=[.!?])\s+/);
+    var n = sentences.length;
+    for (var k = Math.floor(n / 2); k >= 2; k--) {
+      if (2 * k <= n && sentences.slice(0, k).join(' ') === sentences.slice(k, 2 * k).join(' ')) {
+        return sentences.slice(0, k).concat(sentences.slice(2 * k)).join(' ');
+      }
+    }
+    return text;
+  }
+
   function buildIncidentCard(r, kind) {
     var isUnplanned = r.powercuttype === 'Unplanned';
     var badgeClass = kind === 'history' ? 'restored' : (isUnplanned ? 'unplanned' : 'planned');
     var badgeLabel = kind === 'history' ? 'Restored' : (isUnplanned ? 'Unplanned fault' : 'Planned work');
     var area = (r.postcodesaffected || '').split(';').join(', ');
-    var eta = fmtTime(r.estimatedrestorationdate);
+    // UKPN's own friendly range string (e.g. "28 Sep 22:00 - 23:00") is
+    // what their own checker actually shows — a range, not the single
+    // point-in-time estimatedrestorationdate we used to compute this from.
+    // Falls back to that single time only if the range string is missing.
+    var eta = escapeHtml((r.incidenttypetbcestimatedfriendlydescription || '').trim()) || fmtTime(r.estimatedrestorationdate);
     // For a planned cut, planneddate is exactly the "time the power went
     // off" shown on UKPN's own checker. Unplanned faults don't carry that
     // (nothing was scheduled) — receiveddate there is when it was
@@ -390,7 +413,8 @@
     // The detailed "reason" text UKPN shows as its own section is a
     // different field to the shorter status blurb (mainmessage) — only
     // shown when it actually adds something beyond that blurb.
-    var reason = (r.incidentcategorycustomerfriendlydescription || r.plannedincidentreason || '').trim();
+    var reason = dedupeRepeatedBlock((r.incidentcategorycustomerfriendlydescription || r.plannedincidentreason || '').trim());
+    var mainMsg = dedupeRepeatedBlock((r.mainmessage || '').trim());
     var div = document.createElement('div');
     div.className = 'pc-incident';
     var html = '<div class="pc-incident-head">'
@@ -401,8 +425,8 @@
     // restored incident (it stays whatever it said while active), so a
     // history card gets its own "restored" line instead of that stale text
     // rather than showing something now false.
-    if (kind !== 'history' && r.mainmessage) html += '<p>' + escapeHtml(r.mainmessage) + '</p>';
-    if (reason && reason !== (r.mainmessage || '').trim()) {
+    if (kind !== 'history' && mainMsg) html += '<p>' + escapeHtml(mainMsg) + '</p>';
+    if (reason && reason !== mainMsg) {
       html += '<p style="margin-top:8px"><strong>Reason:</strong> ' + escapeHtml(reason) + '</p>';
     }
     var meta = [];
