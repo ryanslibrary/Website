@@ -440,9 +440,9 @@
     // stats exactly (verified against a live incident) — shown as separate
     // stat chips, not folded into the meta line, since they're numbers
     // worth standing out rather than reading as more prose.
-    if (kind !== 'history' && (r.nocustomeraffected || r.nocallsreported != null)) {
+    if (kind !== 'history' && (r.nocustomeraffected != null || r.nocallsreported != null)) {
       var stats = '<div class="pc-stats">';
-      if (r.nocustomeraffected) {
+      if (r.nocustomeraffected != null) {
         stats += '<div class="pc-stat"><span class="pc-stat-num">' + r.nocustomeraffected + '</span><span class="pc-stat-label">Customers affected</span></div>';
       }
       if (r.nocallsreported != null) {
