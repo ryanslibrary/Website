@@ -210,6 +210,7 @@ function visiblePhotoIndexes() {
 function showSlide(index) {
   currentIndex = index;
   var p = PHOTOS[index];
+  slideFigure.classList.remove('gallery-slide-error');
   // Quick fade on each change rather than a hard cut — see the opacity
   // transition on .gallery-slideshow img in styles.css.
   slideImg.style.opacity = '0';
@@ -223,6 +224,25 @@ function showSlide(index) {
     // pixel dimensions once loaded, not assumed from its category.
     var portrait = slideImg.naturalHeight > slideImg.naturalWidth;
     slideFigure.classList.toggle('is-portrait', portrait);
+  };
+  // Without this, a dropped/failed request (flaky mobile signal especially —
+  // this is a real report, not theoretical: a slide showed permanently blank
+  // on a weak-signal connection, 2026-10-05) left the slide stuck at
+  // opacity:0 forever with no way to tell it had failed vs. still loading.
+  // One automatic retry handles a transient blip; if that also fails, show
+  // a visible "couldn't load" state instead of an unexplained blank box —
+  // and only act if this is still the slide actually being shown (a slow
+  // failure from an earlier index shouldn't clobber whatever the user has
+  // since navigated to).
+  slideImg.onerror = function () {
+    var failedIndex = index;
+    setTimeout(function () {
+      if (currentIndex !== failedIndex) return;
+      slideImg.onerror = function () {
+        if (currentIndex === failedIndex) slideFigure.classList.add('gallery-slide-error');
+      };
+      slideImg.src = p.src + (p.src.indexOf('?') === -1 ? '?' : '&') + 'retry=' + Date.now();
+    }, 1200);
   };
   slideImg.src = p.src;
   slideImg.alt = p.caption;

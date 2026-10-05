@@ -417,6 +417,15 @@ footer { background:var(--card); border-top:1px solid var(--border); padding:44p
 .gallery-slide.is-portrait { aspect-ratio:3/4; }
 .gallery-slide img { display:block; width:100%; height:100%; object-fit:contain; transition:opacity .25s var(--ease); }
 .gallery-slide-caption { position:absolute; left:0; right:0; bottom:0; padding:14px 16px 12px; background:linear-gradient(to top,rgba(10,10,10,.82),rgba(10,10,10,0)); color:#fff; font-size:13.5px; font-weight:600; }
+/* Shown when a photo request fails twice (one automatic retry first — see
+   showSlide()'s onerror handler in gallery.html) instead of leaving the
+   slide a silent, unexplained blank box — a flaky connection shouldn't
+   look indistinguishable from "this is broken." */
+.gallery-slide-error::before {
+  content:'Photo couldn\'t load — check your connection and try again';
+  position:absolute; inset:0; z-index:1; display:flex; align-items:center; justify-content:center;
+  text-align:center; padding:24px; font-size:13px; font-weight:600; color:var(--text-muted); background:var(--border);
+}
 .gallery-slide-nav { flex-shrink:0; width:44px; height:44px; border-radius:50%; background:var(--card); border:1px solid var(--border); color:var(--text); font-size:22px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .15s var(--ease),border-color .15s var(--ease); }
 .gallery-slide-nav:hover { border-color:var(--border-strong); background:var(--border); }
 .gallery-slide-counter { text-align:center; font-size:12.5px; font-weight:600; color:var(--text-muted); margin-top:10px; }
