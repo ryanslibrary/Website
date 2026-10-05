@@ -25,7 +25,7 @@
     { "@type": "ImageObject", "contentUrl": "https://burleighelectricalservices.co.uk/images/gallery/garden-room-interior-downlights.jpg", "caption": "Interior lighting circuit, garden room", "creator": { "@type": "Organization", "name": "Burleigh Electrical Services Ltd" } },
     { "@type": "ImageObject", "contentUrl": "https://burleighelectricalservices.co.uk/images/gallery/vaulted-ceiling-rewire.jpg", "caption": "Ceiling fan removal", "creator": { "@type": "Organization", "name": "Burleigh Electrical Services Ltd" } },
     { "@type": "ImageObject", "contentUrl": "https://burleighelectricalservices.co.uk/images/gallery/hallway-rewire-progress.jpg", "caption": "Additional light installed", "creator": { "@type": "Organization", "name": "Burleigh Electrical Services Ltd" } },
-    { "@type": "ImageObject", "contentUrl": "https://burleighelectricalservices.co.uk/images/gallery/high-ceiling-ceiling-fan.png", "caption": "Ceiling fan removal", "creator": { "@type": "Organization", "name": "Burleigh Electrical Services Ltd" } },
+    { "@type": "ImageObject", "contentUrl": "https://burleighelectricalservices.co.uk/images/gallery/high-ceiling-ceiling-fan.jpg", "caption": "Ceiling fan removal", "creator": { "@type": "Organization", "name": "Burleigh Electrical Services Ltd" } },
     { "@type": "ImageObject", "contentUrl": "https://burleighelectricalservices.co.uk/images/gallery/loft-led-batten-lights.webp", "caption": "Loft light installed", "creator": { "@type": "Organization", "name": "Burleigh Electrical Services Ltd" } },
     { "@type": "ImageObject", "contentUrl": "https://burleighelectricalservices.co.uk/images/gallery/bathroom-extractor-fan.jpg", "caption": "Bathroom extractor fan installation", "creator": { "@type": "Organization", "name": "Burleigh Electrical Services Ltd" } },
     { "@type": "ImageObject", "contentUrl": "https://burleighelectricalservices.co.uk/images/gallery/bathroom-extractor-fan-2.jpg", "caption": "Bathroom extractor fan installation", "creator": { "@type": "Organization", "name": "Burleigh Electrical Services Ltd" } },
@@ -34,7 +34,7 @@
     { "@type": "ImageObject", "contentUrl": "https://burleighelectricalservices.co.uk/images/gallery/outbuilding-consumer-unit-spur.jpg", "caption": "RCD protected socket, shed", "creator": { "@type": "Organization", "name": "Burleigh Electrical Services Ltd" } },
     { "@type": "ImageObject", "contentUrl": "https://burleighelectricalservices.co.uk/images/gallery/shaver-socket-bathroom.jpg", "caption": "Shaver socket installation, bathroom", "creator": { "@type": "Organization", "name": "Burleigh Electrical Services Ltd" } },
     { "@type": "ImageObject", "contentUrl": "https://burleighelectricalservices.co.uk/images/gallery/outdoor-weatherproof-socket.jpg", "caption": "Outdoor socket installed", "creator": { "@type": "Organization", "name": "Burleigh Electrical Services Ltd" } },
-    { "@type": "ImageObject", "contentUrl": "https://burleighelectricalservices.co.uk/images/gallery/van-fleet.png", "caption": "Keep an eye out for our vans — say hello if you spot us!", "creator": { "@type": "Organization", "name": "Burleigh Electrical Services Ltd" } }
+    { "@type": "ImageObject", "contentUrl": "https://burleighelectricalservices.co.uk/images/gallery/van-fleet.jpg", "caption": "Keep an eye out for our vans — say hello if you spot us!", "creator": { "@type": "Organization", "name": "Burleigh Electrical Services Ltd" } }
   ]
 }
 </script>
@@ -54,10 +54,14 @@
   bottomnav of every other page, and this URL is in sitemap.xml.
   robots left as index,follow — photo content genuinely helps local/image
   search.
-  Still outstanding, not blocking: the source photos in images/gallery/
-  are straight-from-camera sizes (1.5–3MB each) — worth compressing/
-  resizing for page-load speed and because Google Images favours
-  faster-loading pages.
+  Photos compressed 2026-10-05: resized to a 1800px long edge (plenty for
+  this page's 860px-wide/62vh-tall slideshow box, even on retina), EXIF
+  stripped, re-encoded at JPEG quality 82. The two source PNGs
+  (van-fleet, high-ceiling-ceiling-fan) were plain photos with no
+  transparency, so converted to .jpg too for much better compression —
+  filenames changed to match, referenced consistently in both the PHOTOS
+  array below and the JSON-LD above. images/gallery/ went from ~25MB to
+  ~3MB total.
 -->
 </head>
 <body>
@@ -152,7 +156,7 @@ var PHOTOS = [
   { src: "images/gallery/garden-room-interior-downlights.jpg", category: "garden-rooms", caption: "Interior lighting circuit, garden room" },
   { src: "images/gallery/vaulted-ceiling-rewire.jpg", category: "rewires", caption: "Ceiling fan removal" },
   { src: "images/gallery/hallway-rewire-progress.jpg", category: "rewires", caption: "Additional light installed" },
-  { src: "images/gallery/high-ceiling-ceiling-fan.png", category: "lighting", caption: "Ceiling fan removal" },
+  { src: "images/gallery/high-ceiling-ceiling-fan.jpg", category: "lighting", caption: "Ceiling fan removal" },
   { src: "images/gallery/loft-led-batten-lights.webp", category: "lighting", caption: "Loft light installed" },
   { src: "images/gallery/bathroom-extractor-fan.jpg", category: "lighting", caption: "Bathroom extractor fan installation" },
   { src: "images/gallery/bathroom-extractor-fan-2.jpg", category: "lighting", caption: "Bathroom extractor fan installation" },
@@ -161,7 +165,7 @@ var PHOTOS = [
   { src: "images/gallery/outbuilding-consumer-unit-spur.jpg", category: "safety", caption: "RCD protected socket, shed" },
   { src: "images/gallery/shaver-socket-bathroom.jpg", category: "safety", caption: "Shaver socket installation, bathroom" },
   { src: "images/gallery/outdoor-weatherproof-socket.jpg", category: "safety", caption: "Outdoor socket installed" },
-  { src: "images/gallery/van-fleet.png", category: "vans", caption: "Keep an eye out for our vans — say hello if you spot us!" }
+  { src: "images/gallery/van-fleet.jpg", category: "vans", caption: "Keep an eye out for our vans — say hello if you spot us!" }
 ];
 
 var CATEGORY_LABELS = {
