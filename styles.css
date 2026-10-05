@@ -231,21 +231,25 @@ footer { background:var(--card); border-top:1px solid var(--border); padding:44p
 .footer-seo { font-size:12px; color:var(--text-muted); max-width:900px; margin:0 auto; line-height:1.7; }
 .footer-bottom { font-size:12px; color:var(--text-muted); margin-top:18px; }
 
-/* ── FLOATING CALL BUTTON ── */
-.fab-call {
-  position:fixed; bottom:22px; right:22px; z-index:90; display:flex; align-items:center; gap:8px;
-  background:var(--green); color:#0a0a0a; padding:16px 22px; border-radius:100px;
+/* ── FLOATING CALL + WHATSAPP BUTTONS ── */
+.fab-stack { position:fixed; bottom:22px; right:22px; z-index:90; display:flex; flex-direction:column; align-items:flex-end; gap:10px; }
+.fab-call, .fab-whatsapp {
+  display:flex; align-items:center; gap:8px;
+  padding:16px 22px; border-radius:100px;
   box-shadow:var(--shadow-lg); font-size:15px; font-weight:700; transition:transform .15s var(--ease);
 }
-.fab-call:hover { transform:scale(1.04); }
-.fab-call svg { width:22px; height:22px; }
+.fab-call { background:var(--green); color:#0a0a0a; }
+.fab-whatsapp { background:#25D366; color:#fff; }
+.fab-call:hover, .fab-whatsapp:hover { transform:scale(1.04); }
+.fab-call svg, .fab-whatsapp svg { width:22px; height:22px; }
 @media(max-width:600px){
-  .fab-call-label { display:none; }
+  .fab-call-label, .fab-whatsapp-label { display:none; }
   /* Bigger tap target/icon on mobile (was 18px in a 14px-padded circle —
      too small to read as a real call button). Sits above the bottom nav
      bar, not overlapping it. */
-  .fab-call { padding:18px; bottom:70px; }
-  .fab-call svg { width:26px; height:26px; }
+  .fab-stack { bottom:70px; gap:12px; }
+  .fab-call, .fab-whatsapp { padding:18px; }
+  .fab-call svg, .fab-whatsapp svg { width:26px; height:26px; }
 }
 
 /* ── MOBILE BOTTOM NAV — replaces the hamburger dropdown with an always-
@@ -387,4 +391,43 @@ footer { background:var(--card); border-top:1px solid var(--border); padding:44p
      articles. Article text gets a permanent right-side gutter clear of the
      button's footprint instead. Widened when the button itself got bigger. */
   .article-inner { padding-right:96px; }
+}
+
+/* ── GALLERY PAGE — single-photo slideshow + category filter pills, no
+   external library (same "plain vanilla JS" convention as the reviews
+   page's JS-rendered cards). Deliberately click-to-advance only, one photo
+   visible at a time — no autoplay, no grid of everything at once. Prev/
+   Next only ever step within the current category filter (see
+   visiblePhotoIndexes() in gallery.html). */
+.gallery-filters { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin:28px 0 24px; }
+.gallery-filter { background:var(--card); border:1px solid var(--border); color:var(--text-secondary); font:inherit; font-size:13px; font-weight:600; padding:8px 18px; border-radius:100px; cursor:pointer; transition:background .15s var(--ease),color .15s var(--ease),border-color .15s var(--ease); }
+.gallery-filter:hover { border-color:var(--border-strong); }
+.gallery-filter.active { background:var(--green); border-color:var(--green); color:#0a0a0a; }
+
+.gallery-slideshow { display:flex; align-items:center; gap:14px; max-width:860px; margin:0 auto; }
+/* Fixed aspect ratio per orientation (toggled via .is-portrait, set in JS
+   from the loaded photo's own real pixel dimensions — see showSlide() in
+   gallery.html) rather than one fixed landscape-shaped box for every
+   photo — that forced every portrait (phone) shot to letterbox with large
+   bars either side. object-fit:contain still never crops a photo; the
+   fill colour behind it is a soft neutral instead of black so a photo
+   that doesn't perfectly fill its box reads as "centred on a plain
+   background," not "has black bars stuck on it." */
+.gallery-slide { position:relative; flex:1; min-width:0; margin:0; border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-md); background:var(--border); aspect-ratio:3/2; max-height:62vh; transition:aspect-ratio .2s var(--ease); }
+.gallery-slide.is-portrait { aspect-ratio:3/4; }
+.gallery-slide img { display:block; width:100%; height:100%; object-fit:contain; transition:opacity .25s var(--ease); }
+.gallery-slide-caption { position:absolute; left:0; right:0; bottom:0; padding:14px 16px 12px; background:linear-gradient(to top,rgba(10,10,10,.82),rgba(10,10,10,0)); color:#fff; font-size:13.5px; font-weight:600; }
+.gallery-slide-nav { flex-shrink:0; width:44px; height:44px; border-radius:50%; background:var(--card); border:1px solid var(--border); color:var(--text); font-size:22px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .15s var(--ease),border-color .15s var(--ease); }
+.gallery-slide-nav:hover { border-color:var(--border-strong); background:var(--border); }
+.gallery-slide-counter { text-align:center; font-size:12.5px; font-weight:600; color:var(--text-muted); margin-top:10px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-slide { transition:none; }
+  .gallery-slide img { transition:none; }
+}
+
+@media(max-width:640px){
+  .gallery-slideshow { gap:8px; }
+  .gallery-slide-nav { width:36px; height:36px; font-size:18px; }
+  .gallery-slide { max-height:48vh; }
 }
