@@ -106,13 +106,13 @@
 
   <section class="section" style="padding-top:12px;">
     <div class="container">
-      <div class="gallery-filters" id="galleryFilters"></div>
-
       <div class="gallery-slideshow">
         <button class="gallery-slide-nav gallery-slide-prev" id="gallerySlidePrev" aria-label="Previous photo">‹</button>
         <figure class="gallery-slide" id="gallerySlideFigure">
-          <img id="gallerySlideImg" src="" alt="">
-          <figcaption class="gallery-slide-caption" id="gallerySlideCaption"></figcaption>
+          <div class="gallery-slide-frame">
+            <img id="gallerySlideImg" src="" alt="">
+            <figcaption class="gallery-slide-caption" id="gallerySlideCaption"></figcaption>
+          </div>
         </figure>
         <button class="gallery-slide-nav gallery-slide-next" id="gallerySlideNext" aria-label="Next photo">›</button>
       </div>
@@ -149,7 +149,6 @@
 
 <script>
 // Photos — add a new one by adding an entry here, nothing else to edit.
-// category values double as the filter pill labels (via CATEGORY_LABELS).
 var PHOTOS = [
   { src: "images/gallery/garden-room-exterior-night.jpg", category: "garden-rooms", caption: "New garden room with exterior downlighting" },
   { src: "images/gallery/garden-room-exterior-downlights.jpg", category: "garden-rooms", caption: "Soffit-mounted exterior downlights" },
@@ -178,7 +177,6 @@ var CATEGORY_LABELS = {
   "vans": "Our Vans"
 };
 
-var filtersEl = document.getElementById('galleryFilters');
 var slideFigure = document.getElementById('gallerySlideFigure');
 var slideImg = document.getElementById('gallerySlideImg');
 var slideCaption = document.getElementById('gallerySlideCaption');
@@ -186,17 +184,8 @@ var slideCounter = document.getElementById('gallerySlideCounter');
 var activeCategory = 'all';
 var currentIndex = 0;
 
-// Only render a pill for a category that actually has photos, plus "All" —
-// avoids an empty filter doing nothing if a category's last photo is removed.
-var presentCategories = ['all'].concat(
-  Object.keys(CATEGORY_LABELS).filter(function (c) {
-    return c !== 'all' && PHOTOS.some(function (p) { return p.category === c; });
-  })
-);
-
-filtersEl.innerHTML = presentCategories.map(function (c) {
-  return '<button class="gallery-filter' + (c === 'all' ? ' active' : '') + '" data-category="' + c + '">' + CATEGORY_LABELS[c] + '</button>';
-}).join('');
+// Category filter pills removed 2026-10-23 at Ryan's request ("just show
+// all"); activeCategory stays 'all', so every photo is in the slideshow.
 
 // Prev/Next only ever step within the CURRENTLY VISIBLE (filtered) set, not
 // the full PHOTOS array — so filtering to "Lighting & Fans" and clicking
@@ -216,14 +205,6 @@ function showSlide(index) {
   slideImg.style.opacity = '0';
   slideImg.onload = function () {
     slideImg.style.opacity = '1';
-    // The viewer box is a fixed aspect ratio per orientation (see
-    // .gallery-slide / .gallery-slide.is-portrait in styles.css) — a
-    // portrait photo (tall phone shots especially) landed inside a wide
-    // landscape-shaped box would otherwise need big black letterbox bars
-    // either side to avoid cropping. Checked against the real photo's own
-    // pixel dimensions once loaded, not assumed from its category.
-    var portrait = slideImg.naturalHeight > slideImg.naturalWidth;
-    slideFigure.classList.toggle('is-portrait', portrait);
   };
   // Without this, a dropped/failed request (flaky mobile signal especially —
   // this is a real report, not theoretical: a slide showed permanently blank
@@ -258,19 +239,6 @@ function step(dir) {
   pos = (pos + dir + visible.length) % visible.length;
   showSlide(visible[pos]);
 }
-
-filtersEl.addEventListener('click', function (e) {
-  var btn = e.target.closest('.gallery-filter');
-  if (!btn) return;
-  activeCategory = btn.dataset.category;
-  filtersEl.querySelectorAll('.gallery-filter').forEach(function (b) {
-    b.classList.toggle('active', b === btn);
-  });
-  // Jump to the first photo in the newly-picked category — staying on
-  // whatever was showing before would either be the wrong category or,
-  // worse, not in the filtered set at all.
-  showSlide(visiblePhotoIndexes()[0]);
-});
 
 document.getElementById('gallerySlidePrev').addEventListener('click', function () { step(-1); });
 document.getElementById('gallerySlideNext').addEventListener('click', function () { step(1); });

@@ -393,34 +393,20 @@ footer { background:var(--card); border-top:1px solid var(--border); padding:44p
   .article-inner { padding-right:96px; }
 }
 
-/* ── GALLERY PAGE — single-photo slideshow + category filter pills, no
-   external library (same "plain vanilla JS" convention as the reviews
-   page's JS-rendered cards). Deliberately click-to-advance only, one photo
-   visible at a time — no autoplay, no grid of everything at once. Prev/
-   Next only ever step within the current category filter (see
-   visiblePhotoIndexes() in gallery.html). */
-.gallery-filters { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin:28px 0 24px; }
-.gallery-filter { background:var(--card); border:1px solid var(--border); color:var(--text-secondary); font:inherit; font-size:13px; font-weight:600; padding:8px 18px; border-radius:100px; cursor:pointer; transition:background .15s var(--ease),color .15s var(--ease),border-color .15s var(--ease); }
-.gallery-filter:hover { border-color:var(--border-strong); }
-.gallery-filter.active { background:var(--green); border-color:var(--green); color:#0a0a0a; }
-
-.gallery-slideshow { display:flex; align-items:center; gap:14px; max-width:860px; margin:0 auto; }
-/* Fixed aspect ratio per orientation (toggled via .is-portrait, set in JS
-   from the loaded photo's own real pixel dimensions — see showSlide() in
-   gallery.html) rather than one fixed landscape-shaped box for every
-   photo — that forced every portrait (phone) shot to letterbox with large
-   bars either side. object-fit:contain still never crops a photo; the
-   fill colour behind it is a soft neutral instead of black so a photo
-   that doesn't perfectly fill its box reads as "centred on a plain
-   background," not "has black bars stuck on it." */
-.gallery-slide { position:relative; flex:1; min-width:0; margin:0; border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-md); background:var(--border); aspect-ratio:3/2; max-height:62vh; transition:aspect-ratio .2s var(--ease); }
-.gallery-slide.is-portrait { aspect-ratio:3/4; }
-.gallery-slide img { display:block; width:100%; height:100%; object-fit:contain; transition:opacity .25s var(--ease); }
+/* ── GALLERY PAGE — single-photo slideshow, plain vanilla JS (see
+   gallery.html). Category filter pills removed 2026-10-23. */
+.gallery-slideshow { display:flex; align-items:center; gap:14px; max-width:860px; margin:28px auto 0; }
+/* The frame wraps the photo itself (no fixed box), so there are no border
+   bars around portrait or landscape shots (requested 2026-10-23). */
+.gallery-slide { position:relative; flex:1; min-width:0; margin:0; display:flex; justify-content:center; }
+.gallery-slide-frame { position:relative; display:inline-block; max-width:100%; border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-md); min-height:120px; }
+.gallery-slide img { display:block; width:auto; height:auto; max-width:100%; max-height:62vh; transition:opacity .25s var(--ease); }
 .gallery-slide-caption { position:absolute; left:0; right:0; bottom:0; padding:14px 16px 12px; background:linear-gradient(to top,rgba(10,10,10,.82),rgba(10,10,10,0)); color:#fff; font-size:13.5px; font-weight:600; }
 /* Shown when a photo request fails twice (one automatic retry first — see
    showSlide()'s onerror handler in gallery.html) instead of leaving the
    slide a silent, unexplained blank box — a flaky connection shouldn't
    look indistinguishable from "this is broken." */
+.gallery-slide-error .gallery-slide-frame { width:100%; min-height:240px; }
 .gallery-slide-error::before {
   content:'Photo couldn\'t load — check your connection and try again';
   position:absolute; inset:0; z-index:1; display:flex; align-items:center; justify-content:center;
@@ -438,5 +424,5 @@ footer { background:var(--card); border-top:1px solid var(--border); padding:44p
 @media(max-width:640px){
   .gallery-slideshow { gap:8px; }
   .gallery-slide-nav { width:36px; height:36px; font-size:18px; }
-  .gallery-slide { max-height:48vh; }
+  .gallery-slide img { max-height:56vh; }
 }
