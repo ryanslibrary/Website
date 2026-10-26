@@ -6,6 +6,15 @@
 (function() {
   var ENDPOINT = 'https://bes.myheadquarters.app/pub/track';
 
+  // Automated browsers (headless Chrome crawlers, uptime/SEO bots) set
+  // navigator.webdriver. They aren't visitors, so don't count them. The
+  // server also drops anything coming from a data centre network.
+  if (navigator.webdriver) {
+    window.__besTrack = function() {};
+    window.__besCampaign = function() { return {}; };
+    return;
+  }
+
   // Page identifier derived from the URL itself instead of hardcoded per
   // file — 'home' for the root, 'news/some-article' for an article, etc.
   // Matches the identifiers every page used before (verified against the
@@ -88,10 +97,32 @@
   });
 
   var scrollFired = {};
+  var maxScroll = 0;
   window.addEventListener('scroll', function() {
-    var pct = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+    var range = document.body.scrollHeight - window.innerHeight;
+    var pct = range > 0 ? Math.min(100, Math.round((window.scrollY / range) * 100)) : 100;
+    if (pct > maxScroll) maxScroll = pct;
     [25, 50, 75, 100].forEach(function(d) {
       if (pct >= d && !scrollFired[d]) { scrollFired[d] = true; send({ event_type: 'scroll', scroll_depth: d }); }
     });
   }, { passive: true });
+
+  // One 'leave' event when the visitor leaves the page or switches away
+  // (app switch, tab change, phone locked). Without it a visit with no
+  // clicks and under 25% scroll showed as "0s" however long they actually
+  // spent reading. Its timestamp marks the real end of the visit and it
+  // carries how far they scrolled. Sent again only if they come back and
+  // scroll further or 15 seconds have passed, so visibilitychange and
+  // pagehide firing together don't log it twice.
+  var leaveScroll = -1, leaveTime = 0;
+  function sendLeave() {
+    var now = Date.now();
+    if (maxScroll === leaveScroll && now - leaveTime < 15000) return;
+    leaveScroll = maxScroll; leaveTime = now;
+    send({ event_type: 'leave', scroll_depth: maxScroll });
+  }
+  document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'hidden') sendLeave();
+  });
+  window.addEventListener('pagehide', sendLeave);
 })();
